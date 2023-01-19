@@ -97,6 +97,7 @@ function Table() {
                             <td className="px-6 py-4">
                                 { user.status }
                             </td>
+                            
                             <td className="px-6 py-4">
                                 { user.doneby }
                             </td>
