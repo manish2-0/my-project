@@ -30,7 +30,7 @@ function App() {
       {/* <Extraview/> */}
     {/* <Newentry/> */}
 
-      {/* <Router>  
+      <Router>  
       
       <Navbar />
      
@@ -42,16 +42,18 @@ function App() {
         <Route exact path="/newentry" element={<Newentry1/>} />
         <Route exact path="/view" element={<View/>} />
         <Route exact path="/entryedit" element={<Entryedit/>} />
+        <Route exact path="/extraview" element={<Extraview/>} />
+
         
         </Routes>
-      </Router> */}
+      </Router>
 
       
       {/* <ViewEntriesTesting/> */}
       {/* <Navbar /> */}
       {/* <Customercard /> */}
     
-      <Uploadtesting />
+      {/* <Uploadtesting /> */}
     </>
   );
 }

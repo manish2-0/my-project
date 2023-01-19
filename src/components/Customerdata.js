@@ -3,8 +3,6 @@ import {Link} from "react-router-dom"
 
 function Customerdata({user}) {
 
-
-
   return (
     <div key={user.blpid} className="block p-4 rounded-lg shadow-lg bg-white max-w-sm m-4">
                 <div className='flex justify-between items-center flex-wrap'>
@@ -12,7 +10,7 @@ function Customerdata({user}) {
                     <h5 className='text-blue-800 text-sm leading-tight font-bold mb-2'>Date: <span className='text-gray-800 font-medium'>{user.date}</span></h5>
                 </div>
                 <h5 className='text-blue-800 text-base leading-tight font-bold mb-2'>Name: <span className='text-gray-800 font-medium'>{user.name}</span></h5>
-                <h5 className='text-blue-800 text-base leading-tight font-bold mb-2'>ISELL <span className='text-gray-800 font-medium'>{user.isell}</span></h5>
+                <h5 className='text-blue-800 text-base leading-tight font-bold mb-2'>ISELL: <span className='text-gray-800 font-medium'>{user.isell}</span></h5>
                 <h5 className='text-blue-800 text-base leading-tight font-bold mb-2'>Address: <span className='text-gray-800 font-medium'>{user.address}</span></h5>
                 <h5 className='text-blue-800 text-base leading-tight font-bold mb-2'>City: <span className='text-gray-800 font-medium'>{user.city}</span></h5>
                 <h5 className='text-blue-800 text-base leading-tight font-bold mb-2'>Contact: <span className='text-gray-800 font-medium'>+91 {user.contact}</span></h5>

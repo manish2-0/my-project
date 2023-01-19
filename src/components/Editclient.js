@@ -1,13 +1,14 @@
 import React from 'react'
 import { useState } from "react";
 import axios from 'axios';
-import { useLocation } from 'react-router-dom';
+import { useLocation,useNavigate } from 'react-router-dom';
 
 
 
 function Editclient() {
+	const navigate = useNavigate();
     const location = useLocation();
-  const {user } = location.state;
+  const {user} = location.state;
 
     const [inputs, setinputs] = useState(user);
 
@@ -24,6 +25,7 @@ function Editclient() {
 		axios.put(`http://localhost:80/api/`, inputs).then(function (response) {
 			if (response.data.status == 1) {
 				window.alert("Data updated Successfully");
+				navigate('/');
 			}
 			else {
 				window.alert("Error Occured	");
@@ -39,7 +41,7 @@ function Editclient() {
     <div className='relative flex flex-col items-center justify-center mx-2 border border-gray-200 rounded-md z-0 pb-[24px] bg-gray-50'>
 			<h2 className='my-2 mb-4 text-4xl text-blue-900 underline'>Edit Customer Form</h2>
 			<div className='relative flex items-center justify-center h-auto bg-white rounded-md'>
-				<span className='z-[-1] absolute w-full h-full rounded-lg left-[5px] top-[5px] border-2 border-blue-800'> </span>
+				<span className='z-[-1] absolute w-full h-full rounded-lg left-[5px] top-[5px] border-2 border-blue-800'>{user.nanosil} </span>
 
 				<form className='z-10 relative w-[400px] h-auto rounded-lg p-[12px] py-[18px] border-2 border-gray-300' action="" onSubmit={ formsubmit }>
 

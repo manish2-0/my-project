@@ -8,7 +8,7 @@ function Frontpage() {
     <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 m-2 rounded-md dark:bg-blue-900 sticky top-2 z-[1000]">
       <div className="container flex flex-wrap items-center justify-between mx-auto">
         <a href="https://flowbite.com/" className="flex items-center">
-          <img src="https://i.ibb.co/3zVgbDq/Logo.png" className="h-10 sm:h-14" />
+          <img src="../logo1.png" className="h-10 sm:h-14" />
           {/* <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span> */ }
         </a>
         <div className="flex items-center justify-center md:order-2">
@@ -29,9 +29,7 @@ function Frontpage() {
             <li>
               <Link to="/newclient" className="text-[17px] block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white active:text-white dark:hover:bg-gray-700  dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Add</Link>
             </li>
-            <li>
-              <Link to="#" className="text-[17px] block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white active:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Find</Link>
-            </li>
+           
           </ul>
         </div>
       </div>

@@ -1,9 +1,17 @@
 import React from 'react'
 import {useState} from 'react';
 import axios from 'axios';
-import { useLocation } from 'react-router-dom';
+import { useLocation,useNavigate } from 'react-router-dom';
 
 function Entryedit() {
+
+	const navigate = useNavigate();
+    // const [path, setpath] = useState();
+    
+    // const handlechangefile = (e) => {
+    //     // console.log(e.target.files);
+    //     setpath(e.target.files);
+    // }
 
     const location = useLocation();
     const {values} = location.state;
@@ -23,12 +31,27 @@ function Entryedit() {
         axios.put(`http://localhost:80/api/dataentry/`, inputs).then(function (response) {
 			if (response.data.status == 1) {
 				window.alert("Data updated Successfully");
+                navigate('/');
 			}
 			else {
 				window.alert("Error Occured	");
 			}
 		});
-        console.log(inputs)
+        // console.log(inputs)
+
+        // for(let i=0;i<path.length;i++){
+
+        //     const formdata = new FormData();
+        //     formdata.append('filedata', path[i]);
+        //     // console.log(path[i]);
+
+        //     await axios.post(`http://localhost:80/api/upload/`, formdata,{headers: {
+        //         'content-type': 'multipart/form-data'
+        //     }}).then(function (response){
+        //         console.log(response);
+        //     });
+
+        // }
 
 	}
 
@@ -88,8 +111,8 @@ function Entryedit() {
 
             <div className='flex justify-start p-2 '>
 
-                <label className='text-gray-500 py-[3px] text-[18px] min-w-fit mr-2' htmlFor="">Upload Files:</label>
-                <input onChange={ handlechange } name="files1" className='px-[3px] py-[3px] rounded-sm text-[18px] outline-none bg-transparent text-black' type="file" id="" multiple placeholder='' />
+                {/* <label className='text-gray-500 py-[3px] text-[18px] min-w-fit mr-2' htmlFor="">Upload Files:</label>
+                <input onChange={ handlechange } name="files1" className='px-[3px] py-[3px] rounded-sm text-[18px] outline-none bg-transparent text-black' type="file" id="" multiple placeholder='' /> */}
 
 
             </div>
@@ -139,8 +162,8 @@ function Entryedit() {
                 <label className='text-gray-500 py-[3px] text-[18px] min-w-fit mx-2' htmlFor="">Remarks:</label>
                 <input defaultValue={inputs.remarks2} onChange={ handlechange } name="remarks2" className='block w-full px-[3px] py-[3px] border-b-2 border-gray-300 rounded-sm text-[18px] outline-none bg-transparent text-black' type="text" id="" placeholder='' />
 
-                <label className='text-gray-500 py-[3px] text-[18px] min-w-fit mx-2' htmlFor="">Upload Files:</label>
-                <input onChange={ handlechange } name="files2" className='block w-full px-[3px] py-[3px] rounded-sm text-[18px] outline-none bg-transparent text-black' type="file" id="" placeholder='' multiple />
+                {/* <label className='text-gray-500 py-[3px] text-[18px] min-w-fit mx-2' htmlFor="">Upload Files:</label>
+                <input onChange={ handlechange } name="files2" className='block w-full px-[3px] py-[3px] rounded-sm text-[18px] outline-none bg-transparent text-black' type="file" id="" placeholder='' multiple /> */}
 
 
             </div>
@@ -156,8 +179,8 @@ function Entryedit() {
                     <option>Done</option>
                 </select>
 
-                <label className='text-gray-500 py-[3px] text-[18px] min-w-fit mx-2' htmlFor="">Upload Files:</label>
-                <input onChange={ handlechange } name="files3" className='block w-full px-[3px] py-[3px] rounded-sm text-[18px] outline-none bg-transparent text-black' type="file" id="" placeholder='' multiple />
+                {/* <label className='text-gray-500 py-[3px] text-[18px] min-w-fit mx-2' htmlFor="">Upload Files:</label> */}
+                {/* <input onChange={ handlechangefile } name="files3" className='block w-full px-[3px] py-[3px] rounded-sm text-[18px] outline-none bg-transparent text-black' type="file" id="" placeholder='' multiple /> */}
 
             </div>
 
