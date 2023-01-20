@@ -17,6 +17,7 @@ import Editclient from './components/Editclient';
 import View from './components/View';
 import Entryedit from './components/Entryedit';
 import Uploadtesting from './components/Uploadtesting';
+import Loadingbody from './components/Loadingbody';
 
 
 function App() {
@@ -47,6 +48,8 @@ function App() {
         
         </Routes>
       </Router>
+
+      {/* <Loadingbody /> */}
 
       
       {/* <ViewEntriesTesting/> */}

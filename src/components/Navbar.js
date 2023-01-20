@@ -8,7 +8,7 @@ function Frontpage() {
     <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 m-2 rounded-md dark:bg-blue-900 sticky top-2 z-[1000]">
       <div className="container flex flex-wrap items-center justify-between mx-auto">
         <a href="https://flowbite.com/" className="flex items-center">
-          <img src="../logo1.png" className="h-10 sm:h-14" />
+          <img src="https://i.ibb.co/YyMb3rm/logo.png" className="h-10 sm:h-14" />
           {/* <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span> */ }
         </a>
         <div className="flex items-center justify-center md:order-2">

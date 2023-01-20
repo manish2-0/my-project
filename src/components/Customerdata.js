@@ -4,7 +4,7 @@ import {Link} from "react-router-dom"
 function Customerdata({user}) {
 
   return (
-    <div key={user.blpid} className="block p-4 rounded-lg shadow-lg bg-white max-w-sm m-4">
+    <div key={user.blpid} className="block p-4 rounded-lg shadow-lg bg-white w-[370px] m-4">
                 <div className='flex justify-between items-center flex-wrap'>
                     <h5 className="text-blue-800 text-xl leading-tight font-bold mb-2 mr-4">BLP ID: <span className='text-gray-800 font-medium'>{user.blpid}</span></h5>
                     <h5 className='text-blue-800 text-sm leading-tight font-bold mb-2'>Date: <span className='text-gray-800 font-medium'>{user.date}</span></h5>

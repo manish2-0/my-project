@@ -3,21 +3,29 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import Customerdata from './Customerdata';
+import Skeleton from 'react-loading-skeleton';
+import Loadingbody from './Loadingbody';
+
+
 
 function Customercard() {
 
     const [search, searchset] = useState("");
 
     const [values, setvalues] = useState([]);
+     const [loading, setloading] = useState(true);
 
     const usertable = () => {
         axios.get(`http://localhost:80/api/`).then(function (response) {
             setvalues(response.data);
+            setloading(false);
         })
     }
 
     useEffect(() => {
-        usertable();
+        setTimeout(() => {
+            usertable();
+        }, 2000);
     }, []);
 
 
@@ -31,6 +39,7 @@ function Customercard() {
 
 
     return (
+        
         <>
 
             <div className="sticky z-20 m-2 top-24">
@@ -42,10 +51,27 @@ function Customercard() {
                 <input onChange={ handlechange } type="search" id="default-search" className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 " placeholder="Search..." />
 
             </div>
-            <div className="flex flex-wrap justify-center m-2 ">
+            
+            <div className="flex flex-wrap justify-items-center justify-center align-middle m-2 ">
 
               
-                { values.filter((user) => {
+
+                
+                {loading?
+                
+                
+                <>
+                <Loadingbody/>
+                <Loadingbody/>
+                <Loadingbody/>
+                <Loadingbody/>
+                <Loadingbody/>
+                <Loadingbody/>
+                
+                
+                </>:
+                
+                values.filter((user) => {
                     return search.toLowerCase() === ""
                         ? user
                         : user.name.toLowerCase().includes(search);
