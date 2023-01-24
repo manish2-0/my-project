@@ -10,3 +10,17 @@
   background: linear-gradient(-218deg, #6db5fcb8 55%, #E0C3FC 55%);
   
 }
+
+.homebg{
+  background: linear-gradient(180deg, rgba(25,94,195,1) 25%, rgba(240,240,240,1) 25%);
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* For IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}

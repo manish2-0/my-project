@@ -18,11 +18,23 @@ import View from './components/View';
 import Entryedit from './components/Entryedit';
 import Uploadtesting from './components/Uploadtesting';
 import Loadingbody from './components/Loadingbody';
+import Login1 from './components/Login1';
+import Homepage from './components/Homepage';
+import Navbar1 from './components/Navbar1';
+import Home from './components/Home';
 
 
 function App() {
   return (
     <>
+      {/* <Login1/> */}
+      {/* <Homepage/> */}
+      <Home />
+      {/* <Navbar1/> */}
+      
+
+
+
       {/* <Login/> */}
        {/* <Search/> */}
       {/* <Information /> */}
@@ -31,7 +43,10 @@ function App() {
       {/* <Extraview/> */}
     {/* <Newentry/> */}
 
-      <Router>  
+    
+
+
+      {/* <Router>  
       
       <Navbar />
      
@@ -47,7 +62,8 @@ function App() {
 
         
         </Routes>
-      </Router>
+      </Router> */}
+
 
       {/* <Loadingbody /> */}
 
