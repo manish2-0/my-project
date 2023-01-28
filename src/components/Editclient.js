@@ -8,7 +8,7 @@ import { useLocation,useNavigate } from 'react-router-dom';
 function Editclient() {
 	const navigate = useNavigate();
     const location = useLocation();
-  const {user} = location.state;
+  	const {user} = location.state;
 
     const [inputs, setinputs] = useState(user);
 

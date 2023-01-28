@@ -16,7 +16,7 @@ function Customercard() {
      const [loading, setloading] = useState(true);
 
     const usertable = () => {
-        axios.get(`http://localhost:80/api/`).then(function (response) {
+        axios.get(`http://localhost/api/`).then(function (response) {
             setvalues(response.data);
             setloading(false);
         })
@@ -52,7 +52,7 @@ function Customercard() {
 
             </div>
             
-            <div className="flex flex-wrap justify-items-center justify-center align-middle m-2 ">
+            <div className="flex flex-wrap justify-center m-2 align-middle justify-items-center ">
 
               
 

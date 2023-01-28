@@ -1,280 +1,68 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Home from './Home'
+import HomeCard from './HomeCard'
+import Loadingbody from './Loadingbody'
+import axios from 'axios'
+
+const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJsb2NhbGhvc3QiLCJpYXQiOjE2NzQ4OTYxMzUsImV4cCI6MTY3NDg5OTczNSwiYXVkIjoiYWRtaW4iLCJkYXRhIjp7ImFkbWluX2lkIjoiYWRtaW4xIn19.ClXgLGZcpEmMibvFBsiHf_qR38h2yz62wiFRnhNh5ETn3DwomfeEwI50jy4qBA0m1NCmd0H1ZfJa4NF35RqRLw';
+
+const axiosinstance = axios.create({
+    baseURL: "http://localhost:80/blp-api/v1",
+    headers:{
+        Authorization:`Bearer ${token}`
+    }
+})
 
 function Homepage() {
+
+    const [loading, setloading] = useState(true);
+    const [values, setvalues] = useState([]);
+
+
+    const usertable = () => {
+        axiosinstance.get('/readAll.php').then(function (response) {
+            setvalues(response.data);
+            console.log(response.data)
+            setloading(false);
+        })
+    }
+
+    useEffect(() => {
+        setTimeout(() => {
+            usertable();
+        }, 2000);
+    }, []);
+
+
     return (
-<>
-        <div className="flex h-fit flex-wrap justify-items-center justify-center align-middle m-3">
-            <div className="backdrop-filter backdrop-blur-md relative block p-4 rounded-lg  border-black shadow-sm bg-white/90 w-[370px] h-fit m-2">
-                <div className='flex justify-left items-center mb-2'>
-                    <div className='mr-3'>
-                        <img className='h-12 w-12' src="https://i.ibb.co/4d5prcd/pngaaa-com-81468.png" alt="" />
-                    </div>
-                    <div>
-                        <h5 className="text-slate-800 text-xl leading-tight font-semibold">BLP100001</h5>
-                        <h5 className='text-slate-600 text-base font-medium leading-tight'>24-01-2023</h5>
-                    </div>
-                </div>
+        <>
 
-                <div className='relative  mb-6'>
-                    <h5 className='text-gray-700 text-lg leading-tight font-[500] '>Manish Kumavat</h5>
-                    <span className='absolute top-full text-xs text-blue-600 font-bold m-0 p-0'>Name</span>
-                </div>
+            <div className='flex items-center justify-center'>
+                <div className="container flex flex-wrap justify-center mx-3 align-middle sm:pt-20 pt-36 h-fit justify-items-center">
+                    { loading ?
 
 
-                <div className='relative mb-2'>
-                    <h5 className='text-gray-700 text-lg leading-tight font-[500] '><span className='font-bold '>ISELL No.: </span>123456789</h5>
-                    <h5 className='text-gray-700 text-lg leading-tight font-[500] '><span className='font-bold '>DC No.: </span>123456789</h5>
-                </div>
+                        <>
+                            <Loadingbody />
+                            <Loadingbody />
+                            <Loadingbody />
+                            <Loadingbody />
+                            <Loadingbody />
+                            <Loadingbody />
 
-                <div className='relative mb-3'>
-                    <h5 className='text-gray-700 text-lg leading-tight font-[500] '>+91 9967042936</h5>
-                    <span className='absolute top-full text-xs text-blue-600 font-bold m-0 p-0'>Contact</span>
+
+                        </> :
+
+                        values.map((user) =>
+                            <HomeCard user={ user } />
+                        ) }
+
                 </div>
-              
-                <button class="absolute bottom-3 right-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded">
-  View
-</button>
 
             </div>
-
-            <div className="backdrop-filter backdrop-blur-md relative block p-4 rounded-lg  border-black shadow-sm bg-white/90 w-[370px] h-fit m-2">
-                <div className='flex justify-left items-center mb-2'>
-                    <div className='mr-3'>
-                        <img className='h-12 w-12' src="https://i.ibb.co/4d5prcd/pngaaa-com-81468.png" alt="" />
-                    </div>
-                    <div>
-                        <h5 className="text-slate-800 text-xl leading-tight font-semibold">BLP100001</h5>
-                        <h5 className='text-slate-600 text-base font-medium leading-tight'>24-01-2023</h5>
-                    </div>
-                </div>
-
-                <div className='relative  mb-6'>
-                    <h5 className='text-gray-700 text-lg leading-tight font-[500] '>Manish Kumavat</h5>
-                    <span className='absolute top-full text-xs text-blue-600 font-bold m-0 p-0'>Name</span>
-                </div>
-
-
-                <div className='relative mb-2'>
-                    <h5 className='text-gray-700 text-lg leading-tight font-[500] '><span className='font-bold '>ISELL No.: </span>123456789</h5>
-                    <h5 className='text-gray-700 text-lg leading-tight font-[500] '><span className='font-bold '>DC No.: </span>123456789</h5>
-                </div>
-
-                <div className='relative mb-3'>
-                    <h5 className='text-gray-700 text-lg leading-tight font-[500] '>+91 9967042936</h5>
-                    <span className='absolute top-full text-xs text-blue-600 font-bold m-0 p-0'>Contact</span>
-                </div>
-              
-                <button class="absolute bottom-3 right-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded">
-  View
-</button>
-
-            </div>
-
-            <div className="backdrop-filter backdrop-blur-md relative block p-4 rounded-lg  border-black shadow-sm bg-white/90 w-[370px] h-fit m-2">
-                <div className='flex justify-left items-center mb-2'>
-                    <div className='mr-3'>
-                        <img className='h-12 w-12' src="https://i.ibb.co/4d5prcd/pngaaa-com-81468.png" alt="" />
-                    </div>
-                    <div>
-                        <h5 className="text-slate-800 text-xl leading-tight font-semibold">BLP100001</h5>
-                        <h5 className='text-slate-600 text-base font-medium leading-tight'>24-01-2023</h5>
-                    </div>
-                </div>
-
-                <div className='relative  mb-6'>
-                    <h5 className='text-gray-700 text-lg leading-tight font-[500] '>Manish Kumavat</h5>
-                    <span className='absolute top-full text-xs text-blue-600 font-bold m-0 p-0'>Name</span>
-                </div>
-
-
-                <div className='relative mb-2'>
-                    <h5 className='text-gray-700 text-lg leading-tight font-[500] '><span className='font-bold '>ISELL No.: </span>123456789</h5>
-                    <h5 className='text-gray-700 text-lg leading-tight font-[500] '><span className='font-bold '>DC No.: </span>123456789</h5>
-                </div>
-
-                <div className='relative mb-3'>
-                    <h5 className='text-gray-700 text-lg leading-tight font-[500] '>+91 9967042936</h5>
-                    <span className='absolute top-full text-xs text-blue-600 font-bold m-0 p-0'>Contact</span>
-                </div>
-              
-                <button class="absolute bottom-3 right-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded">
-  View
-</button>
-
-            </div>
-
-            <div className="backdrop-filter backdrop-blur-md relative block p-4 rounded-lg  border-black shadow-sm bg-white/90 w-[370px] h-fit m-2">
-                <div className='flex justify-left items-center mb-2'>
-                    <div className='mr-3'>
-                        <img className='h-12 w-12' src="https://i.ibb.co/4d5prcd/pngaaa-com-81468.png" alt="" />
-                    </div>
-                    <div>
-                        <h5 className="text-slate-800 text-xl leading-tight font-semibold">BLP100001</h5>
-                        <h5 className='text-slate-600 text-base font-medium leading-tight'>24-01-2023</h5>
-                    </div>
-                </div>
-
-                <div className='relative  mb-6'>
-                    <h5 className='text-gray-700 text-lg leading-tight font-[500] '>Manish Kumavat</h5>
-                    <span className='absolute top-full text-xs text-blue-600 font-bold m-0 p-0'>Name</span>
-                </div>
-
-
-                <div className='relative mb-2'>
-                    <h5 className='text-gray-700 text-lg leading-tight font-[500] '><span className='font-bold '>ISELL No.: </span>123456789</h5>
-                    <h5 className='text-gray-700 text-lg leading-tight font-[500] '><span className='font-bold '>DC No.: </span>123456789</h5>
-                </div>
-
-                <div className='relative mb-3'>
-                    <h5 className='text-gray-700 text-lg leading-tight font-[500] '>+91 9967042936</h5>
-                    <span className='absolute top-full text-xs text-blue-600 font-bold m-0 p-0'>Contact</span>
-                </div>
-              
-                <button class="absolute bottom-3 right-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded">
-  View
-</button>
-
-            </div>
-
-            <div className="backdrop-filter backdrop-blur-md relative block p-4 rounded-lg  border-black shadow-sm bg-white/90 w-[370px] h-fit m-2">
-                <div className='flex justify-left items-center mb-2'>
-                    <div className='mr-3'>
-                        <img className='h-12 w-12' src="https://i.ibb.co/4d5prcd/pngaaa-com-81468.png" alt="" />
-                    </div>
-                    <div>
-                        <h5 className="text-slate-800 text-xl leading-tight font-semibold">BLP100001</h5>
-                        <h5 className='text-slate-600 text-base font-medium leading-tight'>24-01-2023</h5>
-                    </div>
-                </div>
-
-                <div className='relative  mb-6'>
-                    <h5 className='text-gray-700 text-lg leading-tight font-[500] '>Manish Kumavat</h5>
-                    <span className='absolute top-full text-xs text-blue-600 font-bold m-0 p-0'>Name</span>
-                </div>
-
-
-                <div className='relative mb-2'>
-                    <h5 className='text-gray-700 text-lg leading-tight font-[500] '><span className='font-bold '>ISELL No.: </span>123456789</h5>
-                    <h5 className='text-gray-700 text-lg leading-tight font-[500] '><span className='font-bold '>DC No.: </span>123456789</h5>
-                </div>
-
-                <div className='relative mb-3'>
-                    <h5 className='text-gray-700 text-lg leading-tight font-[500] '>+91 9967042936</h5>
-                    <span className='absolute top-full text-xs text-blue-600 font-bold m-0 p-0'>Contact</span>
-                </div>
-              
-                <button class="absolute bottom-3 right-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded">
-  View
-</button>
-
-            </div>
-
-            <div className="backdrop-filter backdrop-blur-md relative block p-4 rounded-lg  border-black shadow-sm bg-white/90 w-[370px] h-fit m-2">
-                <div className='flex justify-left items-center mb-2'>
-                    <div className='mr-3'>
-                        <img className='h-12 w-12' src="https://i.ibb.co/4d5prcd/pngaaa-com-81468.png" alt="" />
-                    </div>
-                    <div>
-                        <h5 className="text-slate-800 text-xl leading-tight font-semibold">BLP100001</h5>
-                        <h5 className='text-slate-600 text-base font-medium leading-tight'>24-01-2023</h5>
-                    </div>
-                </div>
-
-                <div className='relative  mb-6'>
-                    <h5 className='text-gray-700 text-lg leading-tight font-[500] '>Manish Kumavat</h5>
-                    <span className='absolute top-full text-xs text-blue-600 font-bold m-0 p-0'>Name</span>
-                </div>
-
-
-                <div className='relative mb-2'>
-                    <h5 className='text-gray-700 text-lg leading-tight font-[500] '><span className='font-bold '>ISELL No.: </span>123456789</h5>
-                    <h5 className='text-gray-700 text-lg leading-tight font-[500] '><span className='font-bold '>DC No.: </span>123456789</h5>
-                </div>
-
-                <div className='relative mb-3'>
-                    <h5 className='text-gray-700 text-lg leading-tight font-[500] '>+91 9967042936</h5>
-                    <span className='absolute top-full text-xs text-blue-600 font-bold m-0 p-0'>Contact</span>
-                </div>
-              
-                <button class="absolute bottom-3 right-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded">
-  View
-</button>
-
-            </div>
-
-            <div className="backdrop-filter backdrop-blur-md relative block p-4 rounded-lg  border-black shadow-sm bg-white/90 w-[370px] h-fit m-2">
-                <div className='flex justify-left items-center mb-2'>
-                    <div className='mr-3'>
-                        <img className='h-12 w-12' src="https://i.ibb.co/4d5prcd/pngaaa-com-81468.png" alt="" />
-                    </div>
-                    <div>
-                        <h5 className="text-slate-800 text-xl leading-tight font-semibold">BLP100001</h5>
-                        <h5 className='text-slate-600 text-base font-medium leading-tight'>24-01-2023</h5>
-                    </div>
-                </div>
-
-                <div className='relative  mb-6'>
-                    <h5 className='text-gray-700 text-lg leading-tight font-[500] '>Manish Kumavat</h5>
-                    <span className='absolute top-full text-xs text-blue-600 font-bold m-0 p-0'>Name</span>
-                </div>
-
-
-                <div className='relative mb-2'>
-                    <h5 className='text-gray-700 text-lg leading-tight font-[500] '><span className='font-bold '>ISELL No.: </span>123456789</h5>
-                    <h5 className='text-gray-700 text-lg leading-tight font-[500] '><span className='font-bold '>DC No.: </span>123456789</h5>
-                </div>
-
-                <div className='relative mb-3'>
-                    <h5 className='text-gray-700 text-lg leading-tight font-[500] '>+91 9967042936</h5>
-                    <span className='absolute top-full text-xs text-blue-600 font-bold m-0 p-0'>Contact</span>
-                </div>
-              
-                <button class="absolute bottom-3 right-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded">
-  View
-</button>
-
-            </div>
-
-            <div className="backdrop-filter backdrop-blur-md relative block p-4 rounded-lg  border-black shadow-sm bg-white/90 w-[370px] h-fit m-2">
-                <div className='flex justify-left items-center mb-2'>
-                    <div className='mr-3'>
-                        <img className='h-12 w-12' src="https://i.ibb.co/4d5prcd/pngaaa-com-81468.png" alt="" />
-                    </div>
-                    <div>
-                        <h5 className="text-slate-800 text-xl leading-tight font-semibold">BLP100001</h5>
-                        <h5 className='text-slate-600 text-base font-medium leading-tight'>24-01-2023</h5>
-                    </div>
-                </div>
-
-                <div className='relative  mb-6'>
-                    <h5 className='text-gray-700 text-lg leading-tight font-[500] '>Manish Kumavat</h5>
-                    <span className='absolute top-full text-xs text-blue-600 font-bold m-0 p-0'>Name</span>
-                </div>
-
-
-                <div className='relative mb-2'>
-                    <h5 className='text-gray-700 text-lg leading-tight font-[500] '><span className='font-bold '>ISELL No.: </span>123456789</h5>
-                    <h5 className='text-gray-700 text-lg leading-tight font-[500] '><span className='font-bold '>DC No.: </span>123456789</h5>
-                </div>
-
-                <div className='relative mb-3'>
-                    <h5 className='text-gray-700 text-lg leading-tight font-[500] '>+91 9967042936</h5>
-                    <span className='absolute top-full text-xs text-blue-600 font-bold m-0 p-0'>Contact</span>
-                </div>
-              
-                <button class="absolute bottom-3 right-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded">
-  View
-</button>
-
-            </div>
-
-            
-
-
-        </div>
 
         </>
+
     )
 }
 

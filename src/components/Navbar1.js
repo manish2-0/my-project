@@ -6,41 +6,43 @@ function Navbar1() {
     const [scrolling ,setscrolling] = useState(false);
 
     
-    // const scrollh=()=>{
-    //     if(window.scrollY>=65){
-    //         setscrolling(true);
-    //         let a=document.getElementById("main");
-    //         // console.log(a)
-    //     }
-    //     else{
-    //         setscrolling(false);
-    //     }
-    // }
-    // window.addEventListener("scroll",scrollh);
+    const scrollh=()=>{
+        if(window.scrollY>=65){
+            setscrolling(true);
+            let a=document.getElementById("main");
+            console.log(a)
+        }
+        else{
+            setscrolling(false);
+        }
+    }
+
+
+    window.addEventListener("scroll",scrollh);
     
     return (
 
 
         
-        
-        <div className='bghome m-3 rounded z-30' id='main'>
-            <div className='container w-full p-2 px-3 mx-auto'>
+        <div className=''>
+        <div className={scrolling?"sm:translate-y-0 transition  -translate-y-1/2 z-30 bg-blue-600 fixed w-full" :"transition translate-y-0 z-30 bg-blue-600 fixed w-full"}  id='main'>
+            <div className='container relative w-full p-2 px-3 mx-auto bg-blue-600 sm:translate-y-0'>
 
-                <div className='flex justify-between'>
+                <div className='flex justify-between h-1/2 sm:h-auto'>
 
                 {/* Navicon */ }
-                <div className='w-1/4 order-1'>
+                <div className='order-1 w-1/4'>
                     <img className='h-14 w-14' src="https://i.ibb.co/YyMb3rm/logo.png" alt="" srcset="" />
                 </div>
 
                 
 
-                <div className='w-1/2 relative my-2 hidden sm:block order-2'>
-                    <div className='w-3/4 relative h-12 rounded-full overflow-hidden'>
-                        <span className='absolute top-1/2 -translate-y-1/2 left-2'><i class="fa-solid fa-magnifying-glass"></i></span>
+                <div className='relative order-2 hidden w-1/2 my-2 sm:block'>
+                    <div className='relative w-3/4 h-12 overflow-hidden rounded-full'>
+                        <span className='absolute -translate-y-1/2 top-1/2 left-2'><i className="fa-solid fa-magnifying-glass"></i></span>
                         <input className='w-full h-full px-8 pr-32 outline-none ' type="text" placeholder='Search...'/>
-                        <span className='absolute top-1/2 -translate-y-1/2 right-0'>
-                            <select className=' bg-gray-200 text-black px-2 rounded-full h-10 mr-1 outline-none' name="" id="">
+                        <span className='absolute right-0 -translate-y-1/2 top-1/2'>
+                            <select className='h-10 px-2 mr-1 text-black bg-gray-200 rounded-full outline-none ' name="" id="">
                                 <option selected>Select...</option>
                                 <option>BLP Id</option>
                                 <option>ISELL No.</option>
@@ -57,19 +59,19 @@ function Navbar1() {
 
                 {/* Person Logo */ }
 
-                <div className='w-1/4 flex justify-end items-center order-3'>
-                    <svg class="w-[30px] h-[30px] text-white  " fill="white" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                <div className='flex items-center justify-end order-3 w-1/4'>
+                    <svg className="w-[30px] h-[30px] text-white  " fill="white" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
                 </div>
 
 
                 </div>
 
-                <div className='relative my-2 sm:hidden'>
-                    <div className='relative h-12 rounded-full overflow-hidden'>
-                        <span className='absolute top-1/2 -translate-y-1/2 left-2'><i class="fa-solid fa-magnifying-glass"></i></span>
+                <div className='relative mt-4 h-1/2 sm:hidden'>
+                    <div className='relative h-12 overflow-hidden rounded-full'>
+                        <span className='absolute -translate-y-1/2 top-1/2 left-2'><i className="fa-solid fa-magnifying-glass"></i></span>
                         <input className='w-full h-full px-8 pr-32 outline-none ' type="text" placeholder='Search...'/>
-                        <span className='absolute top-1/2 -translate-y-1/2 right-0'>
-                            <select className=' bg-gray-200 text-black px-2 rounded-full h-10 mr-1 outline-none' name="" id="">
+                        <span className='absolute right-0 -translate-y-1/2 top-1/2'>
+                            <select className='h-10 px-2 mr-1 text-black bg-gray-200 rounded-full outline-none ' name="" id="">
                                 <option selected>Select...</option>
                                 <option>BLP Id</option>
                                 <option>ISELL No.</option>
@@ -88,6 +90,7 @@ function Navbar1() {
 
 
 
+        </div>
         </div>
 
        

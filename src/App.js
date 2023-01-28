@@ -22,17 +22,38 @@ import Login1 from './components/Login1';
 import Homepage from './components/Homepage';
 import Navbar1 from './components/Navbar1';
 import Home from './components/Home';
+import CustomerDetail from './components/CustomerDetail';
+import Tablenew from './components/Tablenew';
+import Newclient1 from './components/Newclient1';
+import NewEntry2 from './components/NewEntry2';
+import ExtraView1 from './components/ExtraView1';
 
 
 function App() {
   return (
     <>
-      {/* <Login1/> */}
+    
+      <Login1/>
       {/* <Homepage/> */}
-      <Home />
-      {/* <Navbar1/> */}
-      
+      {/* <Home /> */}
 
+      {/* <Navbar1/> */}
+      {/* <div className='container mx-auto lg:flex '>
+      <div className='lg:w-[35%] xl:w-1/4 border'><CustomerDetail/></div>
+      <div className='lg:w-[65%] xl:w-3/4 border'><Tablenew /></div>
+      </div> */}
+     
+     
+      {/* <Navbar1/>
+      <div className='container mx-auto lg:flex '>
+      <div className='lg:w-[35%] xl:w-1/4 border'><CustomerDetail/></div>
+      <div className='lg:w-[65%] xl:w-3/4 border'><ExtraView1 /></div>
+      </div> */}
+
+      {/* <Newclient1 /> */}
+      {/* <NewEntry2 /> */}
+      {/* <ExtraView1 /> */}
+      
 
 
       {/* <Login/> */}
