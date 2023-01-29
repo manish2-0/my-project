@@ -1,6 +1,10 @@
 import axios from 'axios';
 import React,{useState} from 'react'
 import Home from './Home';
+import logo1 from '../logo1.png';
+import logo from '../logo.png';
+import wall from '../wall.jpeg';
+import logo4 from '../logo4.png';
 
 function Login1() {
 
@@ -9,7 +13,7 @@ function Login1() {
   const [loginvalues,setloginvalues]=useState();
 
   
-	const [loginstatus, setloginstatus] = useState(true);
+	const [loginstatus, setloginstatus] = useState(false);
 
 	function handlechange(event) {
 		event.preventDefault();
@@ -41,15 +45,21 @@ function Login1() {
 
   }
 
+  // background: linear-gradient(107deg, #0e387a 60%, #9fafca 40%);
+  // background: linear-gradient(107deg, #114290 60%, #cfd2d8 40%);
+  // background: linear-gradient(107deg, #00356ae3 60%, #EEEEEC 40%);
+  // background: linear-gradient(107deg, #04385e 60%, #dcdcdc 40%);
+
   return (
     loginstatus? <Home /> :
-    <div className='flex items-center justify-around w-full min-h-screen bg--color '>
+    <div className='flex items-center justify-around w-full min-h-screen bg--color'>
+      {/* <img className='absolute h-screen w-screen' srcSet={wall} alt="" /> */}
         <div className='relative m-4 h-96 bg-white w-full max-w-6xl rounded-lg sm:drop-shadow-[0px_5px_3px_rgba(0,0,0,0.2)] sm:flex sm:justify-around sm:h-auto items-center sm:backdrop-filter sm:backdrop-blur-[20px] sm:bg-slate-100/20 sm:shadow-[2px_4px_20px_rgba(0,0,0,0.489)]'>
                
 
                 <div className='absolute inline left-1/2 -translate-x-1/2 -translate-y-1/2 p-2 rounded-full h-[120px] w-[120px] bg-[#96CAFD] sm:bg-transparent border-b-2 border-gray-300 sm:relative sm:w-[45%] sm:left-0 sm:translate-x-0 sm:translate-y-0 sm:h-full sm:rounded-none sm:border-0 sm:flex sm:justify-center sm:m-5'>
-                    <img className='sm:hidden drop-shadow-[2px_3px_2px_rgba(0,0,0,1)]' srcSet='https://i.ibb.co/YyMb3rm/logo.png'  alt="" />
-                    <img className='hidden sm:block drop-shadow-[-3px_2px_1px_rgba(0,0,0,0.25)]' srcSet='https://i.ibb.co/Wgj9K6b/logo1.png'  alt="" />
+                    <img className='sm:hidden drop-shadow-[2px_3px_2px_rgba(0,0,0,1)]' srcSet={logo4}  alt="" />
+                    <img className='hidden sm:block drop-shadow-[-3px_2px_1px_rgba(0,0,0,0.25)]' srcSet={logo4}  alt="" />
                     <span className='h-[20px] w-[20px] bg-transparent absolute top-1/2 -left-[17px] shadow-[0px_-10px_0px_#96CAFD] rounded-tr-full sm:hidden'></span>
                     <span className='h-[20px] w-[20px] bg-transparent absolute top-1/2 -right-[17px] shadow-[0px_-10px_0px_#96CAFD] rounded-tl-full sm:hidden'></span>
                 </div>
