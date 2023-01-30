@@ -1,10 +1,51 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useLocation } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
 
 function Tablenew() {
+
+    const navigate = new useNavigate();
+
+    const [values, setvalues] = useState([]);
+
+    const location = useLocation();
+    const { user } = location.state;
+    // console.log(user)
+    // const addr=user.blpid;
+
+    const usertable = () => {
+        axios.get(`http://localhost:80/blp-api/testing/dataentry/${user.blp_id}`).then(function (response) {
+            setvalues(response.data);
+        })
+
+    }
+
+    useEffect(() => {
+        usertable();
+        console.log(user)
+    }, []);
+
+    const deletefunc = (a,k) => {
+        axios.delete(`http://localhost:80/blp-api/testing/dataentry/${a}`).then(function (response) {
+            if (response.data.status == 1) {
+                setvalues(values.filter((e)=>{
+                    return e!==k;
+                }))
+                window.alert("Record deleted succesfully");
+            }
+            else {
+                window.alert("Error occured");
+            }
+        })
+    }
+
+
   return (
     <div className="relative m-4 overflow-x-auto rounded-xl scrollbar-hide">
-    <table className="container w-full m-1 mx-auto text-sm text-left text-gray-500 shadow-md">
-        <thead className="text-gray-700 uppercase bg-gray-100 border-b border-gray-300">
+        <span className='text-2xl text-fix'>Entries:</span>
+    <table className="container w-full m-1 mx-auto text-sm text-left text-gray-500 shadow-md border">
+        <thead className="text-white uppercase bg-fix border-b border-gray-300">
             <tr className='text-[16px] '>
                 <th scope="col" className="px-6 py-3">
                     No.
@@ -38,74 +79,43 @@ function Tablenew() {
         </thead>
         <tbody className=''>
 
+        { values.map((user, key) =>
 
                 <tr className="bg-white border-b hover:bg-gray-50">
 
                     <th scope="row" className="px-6 py-2 font-medium text-gray-900 whitespace-nowrap ">
-                        1
+                        {key+1}
                     </th>
                     <td className="px-6 py-2">
-                        26-01-2023
+                        {user.date}
                     </td>
                     <td className="px-6 py-2">
-                       Measurement
+                       {user.nature}
                     </td>
                     <td className="px-6 py-2">
-                       Done
+                       {user.status}
                     </td>
                     
                     <td className="px-6 py-2">
-                        Manish and team
+                        {user.doneby}
                     </td>
                    
                     <td className="px-6 py-2">
-                       Work Completed
+                       {user.remarks1}
                     </td>
                     <td className="px-6 py-2 text-right">
-                        <a  className="font-medium text-blue-600 hover:underline">More</a>
+                        <Link to="/extraview" state={ { values:user } }  className="font-medium text-fix hover:underline">More</Link>
                     </td>
                     <td className="px-6 py-2 text-right">
-                        <a  className="font-medium text-blue-600 hover:underline">Edit</a>
+                        <Link to="/entryedit" state={ { values: user } }  className="font-medium text-fix hover:underline">Edit</Link>
                     </td>
 
                     <td className="px-6 py-2 text-right">
-                        <a className="font-medium text-blue-600 hover:underline">Delete</a>
+                        <button onClick={ () => { deletefunc(user.srno,user) }} className=" font-medium text-fix hover:underline">Delete</button>
                     </td>
                 </tr>
-
-                <tr className="bg-white border-b hover:bg-gray-50">
-
-                    <th scope="row" className="px-6 py-2 font-medium text-gray-900 whitespace-nowrap ">
-                        1
-                    </th>
-                    <td className="px-6 py-2">
-                        26-01-2023
-                    </td>
-                    <td className="px-6 py-2">
-                       Measurement
-                    </td>
-                    <td className="px-6 py-2">
-                       Done
-                    </td>
-                    
-                    <td className="px-6 py-2">
-                        Manish and team
-                    </td>
-                   
-                    <td className="px-6 py-2">
-                       Work Completed
-                    </td>
-                    <td className="px-6 py-2 text-right">
-                        <a  className="font-medium text-blue-600 hover:underline">More</a>
-                    </td>
-                    <td className="px-6 py-2 text-right">
-                        <a  className="font-medium text-blue-600 hover:underline">Edit</a>
-                    </td>
-
-                    <td className="px-6 py-2 text-right">
-                        <a className="font-medium text-blue-600 hover:underline">Delete</a>
-                    </td>
-                </tr>
+        )}
+                
              
 
         </tbody>

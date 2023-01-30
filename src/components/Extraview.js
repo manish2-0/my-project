@@ -12,7 +12,6 @@ function Extraview() {
     // console.log(inputs);
 
 
-
     const [files, setfiles] = useState([]);
 
     const usertable= ()=> {

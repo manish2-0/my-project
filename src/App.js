@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import React from 'react';
+import React,{useState} from 'react';
 import './App.css';
 import Login from './components/Login';
 import Information from './components/Information';
@@ -27,13 +27,28 @@ import Tablenew from './components/Tablenew';
 import Newclient1 from './components/Newclient1';
 import NewEntry2 from './components/NewEntry2';
 import ExtraView1 from './components/ExtraView1';
+import Information1 from './components/Information1';
+import ExtraInformation from './components/ExtraInformation';
+import SearchState from './context/SearchState';
+import Editclient1 from './components/Editclient1';
+import Entryedit2 from './components/Entryedit2';
+import SearchContext from './context/SearchContext'
+import { useContext } from 'react';
 
 
 function App() {
+  // console.log(searchvalue)
+  // const a=useContext(SearchContext);
+  // console.log(a.searchvalue)
+
+  const [status, setstatus] = useState(true);
+
   return (
+    
     <>
     
-      <Login1/>
+
+
       {/* <Homepage/> */}
       {/* <Home /> */}
 
@@ -53,7 +68,32 @@ function App() {
       {/* <Newclient1 /> */}
       {/* <NewEntry2 /> */}
       {/* <ExtraView1 /> */}
+
       
+      
+      <SearchState>
+
+      {status?  <Login1 setstatus={setstatus} status={status}/>:
+       
+        
+      <Router>  
+
+      
+      
+        <Navbar1 setstatus={setstatus} status={status}/>
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route exact path="/newclient" element={<Newclient1/>} />
+        <Route exact path="/editclient" element={<Editclient1/>} />
+        <Route exact path="/newentry" element={<NewEntry2/>} />
+        <Route exact path="/view" element={<Information1/>} />
+        <Route exact path="/entryedit" element={<Entryedit2/>} />
+        <Route exact path="/extraview" element={<ExtraInformation/>} />
+
+        
+        </Routes>
+      </Router>}
+      </SearchState>
 
 
       {/* <Login/> */}

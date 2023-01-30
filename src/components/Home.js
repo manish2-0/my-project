@@ -4,11 +4,9 @@ import Navbar1 from './Navbar1'
 
 function Home() {
   return (
-    <div className='relative top-0 h-auto'>
-        <Navbar1 />
-        {/* <div className='sticky border-black sm:pb-6'> */}
+    <div className='relative h-auto'>
         <Homepage />
-        {/* </div> */}
+        
     </div>
   )
 }

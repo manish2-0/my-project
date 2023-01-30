@@ -17,6 +17,7 @@ function Editclient() {
 		const name = event.target.name;
 		const value = event.target.value;
 		setinputs(values => ({ ...values, [name]: value }))
+		// console.log(inputs)
 	}
 
 	const formsubmit = async (event) => {
