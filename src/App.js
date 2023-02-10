@@ -91,6 +91,7 @@ function App() {
         <Route exact path="/extraview" element={<ExtraInformation/>} />
 
         
+        
         </Routes>
       </Router>}
       </SearchState>
