@@ -34,6 +34,7 @@ import Editclient1 from './components/Editclient1';
 import Entryedit2 from './components/Entryedit2';
 import SearchContext from './context/SearchContext'
 import { useContext } from 'react';
+import { Testing } from './components/Testing';
 
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
     
     <>
     
+    {/* <Testing /> */}
 
 
       {/* <Homepage/> */}
@@ -69,9 +71,9 @@ function App() {
       {/* <NewEntry2 /> */}
       {/* <ExtraView1 /> */}
 
+      <Login1/>
       
-      
-      <SearchState>
+      {/* <SearchState>
 
       {status?  <Login1 setstatus={setstatus} status={status}/>:
        
@@ -94,7 +96,7 @@ function App() {
         
         </Routes>
       </Router>}
-      </SearchState>
+      </SearchState> */}
 
 
       {/* <Login/> */}

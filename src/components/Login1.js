@@ -10,10 +10,12 @@ import { useContext } from 'react';
 function Login1(props) {
   // console.log(props.status)
 
-  const a=useContext(SearchContext);
+  // const a=useContext(SearchContext);
   // console.log(a.searchvalue)
   
   // const navigate = useNavigate();
+
+
 	const [inputs, setinputs] = useState({});
   const [loginvalues,setloginvalues]=useState();
 
@@ -33,23 +35,31 @@ function Login1(props) {
 
   const handlesubmit = async (event) => {
 		event.preventDefault()
-    // console.log(JSON.stringify(inputs))
-		axios.post(`http://localhost:80/blp-api/v1/login.php`,JSON.stringify(inputs)).then(function (response) {
-			if (response.data.status == true) {
-        alert(response.data.message);
-        a.setsearchvalue(values => ({ ...values, admin_id:  response.data.admin_id}));
-        a.setsearchvalue(values => ({ ...values, login_status:  response.data.status}));
-        // console.log(a.searchvalue)
-        props.setstatus(false)
-      }
-			else {
-        // console.log(response.data)
-        alert(response.data.message)
+    console.log(JSON.stringify(inputs))
+		// axios.post(`http://localhost:80/blp-api/v1/login.php`,JSON.stringify(inputs)).then(function (response) {
+		// 	if (response.data.status == true) {
+    //     alert(response.data.message);
+    //     a.setsearchvalue(values => ({ ...values, admin_id:  response.data.admin_id}));
+    //     a.setsearchvalue(values => ({ ...values, login_status:  response.data.status}));
+    //     // console.log(a.searchvalue)
+    //     props.setstatus(false)
+    //   }
+		// 	else {
+    //     // console.log(response.data)
+    //     alert(response.data.message)
         
 
-			}
+		// 	}
 
-		});
+		// });
+
+    await axios.post('http://localhost:8000/admin/login',JSON.stringify(inputs),{
+      headers:{'Content-Type':'application/json',
+      withCredentials:true}
+    }).then(response=>{
+      console.log(response.data)
+    })
+
 
   }
 
