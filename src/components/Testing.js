@@ -8,7 +8,7 @@ export const Testing = () => {
     //     axios.get('http://localhost:8000/admin/getAll-client', {
     //         headers: {
     //             'Content-Type': 'application/json',
-    //             'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbl9pZCI6ImFkbWluMSIsImlhdCI6MTY3NjEyMDYwMCwiZXhwIjoxNjc2MTI0MjAwfQ.CgdeDsVpgYY7y-KG6uRCsTt2JzjvKr401dfHA2yaT2I'
+    //             'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbl9pZCI6ImFkbWluMSIsImlhdCI6MTY3NjIyMTAwNywiZXhwIjoxNjc2MjI0NjA3fQ.Ad5zuQazVSU9rxooSKj2asxwXpObZ4UH__rDfw2hzxk'
     //         }
     //     }).then(response => {
     //         console.log(response.data)
@@ -28,9 +28,9 @@ export const Testing = () => {
     const login = async() => {
         await axios.post('http://localhost:8000/admin/login', inputs, {
             headers: {
-                'Content-Type': 'application/json',
-                withCredentials: true
-            }
+                'Content-Type': 'application/json'
+            },
+            withCredentials: true
         }).then(response => {
             console.log(response.data)
         })
@@ -38,11 +38,9 @@ export const Testing = () => {
 
     const logout = () => {
         axios.post('http://localhost:8000/admin/logout',{
-            headers: {
-                withCredentials: true
-            }
+            withCredentials: true    
         }
-           ).then(response => {
+        ).then(response => {
             console.log(response.data)
         })
     }

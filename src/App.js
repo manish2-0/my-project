@@ -48,7 +48,7 @@ function App() {
     
     <>
     
-    {/* <Testing /> */}
+    <Testing />
 
 
       {/* <Homepage/> */}
@@ -71,7 +71,7 @@ function App() {
       {/* <NewEntry2 /> */}
       {/* <ExtraView1 /> */}
 
-      <Login1/>
+      {/* <Login1/> */}
       
       {/* <SearchState>
 
