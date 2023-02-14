@@ -31,7 +31,7 @@ function HomeCard({user}) {
                 <span className='absolute p-0 m-0 text-xs font-bold text-fix top-full'>Contact</span>
             </div>
 
-            <Link  to="/view" state={{ user:user }}  class=" absolute bottom-3 right-3 bg-fix hover:bg-[#1967b6] text-white font-bold py-2 px-6 rounded">
+            <Link  to="/view" state={{ user:user }}  className=" absolute bottom-3 right-3 bg-fix hover:bg-[#1967b6] text-white font-bold py-2 px-6 rounded">
                 View
             </Link>
 

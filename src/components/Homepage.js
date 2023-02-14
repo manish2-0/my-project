@@ -8,8 +8,7 @@ import AddCard from './AddCard';
 import {Link} from "react-router-dom"
 import SearchContext from '../context/SearchContext'
 import { useContext } from 'react';
-
-const accesst='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJsb2NhbGhvc3QiLCJpYXQiOjE2NzQ5NzQ4NDMsImV4cCI6MTY3NDk3ODQ0MywiYXVkIjoiYWRtaW4iLCJkYXRhIjp7ImFkbWluX2lkIjoiYWRtaW4xIn19.KR_i3i_vvIRRF64QkLtrxZxxHxxUNq1QJfYKQBmSh5eq98c203DdxohGEhe-leB9-rKMBcOPtbyXt17tJXjE8Q';
+import useAuth from '../hooks/useAuth'
 
 // const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJsb2NhbGhvc3QiLCJpYXQiOjE2NzQ5MDQ5NTUsImV4cCI6MTY3NDkwODU1NSwiYXVkIjoiYWRtaW4iLCJkYXRhIjp7ImFkbWluX2lkIjoiYWRtaW4xIn19.Bq5aw1f2SibkJm9zKxkVBSd9d4a1F3NLk3omgUbtjPa1wZhtlZQk8VQqF8fFAjByNLJHqk4PCAsq-863uLaeEw';
 
@@ -41,28 +40,32 @@ function Homepage() {
     const [loading, setloading] = useState(true);
     const [values, setvalues] = useState([]);
 
-    const [access,setaccess]=useState({
-        "access":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJsb2NhbGhvc3QiLCJpYXQiOjE2NzQ5NzQ4NDMsImV4cCI6MTY3NDk3ODQ0MywiYXVkIjoiYWRtaW4iLCJkYXRhIjp7ImFkbWluX2lkIjoiYWRtaW4xIn19.KR_i3i_vvIRRF64QkLtrxZxxHxxUNq1QJfYKQBmSh5eq98c203DdxohGEhe-leB9-rKMBcOPtbyXt17tJXjE8Q"
-    })
+    const {auth,setauth}=useAuth();
 
 
-    const usertable = async () => {
-         api.get("/readAll.php").then(function (response) {
-            setvalues(response.data.data);
+    // const usertable = async () => {
+    //      api.get("/readAll.php").then(function (response) {
+    //         setvalues(response.data.data);
+    //         console.log(response.data.data)
+    //         setloading(false);
+    //     })
+
+
+
+    // }
+
+    const getall = async() => {
+       
+        await api.get('client/getAll-client',{
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization':'Bearer '+auth.accessToken
+            }
+        }).then(response => {
             console.log(response.data.data)
+            setvalues(response.data.data)
             setloading(false);
         })
-
-    //     await axios.get("http://localhost:80/blp-api/testing/readAll.php",
-    //         {headers:{'Authorization':''}
-    // }).then(function (response) {
-    //             setvalues(response.data.data);
-    //             console.log(response.data.data)
-    //             setloading(false);
-    //         })
-
-
-
     }
 
 //     const usertable = async () => {
@@ -104,7 +107,7 @@ function Homepage() {
 
     useEffect(() => {
         setTimeout(() => {
-            usertable();
+            getall();
         }, 2000);
     }, []);
 

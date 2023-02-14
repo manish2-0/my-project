@@ -5,18 +5,19 @@ import logo from '../logo.png';
 import SearchContext from '../context/SearchContext'
 import { useContext,useEffect } from 'react';
 import axios from 'axios'
+import api from './axiosapi';
+import useAuth from '../hooks/useAuth';
 
 
 
 function Navbar1(props) {
-    const nav = useNavigate();
 
+    const {auth,setauth}=useAuth();
+
+    const nav = useNavigate();
+    
     const a = useContext(SearchContext);
 
-
-    // const [current1, setcurrent] = useState({});
-    // let get_id=a.searchvalue.admin_id;
-    // setcurrent({admin_id:get_id});
     const current1={
             admin_id:a.searchvalue.admin_id
         }
@@ -67,24 +68,22 @@ function Navbar1(props) {
         }
 
         a.setsearchvalue(values => ({ ...values, [name]: value }));
-        console.log(a.searchvalue.searchitem)
+        // console.log(a.searchvalue.searchitem)
     }
 
-    function handlelogout(e) {
+    const handlelogout=async(e)=> {
         e.preventDefault();
-        // console.log(a.searchvalue.admin_id,"Hello")
-        // console.log(JSON.stringify(current1))
 
-        axios.post(`http://localhost:80/blp-api/v1/logout.php`, JSON.stringify(current1)).then(function (response) {
+        await api.post('/logout').then(function (response) {
             console.log(response.data);
-            props.setstatus(true);
+            // props.setstatus(true);
             a.setsearchvalue(values => ({ ...values, value: "" }));
             a.setsearchvalue(values => ({ ...values, searchitem: "blp_id" }));
             a.setsearchvalue(values => ({ ...values, admin_id: null }));
             a.setsearchvalue(values => ({ ...values, login_status: false }));
+            setauth({});
+            nav("/login", { replace: true });
             alert("Logged out successfully");
-            nav("/");
-            window. location. reload();
         })
 
     }
@@ -107,8 +106,6 @@ function Navbar1(props) {
     window.addEventListener("scroll", scrollh);
 
     return (
-
-
 
         <div className=''>
             <div className={ scrolling ? "sm:translate-y-0 transition  -translate-y-1/2 z-30 bg-fix fixed w-full" : "transition translate-y-0 z-30 bg-fix fixed w-full" } id='main'>
