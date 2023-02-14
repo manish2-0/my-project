@@ -1,6 +1,6 @@
 import React from 'react'
 import { useEffect } from 'react'
-import axios from 'axios';
+import api from './axiosapi';
 
 export const Testing = () => {
 
@@ -8,7 +8,7 @@ export const Testing = () => {
     //     axios.get('http://localhost:8000/admin/getAll-client', {
     //         headers: {
     //             'Content-Type': 'application/json',
-    //             'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbl9pZCI6ImFkbWluMSIsImlhdCI6MTY3NjIyMTAwNywiZXhwIjoxNjc2MjI0NjA3fQ.Ad5zuQazVSU9rxooSKj2asxwXpObZ4UH__rDfw2hzxk'
+    //             'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbl9pZCI6ImFkbWluMSIsImlhdCI6MTY3NjMwMjcwMCwiZXhwIjoxNjc2MzA2MzAwfQ.Tf9-7wcO5nYmH6i9hmcnBhMw91VUAR4sPGCjUT8huoM'
     //         }
     //     }).then(response => {
     //         console.log(response.data)
@@ -26,21 +26,17 @@ export const Testing = () => {
     let inputs={"admin_id":"admin1","password":"admin1"}
 
     const login = async() => {
-        await axios.post('http://localhost:8000/admin/login', inputs, {
+        await api.post('/login', inputs, {
             headers: {
                 'Content-Type': 'application/json'
-            },
-            withCredentials: true
+            }
         }).then(response => {
             console.log(response.data)
         })
     }
 
-    const logout = () => {
-        axios.post('http://localhost:8000/admin/logout',{
-            withCredentials: true    
-        }
-        ).then(response => {
+    const logout = async() => {
+        await api.post('/logout').then(response => {
             console.log(response.data)
         })
     }

@@ -23,10 +23,10 @@ function App() {
     
     <>
     
-    {/* <Testing /> */}
+    <Testing />
 
       
-      <SearchState>
+      {/* <SearchState>
 
       {status?  <Login1 setstatus={setstatus} status={status}/>:
        
@@ -45,7 +45,7 @@ function App() {
         
         </Routes>
       </Router>}
-      </SearchState>
+      </SearchState> */}
 
 
      
