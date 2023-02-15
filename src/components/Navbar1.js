@@ -74,7 +74,7 @@ function Navbar1(props) {
     const handlelogout=async(e)=> {
         e.preventDefault();
 
-        await api.post('/logout').then(function (response) {
+        await api.post('admin/logout').then(function (response) {
             console.log(response.data);
             // props.setstatus(true);
             a.setsearchvalue(values => ({ ...values, value: "" }));

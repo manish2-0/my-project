@@ -2,6 +2,7 @@ import React from 'react'
 import {Link} from "react-router-dom"
 
 function HomeCard({user}) {
+
     return (
         <div className="hover:bg-gray-50 backdrop-filter backdrop-blur-md relative block p-4 rounded-lg border border-gray-200 shadow-md bg-white w-[370px] sm:w-[300px] md:[350px] lg-[370px]  h-fit m-3">
             <div className='flex items-center mb-2 justify-left'>

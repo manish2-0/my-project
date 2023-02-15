@@ -22,7 +22,7 @@ function Tablenew() {
     }
 
     useEffect(() => {
-        usertable();
+        // usertable();
         console.log(user)
     }, []);
 
@@ -44,8 +44,8 @@ function Tablenew() {
   return (
     <div className="relative m-4 overflow-x-auto rounded-xl scrollbar-hide">
         <span className='text-2xl text-fix'>Entries:</span>
-    <table className="container w-full m-1 mx-auto text-sm text-left text-gray-500 shadow-md border">
-        <thead className="text-white uppercase bg-fix border-b border-gray-300">
+    <table className="container w-full m-1 mx-auto text-sm text-left text-gray-500 border shadow-md">
+        <thead className="text-white uppercase border-b border-gray-300 bg-fix">
             <tr className='text-[16px] '>
                 <th scope="col" className="px-6 py-3">
                     No.
@@ -111,7 +111,7 @@ function Tablenew() {
                     </td>
 
                     <td className="px-6 py-2 text-right">
-                        <button onClick={ () => { deletefunc(user.srno,user) }} className=" font-medium text-fix hover:underline">Delete</button>
+                        <button onClick={ () => { deletefunc(user.srno,user) }} className="font-medium  text-fix hover:underline">Delete</button>
                     </td>
                 </tr>
         )}

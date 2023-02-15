@@ -18,16 +18,17 @@ function Newclient1() {
 
 	const formsubmit = async (event) => {
 		event.preventDefault()
-		axios.post(`http://localhost:80/blp-api/v1/create.php`, JSON.stringify(inputs)).then(function (response) {
-			if (response.data.status == 1) {
-				window.alert("Data added Successfully");
-				navigate('/');
-			}
-			else {
-				window.alert("Error Occured	");
-			}
+		console.log(inputs)
+		// axios.post(`http://localhost:80/blp-api/v1/create.php`, JSON.stringify(inputs)).then(function (response) {
+		// 	if (response.data.status == 1) {
+		// 		window.alert("Data added Successfully");
+		// 		navigate('/');
+		// 	}
+		// 	else {
+		// 		window.alert("Error Occured	");
+		// 	}
 			
-		});
+		// });
 
 		
 

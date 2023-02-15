@@ -1,12 +1,16 @@
 import React from 'react'
 import { useEffect } from 'react'
-import api from './axiosapi';
+// import api from './axiosapi';
 import AuthContext from '../context/AuthContext'
 import { useContext } from 'react';
 import useAuth from '../hooks/useAuth'
 import useRefreshToken from '../hooks/useRefreshToken';
+import {Link} from "react-router-dom"
+import useAxiosPrivate from '../hooks/useAxiosPrivate';
 
 export const Testing = () => {
+
+    const api=useAxiosPrivate();
 
     const {auth,setauth}=useAuth();
     const refresh=useRefreshToken();
@@ -26,18 +30,29 @@ export const Testing = () => {
     let inputs={"admin_id":"admin1","password":"admin1"}
 
     const login = async() => {
-        await api.post('admin/login', inputs, {
-            headers: {
-              'Content-Type': 'application/json'
-            }
-          }).then(response => {
-            if(response?.data?.accessToken){
-                console.log(response.data)
-              setauth(response.data);
-            } 
-              
-            }
-          )
+
+        let isMounted=true;
+        const controller=new AbortController();
+
+        try{
+            await api.post('admin/login', inputs, {
+            //    signal:controller.signal
+              }).then(response => {
+                if(response?.data?.accessToken){
+                    console.log(response.data)
+                  setauth(response.data);
+                } 
+                  
+                }
+              )
+        }
+        catch (err){
+            console.log(err)
+
+        }
+
+
+        
     }
 
     const logout = async() => {
@@ -73,11 +88,12 @@ export const Testing = () => {
 
     return (
         // <div>Testing</div>
-        <div className='m-3'>
+        <div className=''>
             <button className='m-3 ani-button' onClick={ login }>Login</button>
             <button className='m-3 ani-button' onClick={ logout }>Logout</button>
             <button className='m-3 ani-button' onClick={getall}>Get All</button>
             <button className='m-3 ani-button' onClick={()=>{refresh()}}>Get new Access</button>
+            {/* <Link to='testing1' className="font-medium text-fix hover:underline">More</Link> */}
         </div>
 
     )

@@ -11,27 +11,28 @@ function Editclient1() {
   	const {user} = location.state;
 
     const [inputs, setinputs] = useState(user);
-    console.log(user);
+    // console.log(user);
 
 	function handlechange(event) {
 		event.preventDefault();
 		const name = event.target.name;
 		const value = event.target.value;
 		setinputs(values => ({ ...values, [name]: value }))
+		// console.log(inputs)
 	}
 
 	const formsubmit = async (event) => {
 		event.preventDefault()
         console.log(inputs)
-		axios.put(`http://localhost:80/blp-api/testing/`, inputs).then(function (response) {
-			if (response.data.status == 1) {
-				window.alert("Data updated Successfully");
-				navigate('/');
-			}
-			else {
-				window.alert("Error Occured	");
-			}
-		});
+		// axios.put(`http://localhost:80/blp-api/testing/`, inputs).then(function (response) {
+		// 	if (response.data.status == 1) {
+		// 		window.alert("Data updated Successfully");
+		// 		navigate('/');
+		// 	}
+		// 	else {
+		// 		window.alert("Error Occured	");
+		// 	}
+		// });
 
         
 
