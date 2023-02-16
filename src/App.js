@@ -18,6 +18,7 @@ import Layout from './components/Layout';
 import ErrorPage from './components/ErrorPage';
 import Testing1 from './components/Testing1';
 import Tablenew from './components/Tablenew';
+import PersistLogin from './components/PersistLogin';
 
 
 function App() {
@@ -27,24 +28,26 @@ function App() {
   return (
 
     <>
-      {/* <Router>
+      <Router>
         <Routes>
           <Route path='/' element={ <Layout /> }>
 
 
             <Route path='login' element={ <Login1 /> } />
 
-            <Route element={ <RequireAuth /> }>
-              <Route element={ <Navbar1 /> }></Route>
-              <Route path='/' element={ [<Navbar1 />, <Home />] } />
-              <Route path='newclient' element={ [<Navbar1 />, <Newclient1 />] } />
-              <Route path='newentry' element={ [<Navbar1 />, <NewEntry2 />] } />
-              <Route exact path='view' element={ <Information1 /> } >
+            <Route element={<PersistLogin/>}>
+              <Route element={ <RequireAuth /> }>
+                <Route element={ <Navbar1 /> }></Route>
+                <Route path='/' element={ [<Navbar1 />, <Home />] } />
+                <Route path='newclient' element={ [<Navbar1 />, <Newclient1 />] } />
+                <Route path='newentry' element={ [<Navbar1 />, <NewEntry2 />] } />
+                <Route exact path='view' element={ <Information1 /> } >
                   <Route index element={ <Tablenew /> } />
                   <Route path='testing1' element={ <Testing1 /> } />
-        
+
+                </Route>
+                <Route exact path="/editclient" element={ [<Navbar1 />, <Editclient1 />] } />
               </Route>
-              <Route exact path="/editclient" element={ [<Navbar1 />, <Editclient1 />] } />
             </Route>
 
             <Route path='*' element={ <ErrorPage /> } />
@@ -53,12 +56,12 @@ function App() {
 
         </Routes>
 
-      </Router> */}
+      </Router>
 
 
       {/* <Navbar1/> */ }
 
-       <Testing /> 
+      {/* <Testing /> */}
 
 
     </>

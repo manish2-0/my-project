@@ -10,13 +10,19 @@ const useRefreshToken = () => {
 
     const refresh=async()=>{
         const response=await api.get('refresh/get-access-token');
+        // console.log(response)
         setauth(prev=>{
-            console.log(auth);
+            // console.log(auth);
             if(response?.data?.status){
-                return {...prev,accessToken:response.data.accessToken}
+                console.log("Old Token: "+auth.accessToken);
+                console.log("New Token: "+response.data.accessToken)
+                // return {...prev,
+                //     accessToken:response.data.accessToken}
+                return(response.data);
             }
             else{
-                // console.log("1");
+                console.log("Refresh Token Expired need to login again");
+                console.log("Add Navigate here to login page")
                 return ({});
             }
            

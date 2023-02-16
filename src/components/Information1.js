@@ -15,6 +15,7 @@ function Information1({ user }) {
         <div className='lg:w-[35%] xl:w-1/4'><CustomerDetail /></div>
         <div className='lg:w-[65%] xl:w-3/4'>
           <Outlet/>
+          {/* <Tablenew/> */}
         </div>
       </div>
     </>

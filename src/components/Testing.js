@@ -5,10 +5,15 @@ import AuthContext from '../context/AuthContext'
 import { useContext } from 'react';
 import useAuth from '../hooks/useAuth'
 import useRefreshToken from '../hooks/useRefreshToken';
-import {Link} from "react-router-dom"
+import {Link,useLocation} from "react-router-dom"
 import useAxiosPrivate from '../hooks/useAxiosPrivate';
 
 export const Testing = () => {
+
+    // const location = useLocation();
+    // const {user} = location.state;
+
+
 
     const api=useAxiosPrivate();
 
@@ -93,7 +98,7 @@ export const Testing = () => {
             <button className='m-3 ani-button' onClick={ logout }>Logout</button>
             <button className='m-3 ani-button' onClick={getall}>Get All</button>
             <button className='m-3 ani-button' onClick={()=>{refresh()}}>Get new Access</button>
-            {/* <Link to='testing1' className="font-medium text-fix hover:underline">More</Link> */}
+            {/* <Link to='testing1' state={{ user:user }} className="font-medium text-fix hover:underline">More</Link> */}
         </div>
 
     )
