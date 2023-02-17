@@ -19,6 +19,8 @@ import ErrorPage from './components/ErrorPage';
 import Testing1 from './components/Testing1';
 import Tablenew from './components/Tablenew';
 import PersistLogin from './components/PersistLogin';
+import ExtraView1 from './components/ExtraView1';
+import Loader from './components/Loader';
 
 
 function App() {
@@ -37,16 +39,16 @@ function App() {
 
             <Route element={<PersistLogin/>}>
               <Route element={ <RequireAuth /> }>
-                <Route element={ <Navbar1 /> }></Route>
-                <Route path='/' element={ [<Navbar1 />, <Home />] } />
-                <Route path='newclient' element={ [<Navbar1 />, <Newclient1 />] } />
-                <Route path='newentry' element={ [<Navbar1 />, <NewEntry2 />] } />
+                <Route path='/' element={  <Home /> } />
+                <Route path='newclient' element={ <Newclient1 /> } />
+                <Route path='newentry' element={  <NewEntry2 /> } />
+                <Route exact path="/entryedit" element={ <Entryedit2 /> } />
                 <Route exact path='view' element={ <Information1 /> } >
                   <Route index element={ <Tablenew /> } />
-                  <Route path='testing1' element={ <Testing1 /> } />
+                  <Route path='extraview' element={ <ExtraView1 /> } />
 
                 </Route>
-                <Route exact path="/editclient" element={ [<Navbar1 />, <Editclient1 />] } />
+                <Route exact path="/editclient" element={  <Editclient1 /> } />
               </Route>
             </Route>
 
@@ -59,11 +61,13 @@ function App() {
       </Router>
 
 
+
       {/* <Navbar1/> */ }
 
       {/* <Testing /> */}
 
 
+      {/* <Loader/> */}
     </>
   );
 }

@@ -1,21 +1,21 @@
-import axios from 'axios';
 import React, { useState } from 'react'
-import Home from './Home';
-import logo1 from '../logo1.png';
 import logo from '../logo.png';
 import logo4 from '../logo4.png';
-import SearchContext from '../context/SearchContext'
-import { useContext } from 'react';
 import { useNavigate } from 'react-router';
 import api from './axiosapi';
-// import useAuth from '../hooks/useAuth'
 import useAuth from '../hooks/useAuth'
+import Loader from './Loader';
 
 function Login1(props) {
 
+  const [loading, setloading] = useState(false);
+
+  const USERNAME=/^[A-Za-z0-9@_]{8,}$/;
+  const PASSWORD=/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[@$&*-]).{12,}$/;
+
   const [inputs, setinputs] = useState({});
   const navigate = useNavigate();
-  const {auth,setauth}=useAuth();
+  const {setauth}=useAuth();
 
   function handlechange(event) {
     event.preventDefault();
@@ -25,43 +25,19 @@ function Login1(props) {
   }
 
 
-
-  // const handlesubmit = async (event) => {
-  // 	event.preventDefault()
-  //   console.log(JSON.stringify(inputs))
-  // 	// axios.post(`http://localhost:80/blp-api/v1/login.php`,JSON.stringify(inputs)).then(function (response) {
-  // 	// 	if (response.data.status == true) {
-  //   //     alert(response.data.message);
-  //   //     a.setsearchvalue(values => ({ ...values, admin_id:  response.data.admin_id}));
-  //   //     a.setsearchvalue(values => ({ ...values, login_status:  response.data.status}));
-  //   //     // console.log(a.searchvalue)
-  //   //     props.setstatus(false)
-  //   //   }
-  // 	// 	else {
-  //   //     // console.log(response.data)
-  //   //     alert(response.data.message)
-
-
-  // 	// 	}
-
-  // 	// });
-
-  //   await axios.post('http://localhost:8000/admin/login',JSON.stringify(inputs),{
-  //     headers:{'Content-Type':'application/json',
-  //     withCredentials:true}
-  //   }).then(response=>{
-  //     console.log(response.data)
-  //   })
-
-
-  // }
-
   const handlesubmit = async (event) => {
-    event.preventDefault()
-    // console.log(JSON.stringify(inputs))
-    // console.log(auth)
-    // setauth(inputs)
-    // console.log(auth)
+    event.preventDefault();
+    setloading(true);
+
+    // const v1=USERNAME.test(inputs.admin_id);
+    // const v2=PASSWORD.test(inputs.password);
+
+    // if(v1 && v2){
+    //   // axios code here
+    // }
+    // else{
+    //   // alert("Please check your fields")
+    // }
 
     await api.post('admin/login', JSON.stringify(inputs), {
       headers: {
@@ -71,7 +47,12 @@ function Login1(props) {
       console.log(response.data)
       if(response?.data?.accessToken){
         setauth(response.data);
+        setloading(false);
         navigate("/", { replace: true })
+      }
+      else{
+        setloading(false);
+        alert(response.data.message);
       } 
         
       }
@@ -79,12 +60,15 @@ function Login1(props) {
 
   }
 
-  // background: linear-gradient(107deg, #0e387a 60%, #9fafca 40%);
-  // background: linear-gradient(107deg, #114290 60%, #cfd2d8 40%);
-  // background: linear-gradient(107deg, #00356ae3 60%, #EEEEEC 40%);
-  // background: linear-gradient(107deg, #04385e 60%, #dcdcdc 40%);
 
   return (
+    <>
+    {
+      loading
+      ?<Loader/>
+      :<></>
+    }
+    
 
     <div className='flex items-center justify-around w-full min-h-screen bg--color'>
       {/* <img className='absolute w-screen h-screen' srcSet={wall} alt="" /> */ }
@@ -106,15 +90,15 @@ function Login1(props) {
           <label className='text-xl font-bold'>Password:</label>
           <input name="password" onChange={ handlechange } className='block w-full h-10 px-2 my-3 rounded-md outline outline-slate-200 focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1' type="password" placeholder='Password' />
           <div className='flex justify-center mt-7'>
-            <button className='sm:hidden block px-12 py-3 bg-[#1C4C7B] border-2 border-[#1C4C7B] rounded-full text-[20px] text-white hover:bg-white hover:text-[#1C4C7B] hover:drop-shadow-[2px_5px_2px_rgba(0,0,0,0.3)]'>SUBMIT</button>
-            <button className='sm:block hidden ani-buttonlogin rounded-sm bg-[#1C4C7B] hover:border-2 hover:border-[#003163]'>LOGIN</button>
+            <button disabled={loading} className='sm:hidden block px-12 py-3 bg-[#1C4C7B] border-2 border-[#1C4C7B] rounded-full text-[20px] text-white hover:bg-white hover:text-[#1C4C7B] hover:drop-shadow-[2px_5px_2px_rgba(0,0,0,0.3)]'>LOGIN</button>
+            <button disabled={loading} className='sm:block hidden ani-buttonlogin rounded-sm bg-[#1C4C7B] hover:border-2 hover:border-[#003163]'>LOGIN</button>
           </div>
         </form>
 
       </div>
 
     </div>
-
+    </>
   )
 }
 

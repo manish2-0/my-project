@@ -5,9 +5,7 @@ const SearchState=(props)=>{
 
     const [searchvalue, setsearchvalue] = useState({
         value:"",
-        searchitem:"blp_id",
-        admin_id:null,
-        login_status:false
+        searchitem:"blp_id"
     });
 
     return(

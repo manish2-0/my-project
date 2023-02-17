@@ -3,12 +3,13 @@ import Home from './Home'
 import HomeCard from './HomeCard'
 import Loadingbody from './Loadingbody'
 import axios from 'axios'
-import api from './axiosapi';
+// import api from './axiosapi';
 import AddCard from './AddCard';
 import {Link} from "react-router-dom"
 import SearchContext from '../context/SearchContext'
 import { useContext } from 'react';
 import useAuth from '../hooks/useAuth'
+import useAxiosPrivate from '../hooks/useAxiosPrivate';
 
 // const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJsb2NhbGhvc3QiLCJpYXQiOjE2NzQ5MDQ5NTUsImV4cCI6MTY3NDkwODU1NSwiYXVkIjoiYWRtaW4iLCJkYXRhIjp7ImFkbWluX2lkIjoiYWRtaW4xIn19.Bq5aw1f2SibkJm9zKxkVBSd9d4a1F3NLk3omgUbtjPa1wZhtlZQk8VQqF8fFAjByNLJHqk4PCAsq-863uLaeEw';
 
@@ -30,6 +31,8 @@ import useAuth from '../hooks/useAuth'
 //   }
 
 function Homepage() {
+
+    const api=useAxiosPrivate();
 
     const a=useContext(SearchContext);
     console.log(a.searchvalue.searchitem)
@@ -56,12 +59,19 @@ function Homepage() {
 
     const getall = async() => {
        
-        await api.get('client/getAll-client',{
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization':'Bearer '+auth.accessToken
-            }
-        }).then(response => {
+        // await api.get('client/getAll-client',{
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         'Authorization':'Bearer '+auth.accessToken
+        //     }
+        // }).then(response => {
+        //     console.log(response.data.data)
+        //     setvalues(response.data.data)
+        //     setloading(false);
+        // })
+
+
+        await api.get('client/getAll-client').then(response => {
             console.log(response.data.data)
             setvalues(response.data.data)
             setloading(false);
@@ -106,9 +116,10 @@ function Homepage() {
 //     }
 
     useEffect(() => {
-        setTimeout(() => {
-            getall();
-        }, 2000);
+        // setTimeout(() => {
+        //     getall();
+        // }, 2000);
+        getall();
     }, []);
 
 
@@ -123,6 +134,12 @@ function Homepage() {
 
 
                         <>
+                            <Loadingbody />
+                            <Loadingbody />
+                            <Loadingbody />
+                            <Loadingbody />
+                            <Loadingbody />
+                            <Loadingbody />
                             <Loadingbody />
                             <Loadingbody />
                             <Loadingbody />

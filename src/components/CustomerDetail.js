@@ -30,31 +30,31 @@ function CustomerDetail() {
 
 
                 <p className="mb-3 text-fix" >
-                    <i class="fa-solid fa-user"></i>
+                    <i className="fa-solid fa-user"></i>
                     <span className='pl-4 font-[600] text-gray-900  fontinformation'>{user.name}</span>
                 </p>
 
                 <div className='flex flex-wrap items-center justify-between mb-3 text-fix'>
                     <div className="flex"><i className="pt-[4px] fa-solid fa-address-book"></i> <div className='pl-4 font-[900] text-gray-900 fontinformation'>{user.address}</div>
                     </div>
-                    <div className=""><i class="fa-sharp fa-solid fa-location-dot"></i> <span className=' pl-4 font-[600] text-gray-900 fontinformation'>{user.city}</span></div>
+                    <div className=""><i className="fa-sharp fa-solid fa-location-dot"></i> <span className=' pl-4 font-[600] text-gray-900 fontinformation'>{user.city}</span></div>
 
                 </div>
 
 
                 <p className="mb-3 text-fix" >
-                    <i class="fa-regular fa-calendar"></i>
+                    <i className="fa-regular fa-calendar"></i>
                     <span className=' pl-4 font-[600] text-gray-900 fontinformation'>{user.date}</span>
                 </p>
 
-                <p className="text-fix mb-3" >
-                    <i class="fa-solid fa-phone"></i>
+                <p className="mb-3 text-fix" >
+                    <i className="fa-solid fa-phone"></i>
                     <span className=' pl-4 font-[600] text-gray-900 fontinformation'>+91 {user.contact}</span>
                 </p>
 
-                <div className='text-fix flex justify-between flex-wrap'>
-                    <Link to="/editclient" state={{ user:user }} className='bg-fix text-white px-8 py-2 rounded-md'>Edit</Link>
-                    <Link to="/newentry" state={{ user:user }} className='bg-fix text-white px-8 py-2 rounded-md'>Add</Link>
+                <div className='flex flex-wrap justify-between text-fix'>
+                    <Link to="/editclient" state={{ user:user }} className='px-8 py-2 text-white rounded-md bg-fix'>Edit</Link>
+                    <Link to="/newentry" state={{ user:user }} className='px-8 py-2 text-white rounded-md bg-fix'>Add</Link>
 
                 </div>
 

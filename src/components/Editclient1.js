@@ -1,10 +1,15 @@
 import React from 'react'
 import { useState } from "react";
-import axios from 'axios';
 import { useLocation,useNavigate } from 'react-router-dom';
+import useAxiosPrivate from '../hooks/useAxiosPrivate';
+import Loader from './Loader';
 
 
 function Editclient1() {
+
+	const api=useAxiosPrivate();
+
+	const [loading, setloading] = useState(false);
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -23,22 +28,31 @@ function Editclient1() {
 
 	const formsubmit = async (event) => {
 		event.preventDefault()
+		setloading(true);
         console.log(inputs)
-		// axios.put(`http://localhost:80/blp-api/testing/`, inputs).then(function (response) {
-		// 	if (response.data.status == 1) {
-		// 		window.alert("Data updated Successfully");
-		// 		navigate('/');
-		// 	}
-		// 	else {
-		// 		window.alert("Error Occured	");
-		// 	}
-		// });
+		await api.put(`client/update-client/${user.blp_id}`, JSON.stringify(inputs)).then(function (response) {
+			if (response.data.status == 1) {
+				setloading(false);
+				window.alert("Data updated Successfully");
+				navigate('/');
+			}
+			else {
+				setloading(false);
+				window.alert("Error Occured	");
+			}
+		});
 
         
 
 	}
 
     return (
+		<>
+        {
+            loading 
+            ?<Loader />
+            :<></>
+        }
 		<div className='min-h-screen relative flex flex-col items-center mx-2 border-gray-200 rounded-md z-0 pt-40 sm:pt-20 pb-[24px] bg-gray-50'>
 			<h2 className='my-2 mb-4 text-4xl underline text-fix'>Edit Customer Form</h2>
 			<div className='relative flex items-center justify-center h-auto m-2 rounded-md md:container bg-gray-50'>
@@ -59,40 +73,40 @@ function Editclient1() {
 				</div>
 
                     <div className='flex items-center justify-start mb-4'>
-					<label className='w-8 text-xl text-gray-900' htmlFor=""><i class="fa-regular fa-calendar-days"></i></label>
+					<label className='w-8 text-xl text-gray-900' htmlFor=""><i className="fa-regular fa-calendar-days"></i></label>
 					<input onChange={ handlechange } defaultValue={inputs.date}  name="date" className='px-2 py-2 text-[18px] border rounded-md border-slate-300 bg-transparent text-black' type="date" required/>
                     </div>
 
                     <div className='flex items-center mb-4'>
-					<label className='w-8 text-xl text-gray-900' htmlFor=""><i class="fa-solid fa-user"></i></label>
+					<label className='w-8 text-xl text-gray-900' htmlFor=""><i className="fa-solid fa-user"></i></label>
 					<input onChange={ handlechange } defaultValue={inputs.name} name="name" className='w-full px-2 py-2 text-[18px] border rounded-md border-slate-300 bg-transparent text-black' type="text" placeholder='Name' required/>
                     </div>
 
                     <div className='flex items-center mb-4'>
-					<label className='w-8 text-xl text-gray-900' htmlFor=""><i class="fa-solid fa-location-dot"></i></label>
+					<label className='w-8 text-xl text-gray-900' htmlFor=""><i className="fa-solid fa-location-dot"></i></label>
 					<input onChange={ handlechange } defaultValue={inputs.address}  name="address" className='w-full h-16 px-2 py-2 text-[18px] border rounded-md border-slate-300 bg-transparent text-black' type="text" placeholder='Address' required/>
                     </div>
 
                     <div className='flex items-center mb-4'>
-					<label className='w-8 text-lg text-gray-900' htmlFor=""><i class="fa-solid fa-city"></i></label>
+					<label className='w-8 text-lg text-gray-900' htmlFor=""><i className="fa-solid fa-city"></i></label>
 					<input onChange={ handlechange } defaultValue={inputs.city}  name="city" className='lg:w-1/2 w-3/4 px-2 py-2 text-[18px] border rounded-md border-slate-300 bg-transparent text-black' type="text" placeholder='City' required/>
                     </div>
 
                     <div className='flex items-center mb-4'>
-					<label className='w-8 text-lg text-gray-900 ' htmlFor=""><i class="fa-solid fa-phone"></i></label>
+					<label className='w-8 text-lg text-gray-900 ' htmlFor=""><i className="fa-solid fa-phone"></i></label>
 					<input onChange={ handlechange } defaultValue={inputs.contact}  name="contact" className='lg:w-1/2 w-3/4 px-2 py-2 text-[18px] border rounded-md border-slate-300 bg-transparent text-black' type="text" placeholder='Contact' required/>
                     </div>
 
 
 
 					<div className='flex items-center justify-start'>
-					<button class="ani-button rounded-sm">Submit</button>
+					<button disabled={loading} className="rounded-sm ani-button">Submit</button>
 					</div>
 				</form>
 
 			</div>
 		</div>
-
+		</>
 	)
 }
 

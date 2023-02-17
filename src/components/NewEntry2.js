@@ -1,9 +1,14 @@
 import React from 'react'
 import { useState } from 'react';
-import axios from 'axios';
 import { useLocation,useNavigate } from 'react-router-dom';
+import useAxiosPrivate from '../hooks/useAxiosPrivate';
+import Loader from './Loader';
 
 function NewEntry2() {
+
+    const api=useAxiosPrivate();
+
+    const [loading, setloading] = useState(false);
 
     const navigate = useNavigate();
     const [path, setpath] = useState();
@@ -13,7 +18,7 @@ function NewEntry2() {
     const { user } = location.state;
     
     const [inputs, setinputs] = useState({
-        "blpid": user.blp_id,
+        "blp_id": user.blp_id,
         "date": "-",
         "time": "-",
         "nature": "-",
@@ -21,19 +26,17 @@ function NewEntry2() {
         "doneby": "-",
         "remarks1": "-",
         
-        "nanosil": "-",
-        "superflex": "-",
-        "silicon": "-",
-        "food": "-",
-        "accomodation": "-",
-        "travelling": "-",
-        "expenses": "-",
+        "nanosil": "0",
+        "superflex": "0",
+        "silicon": "0",
+        "food": "0",
+        "accomodation": "0",
+        "travelling": "0",
+        "expenses": "0",
         "remarks2": "-",
         
         "billstatus": "-",
-        "remarks3":"-",
-
-        "files": "-"
+        "remarks3":"-"
         
     });
     
@@ -47,38 +50,48 @@ function NewEntry2() {
     }
     
     const handlechangefile = (e) => {
-        // console.log(e.target.files);
+        console.log(e.target.files);
         setpath(e.target.files);
     }
 
 
     const formsubmit = async (event) => {
         event.preventDefault()
-        await axios.post(`http://localhost:80/blp-api/testing/dataentry/`, inputs).then(function (response) {
+        console.log(JSON.stringify(inputs))
+        setloading(true);
+        await api.post('entries/register-entries',JSON.stringify(inputs) ).then(function (response) {
             if (response.data.status == 1) {
+                setloading(false);
                 window.alert("Data added Successfully");
                 navigate('/');
             }
             else {
+                setloading(false);
                window.alert("Error Occured");
             }
         })
 
     
 
-            for(let i=0;i<path.length;i++){
-                const formdata = new FormData();
-                formdata.append('filedata', path[i]);
-                await axios.post(`http://localhost:80/blp-api/testing/upload/`, formdata,{headers: {
-                    'content-type': 'multipart/form-data'
-                }})
+            // for(let i=0;i<path.length;i++){
+            //     const formdata = new FormData();
+            //     formdata.append('filedata', path[i]);
+            //     await axios.post(`http://localhost:80/blp-api/testing/upload/`, formdata,{headers: {
+            //         'content-type': 'multipart/form-data'
+            //     }})
     
-            }
+            // }
         
     }
 
 
     return (
+        <>
+        {
+            loading
+            ?<Loader />
+            :<></>
+        }
         <div className='relative z-0 flex flex-col items-center pt-40 mx-2 border-gray-200 rounded-md sm:pt-20 bg-gray-50 '>
             <h2 className='my-2 mb-4 text-4xl underline text-fix'>Entry Form</h2>
             <div className='container relative flex items-center justify-center h-auto rounded-md bg-gray-50'>
@@ -144,23 +157,23 @@ function NewEntry2() {
 
 
 
-                    <h4 className='mb-3 text-xl underline text-fix min-w-fit '>Materials Consumed:</h4>
+                    <h4 className='mb-3 text-xl underline text-fix min-w-fit '>Materials Consumed:(Please enter values in ml)</h4>
 
                     <div className='flex flex-wrap justify-between pb-3 mb-3 border-b-2 sm:flex-nowrap'>
 
                         <div className='flex w-full mb-3'>
                             <label className='py-2 pr-2 text-lg text-gray-500 min-w-fit' htmlFor="">Nanosil:</label>
-                            <input onChange={handlechange} name="nanosil" className='w-full px-2 py-2 text-lg text-black bg-transparent border-b-2 border-gray-300 rounded-sm outline-none sm:w-1/2 lg:w-2/5' type="text" placeholder="" />
+                            <input onChange={handlechange} name="nanosil" className='w-full px-2 py-2 text-lg text-black bg-transparent border-b-2 border-gray-300 rounded-sm outline-none sm:w-1/2 lg:w-2/5' type="number" placeholder="" />
                         </div>
 
                         <div className='flex w-full mb-3'>
                             <label className='py-2 pr-2 text-lg text-gray-500 min-w-fit' htmlFor="">Silicon:</label>
-                            <input onChange={handlechange} name="silicon" className='w-full px-2 py-2 text-lg text-black bg-transparent border-b-2 border-gray-300 rounded-sm outline-none sm:w-1/2 lg:w-2/5' type="text" placeholder="" />
+                            <input onChange={handlechange} name="silicon" className='w-full px-2 py-2 text-lg text-black bg-transparent border-b-2 border-gray-300 rounded-sm outline-none sm:w-1/2 lg:w-2/5' type="number" placeholder="" />
                         </div>
 
                         <div className='flex w-full mb-3'>
                             <label className='py-2 pr-2 text-lg text-gray-500 min-w-fit' htmlFor="">Superflex:</label>
-                            <input onChange={handlechange} name="superflex" className='w-full px-2 py-2 text-lg text-black bg-transparent border-b-2 border-gray-300 rounded-sm outline-none sm:w-1/2 lg:w-2/5' type="text" placeholder="" />
+                            <input onChange={handlechange} name="superflex" className='w-full px-2 py-2 text-lg text-black bg-transparent border-b-2 border-gray-300 rounded-sm outline-none sm:w-1/2 lg:w-2/5' type="number" placeholder="" />
                         </div>
 
                     </div>
@@ -244,7 +257,7 @@ function NewEntry2() {
                     </div>
 
                     <div className='flex items-center justify-center mt-2 md:justify-start'>
-                        <button class="ani-button rounded-sm ">Submit</button>
+                        <button className="rounded-sm ani-button ">Submit</button>
                     </div>
 
 
@@ -252,6 +265,7 @@ function NewEntry2() {
 
             </div>
         </div>
+        </>
 
     )
 }

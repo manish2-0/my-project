@@ -17,7 +17,10 @@ const RequireAuth = () => {
   return (
     
     auth?.status
-    ? <Outlet/>
+    ? <>
+      <Navbar1/>
+       <Outlet/>
+    </>
     :<Navigate to="/login" replace/>
   )
 }

@@ -1,26 +1,28 @@
 import React from 'react'
 import { useState } from 'react';
-import { Link,useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import logo from '../logo.png';
 import SearchContext from '../context/SearchContext'
-import { useContext,useEffect } from 'react';
-import axios from 'axios'
+import { useContext } from 'react';
 import api from './axiosapi';
 import useAuth from '../hooks/useAuth';
+import Loader from './Loader';
 
 
 
 function Navbar1(props) {
 
-    const {auth,setauth}=useAuth();
+    const [loading, setloading] = useState(false);
+
+    const {setauth}=useAuth();
 
     const nav = useNavigate();
     
     const a = useContext(SearchContext);
 
-    const current1={
-            admin_id:a.searchvalue.admin_id
-        }
+    // const current1={
+    //         admin_id:a.searchvalue.admin_id
+    //     }
         
     
     const [scrolling, setscrolling] = useState(false);
@@ -48,22 +50,22 @@ function Navbar1(props) {
         const name = event.target.name;
         let value = event.target.value;
 
-        if (value == "BLP Id") {
+        if (value === "BLP Id") {
             value = "blp_id";
         }
-        else if (value == "ISELL No.") {
+        else if (value === "ISELL No.") {
             value = "isell";
         }
-        else if (value == "DC No.") {
+        else if (value === "DC No.") {
             value = "dc_no";
         }
-        else if (value == "Mobile") {
+        else if (value === "Mobile") {
             value = "contact";
         }
-        else if (value == "Name") {
+        else if (value === "Name") {
             value = "name";
         }
-        else if (value == "City") {
+        else if (value === "City") {
             value = "city";
         }
 
@@ -72,6 +74,7 @@ function Navbar1(props) {
     }
 
     const handlelogout=async(e)=> {
+        setloading(true);
         e.preventDefault();
 
         await api.post('admin/logout').then(function (response) {
@@ -81,6 +84,7 @@ function Navbar1(props) {
             a.setsearchvalue(values => ({ ...values, searchitem: "blp_id" }));
             a.setsearchvalue(values => ({ ...values, admin_id: null }));
             a.setsearchvalue(values => ({ ...values, login_status: false }));
+            setloading(false)
             setauth({});
             nav("/login", { replace: true });
             alert("Logged out successfully");
@@ -91,11 +95,15 @@ function Navbar1(props) {
     const scrollh = () => {
         if (window.scrollY >= 65) {
             setscrolling(true);
-            let a = document.getElementById("main");
+            // let a = document.getElementById("main");
         }
         else {
             setscrolling(false);
         }
+    }
+
+    const imageclicked=()=>{
+        nav("/");
     }
 
     // useEffect(() => {
@@ -106,16 +114,22 @@ function Navbar1(props) {
     window.addEventListener("scroll", scrollh);
 
     return (
+        <>
+        {
+            loading
+            ?<Loader />
+            :<></>
+        }
 
-        <div className=''>
+        <div className='z-50'>
             <div className={ scrolling ? "sm:translate-y-0 transition  -translate-y-1/2 z-30 bg-fix fixed w-full" : "transition translate-y-0 z-30 bg-fix fixed w-full" } id='main'>
                 <div className='container relative w-full p-2 px-3 mx-auto bg-fix sm:translate-y-0'>
 
                     <div className='flex justify-between h-1/2 sm:h-auto'>
 
                         {/* Navicon */ }
-                        <div className='order-1 w-1/4 lg:ml-2'>
-                            <img className='h-14 w-14' alt="" srcset={ logo } />
+                        <div className='flex items-center order-1 w-1/4 lg:ml-2'>
+                            <img onClick={imageclicked} className='w-16 h-16 cursor-pointer' alt="" srcSet={ logo } />
                         </div>
 
 
@@ -144,7 +158,7 @@ function Navbar1(props) {
 
                         <div className='flex items-center justify-end order-3 w-1/4 lg:mr-2'>
                             {/* <svg className="w-[30px] h-[30px] text-white  " fill="white" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg> */ }
-                            <a className="text-white cursor-pointer w-fit h-fit" onClick={handlelogout}>LOGOUT</a>
+                            <span className="text-white cursor-pointer w-fit h-fit" onClick={handlelogout}>LOGOUT</span>
                         </div>
 
 
@@ -156,8 +170,7 @@ function Navbar1(props) {
                             <input onChange={ handlechange } name="value" className='w-full h-full px-10 pr-4 border-none outline-none ' type="search" placeholder='Search...' />
                             <span className='absolute right-0 -translate-y-1/2 top-1/2'>
                                 <select onChange={ handlechange1 } className='h-10 px-2 mr-1 text-black border border-gray-300 rounded-full outline-none ' name="searchitem" id="">
-                                    <option selected>Select...</option>
-                                    <option>BLP Id</option>
+                                    <option selected>BLP Id</option>
                                     <option>ISELL No.</option>
                                     <option>DC No.</option>
                                     <option>Mobile</option>
@@ -176,7 +189,7 @@ function Navbar1(props) {
 
             </div>
         </div>
-
+        </>
 
     )
 }
