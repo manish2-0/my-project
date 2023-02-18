@@ -1,5 +1,7 @@
 import React from 'react'
 import {Link} from "react-router-dom"
+// import moment from 'moment'
+import moment from 'moment/moment'
 
 function HomeCard({user}) {
 
@@ -8,11 +10,10 @@ function HomeCard({user}) {
             <div className='flex items-center mb-2 justify-left'>
                 <div className='mr-3'>
                     <i className=' fa-regular fa-user fa-lg'></i>
-                    {/* <img className='w-12 h-12' src="https://i.ibb.co/4d5prcd/pngaaa-com-81468.png" alt="" /> */}
                 </div>
                 <div>
                     <h5 className="text-xl font-semibold leading-tight text-slate-800">{user.blp_id}</h5>
-                    <h5 className='text-base font-medium leading-tight text-slate-600'>{user.date}</h5>
+                    <h5 className='text-base font-medium leading-tight text-slate-600'>{moment(user.date).format("DD MMM YYYY")}</h5>
                 </div>
             </div>
 
@@ -32,7 +33,7 @@ function HomeCard({user}) {
                 <span className='absolute p-0 m-0 text-xs font-bold text-fix top-full'>Contact</span>
             </div>
 
-            <Link  to="/view" state={{ user:user }}  className=" absolute bottom-3 right-3 bg-fix hover:bg-[#1967b6] text-white font-bold py-2 px-6 rounded">
+            <Link  to="/view" state={{ user:user }}  className="homepagebutton absolute bottom-3 right-3 bg-fix hover:bg-[#1967b6] text-white py-2 px-6 rounded">
                 View
             </Link>
 

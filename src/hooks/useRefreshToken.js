@@ -14,14 +14,14 @@ const useRefreshToken = () => {
         setauth(prev=>{
             // console.log(auth);
             if(response?.data?.status){
-                console.log("Old Token: "+auth.accessToken);
-                console.log("New Token: "+response.data.accessToken)
+                // console.log("Old Token: "+auth.accessToken);
+                // console.log("New Token: "+response.data.accessToken)
                 // return {...prev,
                 //     accessToken:response.data.accessToken}
                 return(response.data);
             }
             else{
-                console.log("Refresh Token Expired need to login again");
+                // console.log("Refresh Token  Expired need to login again");
                 // console.log("Add Navigate here to login page")
                 // navigate
                 return ({});

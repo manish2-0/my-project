@@ -1,5 +1,7 @@
 import React from 'react'
 import { useLocation, Link } from 'react-router-dom';
+import icon from '../icon.png';
+import moment from 'moment';
 
 function CustomerDetail() {
     const location = useLocation();
@@ -12,7 +14,7 @@ function CustomerDetail() {
 
 
                 <div className='flex justify-center mb-2'>
-                    <img className='w-14 h-14' src="https://i.ibb.co/TtnKDDY/iconn.png" alt="" />
+                    <img className='w-14 h-14' srcSet={icon} alt="" />
                 </div>
 
 
@@ -44,7 +46,7 @@ function CustomerDetail() {
 
                 <p className="mb-3 text-fix" >
                     <i className="fa-regular fa-calendar"></i>
-                    <span className=' pl-4 font-[600] text-gray-900 fontinformation'>{user.date}</span>
+                    <span className=' pl-4 font-[600] text-gray-900 fontinformation'>{moment(user.date).format("DD MMMM YYYY")}</span>
                 </p>
 
                 <p className="mb-3 text-fix" >
@@ -53,8 +55,8 @@ function CustomerDetail() {
                 </p>
 
                 <div className='flex flex-wrap justify-between text-fix'>
-                    <Link to="/editclient" state={{ user:user }} className='px-8 py-2 text-white rounded-md bg-fix'>Edit</Link>
-                    <Link to="/newentry" state={{ user:user }} className='px-8 py-2 text-white rounded-md bg-fix'>Add</Link>
+                    <Link to="/editclient" state={{ user:user }} className='hover:bg-[#1967b6] px-8 py-2 text-white rounded-md homepagebutton bg-fix'>Edit</Link>
+                    <Link to="/newentry" state={{ user:user }} className='hover:bg-[#1967b6] px-8 py-2 text-white rounded-md homepagebutton bg-fix'>Add</Link>
 
                 </div>
 

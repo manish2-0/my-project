@@ -22,22 +22,31 @@ function Newclient1() {
 
 	const formsubmit = async (event) => {
 		event.preventDefault()
-		console.log(inputs)
+		// console.log(inputs)
 		setloading(true);
 
-		await api.post('client/register-client', JSON.stringify(inputs)).then(function (response) {
-			if (response.data.status == 1) {
-				setloading(false);
-				window.alert("Data added Successfully");
-				navigate('/');
-			}
-			else {
-				setloading(false);
-				window.alert("Error Occured");
+		try {
+			await api.post('client/register-client', JSON.stringify(inputs)).then(function (response) {
+				if (response.data.status == 1) {
+					setloading(false);
+					window.alert("Data added Successfully");
+					navigate('/');
+				}
+				else {
+					setloading(false);
+					window.alert("Error Occured");
+	
+				}
+				
+			});
 
-			}
-			
-		});
+
+		} catch (error) {
+			setloading(false);
+			window.alert("No server response");
+		}
+
+		
 
 		// setloading(false);
 

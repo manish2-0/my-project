@@ -77,18 +77,25 @@ function Navbar1(props) {
         setloading(true);
         e.preventDefault();
 
-        await api.post('admin/logout').then(function (response) {
-            console.log(response.data);
-            // props.setstatus(true);
-            a.setsearchvalue(values => ({ ...values, value: "" }));
-            a.setsearchvalue(values => ({ ...values, searchitem: "blp_id" }));
-            a.setsearchvalue(values => ({ ...values, admin_id: null }));
-            a.setsearchvalue(values => ({ ...values, login_status: false }));
-            setloading(false)
-            setauth({});
-            nav("/login", { replace: true });
-            alert("Logged out successfully");
-        })
+        try {
+            await api.post('admin/logout').then(function (response) {
+                // console.log(response.data);
+                // props.setstatus(true);
+                a.setsearchvalue(values => ({ ...values, value: "" }));
+                a.setsearchvalue(values => ({ ...values, searchitem: "blp_id" }));
+                a.setsearchvalue(values => ({ ...values, admin_id: null }));
+                a.setsearchvalue(values => ({ ...values, login_status: false }));
+                setloading(false)
+                setauth({});
+                nav("/login", { replace: true });
+                alert("Logged out successfully");
+            })
+            
+        } catch (error) {
+                setloading(false)
+                alert("No server response");
+        }
+       
 
     }
 

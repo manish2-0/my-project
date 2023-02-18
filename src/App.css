@@ -59,8 +59,8 @@
   /* width: 0%;
   height: 0%; */
   z-index: -1;
-  top: -6%;
-  left: -3%;
+  top: -3px;
+  left: -3px;
   background-color: #2368ad;
   /* transition: all 0.2s ease; */
   animation: bor1 0.5s ease;
@@ -73,8 +73,8 @@
   position: absolute;
   /* width: 0%;
   height: 0%; */
-  bottom: -6%;
-  right: -3%;
+  bottom: -3px;
+  right: -3px;
   background-color: #2368ad;
   z-index: -1;
   /* transition: all 0.2s ease; */
@@ -85,8 +85,8 @@
 
 .ani-button:hover:before,.ani-button:hover:after{
   animation: bor 0.5s ease;
-  width: 100%;
-  height: 100%;
+  width: calc(100% + 6px);
+  height: calc(100% + 6px);
 }
 
 @keyframes bor {
@@ -95,8 +95,8 @@
       height: 0%;
   }
   to{
-      width: 100%;
-      height: 100%;
+      width: calc(100% + 6px);
+      height: calc(100% + 6px);
   }
 }
 
@@ -106,8 +106,8 @@
       height: 0%;
   }
   from{
-      width: 100%;
-      height: 100%;
+      width: calc(100% + 6px);
+      height: calc(100% + 6px);
   }
 }
 
@@ -122,6 +122,7 @@
   color: aliceblue;
   transition: all 0.4s ease;
   position: relative;
+  /* z-index: 30; */
 }
 
 .ani-buttonlogin:hover {
@@ -135,9 +136,9 @@
   /* width: 0%;
   height: 0%; */
   z-index: -1;
-  top: -6%;
-  left: -3%;
-  background-color: #003163;
+  top: -3px;
+  left: -3px;
+  background-color: #002447;
   /* transition: all 0.2s ease; */
   animation: bor1 0.5s ease;
   @apply rounded-sm;
@@ -149,9 +150,9 @@
   position: absolute;
   /* width: 0%;
   height: 0%; */
-  bottom: -6%;
-  right: -3%;
-  background-color: #003163;
+  bottom: -3px;
+  right: -3px;
+  background-color: #002447;
   z-index: -1;
   /* transition: all 0.2s ease; */
   animation: bor1 0.5s ease;
@@ -161,8 +162,8 @@
 
 .ani-buttonlogin:hover:before,.ani-buttonlogin:hover:after{
   animation: bor 0.5s ease;
-  width: 100%;
-  height: 100%;
+  width: calc(100% + 6px);
+  height: calc(100% + 6px);
 }
 
 @keyframes bor {
@@ -171,8 +172,8 @@
       height: 0%;
   }
   to{
-      width: 100%;
-      height: 100%;
+      width: calc(100% + 6px);
+      height: calc(100% + 6px);
   }
 }
 
@@ -182,8 +183,8 @@
       height: 0%;
   }
   from{
-      width: 100%;
-      height: 100%;
+      width: calc(100% + 6px);
+      height: calc(100% + 6px);
   }
 }
 
@@ -195,6 +196,54 @@
   background-color: rgba(255,255,255,0.7);
   z-index:20;
 }
+
+/* .loader {
+  position: fixed;
+  left:0;right:0;top:0;bottom:0;
+}
+
+.outer,
+.middle,
+.inner {
+  border: 3px solid transparent;
+  border-top-color: #003163;
+  border-right-color: #003163;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.outer {
+  width: 3.5em;
+  height: 3.5em;
+  margin-left: -1.75em;
+  margin-top: -1.75em;
+  animation: spin 2s linear infinite;
+}
+
+.middle {
+  width: 2.1em;
+  height: 2.1em;
+  margin-left: -1.05em;
+  margin-top: -1.05em;
+  animation: spin 1.75s linear reverse infinite;
+}
+
+.inner {
+  width: 0.8em;
+  height: 0.8em;
+  margin-left: -0.4em;
+  margin-top: -0.4em;
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+} */
+
 
 @-webkit-keyframes spin {
 from {-webkit-transform:rotate(0deg);}
@@ -213,7 +262,7 @@ to {transform:rotate(360deg);}
   left:48%;top:40%;
   width:40px;height:40px;
   border-style:solid;
-  border-color:black;
+  border-color:#0e3e6f;
   border-top-color:transparent;
   border-width: 4px;
   border-radius:50%;
@@ -222,43 +271,36 @@ to {transform:rotate(360deg);}
 }
 
 
-/* #cover-spin {
-  position: relative;
-  width: 2em;
-  height: 2em;
-  border: 3px solid #3cefff;
-  overflow: hidden;
-  animation: spin 3s ease infinite;
+/* Homepage card butons */
+.homepagebutton {
+  z-index: 1;
+  outline: none;
+  border: none;
+  background-color: #1e5b98;
 }
 
-#cover-spin::before {
-  content: '';
-  position: absolute;
-  top: -3px;
-  left: -3px;
-  width: 2em;
-  height: 2em;
-  background-color: hsla(185, 100%, 62%, 0.75);
-  transform-origin: center bottom;
-  transform: scaleY(1);
-  animation: fill 3s linear infinite;
+.homepagebutton:hover {
+  cursor: pointer;
+  animation: jelly 0.5s;
 }
 
-@keyframes spin {
-  50%,
+@keyframes jelly {
+  0%,
   100% {
-    transform: rotate(360deg);
+    transform: scale(1, 1);
   }
-}
-
-@keyframes fill {
-  25%,
+  25% {
+    transform: scale(0.9, 1.1);
+  }
   50% {
-    transform: scaleY(0);
+    transform: scale(1.1, 0.9);
   }
-  100% {
-    transform: scaleY(1);
+  75% {
+    transform: scale(0.95, 1.05);
   }
-} */
+} 
+
+
+
 
 

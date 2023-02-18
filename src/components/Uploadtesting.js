@@ -23,7 +23,7 @@ function Uploadtesting() {
             axios.post(`http://localhost:80/api/upload/`, formdata,{headers: {
                 'content-type': 'multipart/form-data'
             }}).then(function (response){
-                console.log(response);
+                // console.log(response);
             });
 
         }

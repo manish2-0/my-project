@@ -42,7 +42,7 @@ function App() {
                 <Route path='/' element={  <Home /> } />
                 <Route path='newclient' element={ <Newclient1 /> } />
                 <Route path='newentry' element={  <NewEntry2 /> } />
-                <Route exact path="/entryedit" element={ <Entryedit2 /> } />
+                <Route exact path="entryedit" element={ <Entryedit2 /> } />
                 <Route exact path='view' element={ <Information1 /> } >
                   <Route index element={ <Tablenew /> } />
                   <Route path='extraview' element={ <ExtraView1 /> } />
@@ -64,7 +64,7 @@ function App() {
 
       {/* <Navbar1/> */ }
 
-      {/* <Testing /> */}
+      {/* <Testing1 /> */}
 
 
       {/* <Loader/> */}

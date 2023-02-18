@@ -5,10 +5,12 @@ import { useNavigate } from 'react-router';
 import api from './axiosapi';
 import useAuth from '../hooks/useAuth'
 import Loader from './Loader';
+import Testing1 from './Testing1';
 
 function Login1(props) {
 
   const [loading, setloading] = useState(false);
+  // const [modal, setmodal] = useState(false);
 
   const USERNAME=/^[A-Za-z0-9@_]{8,}$/;
   const PASSWORD=/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[@$&*-]).{12,}$/;
@@ -39,24 +41,34 @@ function Login1(props) {
     //   // alert("Please check your fields")
     // }
 
-    await api.post('admin/login', JSON.stringify(inputs), {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).then(response => {
-      console.log(response.data)
-      if(response?.data?.accessToken){
-        setauth(response.data);
-        setloading(false);
-        navigate("/", { replace: true })
-      }
-      else{
-        setloading(false);
-        alert(response.data.message);
-      } 
-        
-      }
-    )
+    try {
+      await api.post('admin/login', JSON.stringify(inputs), {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(response => {
+        // console.log(response.data)
+        if(response?.data?.accessToken){
+          setauth(response.data);
+          setloading(false);
+          navigate("/", { replace: true })
+        }
+        else{
+          setloading(false);
+          // setmodal(true); 
+          // console.log(response.data);
+        } 
+          
+        }
+      )
+      
+    } catch (error) {
+      setloading(false);
+        // console.log(error)
+        alert("No server response")
+    }
+
+    
 
   }
 
@@ -68,6 +80,12 @@ function Login1(props) {
       ?<Loader/>
       :<></>
     }
+
+    {/* {
+      modal
+      ?<Testing1 />
+      :<></>
+    } */}
     
 
     <div className='flex items-center justify-around w-full min-h-screen bg--color'>

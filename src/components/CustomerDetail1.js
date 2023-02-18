@@ -9,18 +9,16 @@ function CustomerDetail1() {
     const { values } = location.state;
     const [inputs, setinputs] = useState(values);
     const [infor, setinfor] = useState({});
-    // console.log(inputs);
+    
 
     const userinformation= ()=> {
         axios.get(`http://localhost:80/blp-api/userdetail/${inputs.blpid}`).then(function(response) {
         setinfor(response.data[0]);
-        console.log(response.data[0])
        })
    }
 
    useEffect(() => {
     userinformation();
- // console.log(inputs)
 }, []);
 
     return (

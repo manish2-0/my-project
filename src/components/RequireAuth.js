@@ -11,7 +11,7 @@ const RequireAuth = () => {
      const {auth,setauth} = useAuth();
     //  const [auth, setauth] = useState(useAuth());
 
-    console.log(auth)
+    // console.log(auth)
     // const location = useLocation();
 
   return (
