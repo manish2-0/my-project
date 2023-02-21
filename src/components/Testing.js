@@ -93,13 +93,31 @@ export const Testing = () => {
 
     return (
         // <div>Testing</div>
-        <div className=''>
-            <button className='m-3 ani-button' onClick={ login }>Login</button>
-            <button className='m-3 ani-button' onClick={ logout }>Logout</button>
-            <button className='m-3 ani-button' onClick={getall}>Get All</button>
-            <button className='m-3 ani-button' onClick={()=>{refresh()}}>Get new Access</button>
-            {/* <Link to='testing1' state={{ user:user }} className="font-medium text-fix hover:underline">More</Link> */}
+        // <div className=''>
+        //     <button className='m-3 ani-button' onClick={ login }>Login</button>
+        //     <button className='m-3 ani-button' onClick={ logout }>Logout</button>
+        //     <button className='m-3 ani-button' onClick={getall}>Get All</button>
+        //     <button className='m-3 ani-button' onClick={()=>{refresh()}}>Get new Access</button>
+        //     <Link to='testing1' state={{ user:user }} className="font-medium text-fix hover:underline">More</Link>
+        // </div>
+
+        <nav class="bg-gray-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <div class="flex items-center">
+        <a href="#" class="text-white font-bold text-xl">My Website</a>
+      </div>
+      <div class="hidden md:block">
+        <div class="ml-10 flex items-baseline space-x-4">
+          <a href="#" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
+          <a href="#" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">About</a>
+          <a href="#" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Contact</a>
         </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
 
     )
 }

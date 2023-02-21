@@ -11,9 +11,15 @@ import { useContext } from 'react';
 import useAuth from '../hooks/useAuth'
 import useAxiosPrivate from '../hooks/useAxiosPrivate';
 
+import Modal from '../modals/Modal';
+import useModal from '../hooks/useModal';
+
 function Homepage() {
 
     const api=useAxiosPrivate();
+
+    const { modal, setmodal, modalmessage, setmodalmessage } = useModal();
+
 
     const a=useContext(SearchContext);
     // console.log(a.searchvalue.searchitem)
@@ -68,8 +74,17 @@ function Homepage() {
     return (
         <>
 
+        
+        {
+            modal
+            ?<Modal />
+            :<></>
+        }
+        
+        
 
-            <div className='flex flex-col items-center justify-center bg-[#fdfdfd]'>
+
+            <div className='flex flex-col items-center justify-top bg-[#fdfdfd] min-h-screen'>
                 <div className="container flex flex-wrap items-stretch justify-center mx-3 align-middle sm:pt-20 pt-36 h-fit justify-items-center">
 
                     { loading ?

@@ -5,14 +5,17 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import AuthState from './context/AuthState'
 import SearchState from './context/SearchState';
+import ModalState from './context/ModalState';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <AuthState>
+      <ModalState>
       <SearchState>
         <App />
       </SearchState>
+      </ModalState>
     </AuthState>
   </React.StrictMode>
 );

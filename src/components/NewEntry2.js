@@ -3,8 +3,12 @@ import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useAxiosPrivate from '../hooks/useAxiosPrivate';
 import Loader from './Loader';
+import Modal from '../modals/Modal';
+import useModal from '../hooks/useModal';
 
 function NewEntry2() {
+
+    const { modal, setmodal, modalmessage, setmodalmessage } = useModal();
 
     const api = useAxiosPrivate();
 
@@ -80,15 +84,26 @@ function NewEntry2() {
                                 }
                             }
                             ).then(
-                                function (response) {
+                                async function (response) {
                                     if (response.data.status == 1) {
                                         setloading(false);
-                                        window.alert("Data added Successfully");
+                                        // window.alert("Data added Successfully");
+                                        setmodal(true);
+                                        await setmodalmessage({
+                                            "text1": "Success",
+                                            "text2": "Entry added succesfully."
+                                        })
                                         navigate('/');
                                     }
                                     else {
                                         setloading(false);
-                                        window.alert("Error while uploading files");
+                                        // window.alert("Error while uploading files");
+                                        setmodal(true);
+                                        await setmodalmessage({
+                                            "text1": "Error Occured",
+                                            "text2": "Error while uploading files."
+                                        });
+
                                     }
                                 }
                             )
@@ -96,7 +111,12 @@ function NewEntry2() {
                         } catch (error) {
                             setloading(false);
                             // console.log(error);
-                            window.alert("No server response while uploading files");
+                            // window.alert("No server response while uploading files");
+                            setmodal(true);
+                            await setmodalmessage({
+                                "text1": "Error Occured",
+                                "text2": "No server response while uploading files."
+                            });
                         }
 
 
@@ -104,7 +124,12 @@ function NewEntry2() {
 
                     else {
                         setloading(false);
-                        window.alert("Data added Successfully");
+                        // window.alert("Data added Successfully");
+                        setmodal(true);
+                        await setmodalmessage({
+                            "text1": "Success",
+                            "text2": "Entry added Successfully."
+                        });
                         navigate('/');
                     }
 
@@ -112,7 +137,12 @@ function NewEntry2() {
                 }
                 else {
                     setloading(false);
-                    window.alert("Error Occured");
+                    // window.alert("Error Occured");
+                    setmodal(true);
+                    await setmodalmessage({
+                        "text1": "Error Occured",
+                        "text2": "Error while adding entry."
+                    });
                 }
             })
 
@@ -120,7 +150,12 @@ function NewEntry2() {
         } catch (error) {
             setloading(false);
             // console.log(error)
-            window.alert("No server response");
+            // window.alert("No server response");
+            setmodal(true);
+            await setmodalmessage({
+                "text1": "Error Occured",
+                "text2": "No server response."
+            });
         }
 
 
@@ -134,6 +169,14 @@ function NewEntry2() {
                     ? <Loader />
                     : <></>
             }
+
+            {
+                modal
+                ?<Modal/>
+                :<></>
+            }
+
+
             <div className='relative z-0 flex flex-col items-center pt-40 mx-2 border-gray-200 rounded-md sm:pt-20 bg-gray-50 '>
                 <h2 className='my-2 mb-4 text-4xl underline text-fix'>Entry Form</h2>
                 <div className='container relative flex items-center justify-center h-auto rounded-md bg-gray-50'>
@@ -146,7 +189,7 @@ function NewEntry2() {
 
                             <div className='w-full mb-3 sm:w-2/5 sm:mr-5 sm:mb-0'>
                                 <label className='py-2 pr-2 text-lg text-gray-500 sm:min-w-fit' htmlFor="">Date:</label>
-                                <input onChange={ handlechange } name="date" className='px-2 py-2 text-lg bg-transparent border-b-2 border-gray-300 rounded-sm outline-none' type="date" placeholder="" required/>
+                                <input onChange={ handlechange } name="date" className='px-2 py-2 text-lg bg-transparent border-b-2 border-gray-300 rounded-sm outline-none' type="date" placeholder="" required />
                             </div>
 
                             <div className='flex w-full sm:w-1/2'>

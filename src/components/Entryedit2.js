@@ -3,8 +3,12 @@ import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useAxiosPrivate from '../hooks/useAxiosPrivate';
 import Loader from './Loader';
+import Modal from '../modals/Modal';
+import useModal from '../hooks/useModal';
 
 function Entryedit2() {
+
+    const { modal, setmodal, modalmessage, setmodalmessage } = useModal();
 
     const api = useAxiosPrivate();
 
@@ -30,21 +34,36 @@ function Entryedit2() {
         // console.log(JSON.stringify(inputs))
 
         try {
-            await api.put(`entries/update-entries/${inputs.sr_no}`, JSON.stringify(inputs)).then(function (response) {
+            await api.put(`entries/update-entries/${inputs.sr_no}`, JSON.stringify(inputs)).then(async function (response) {
                 // console.log(response)
                 if (response.data.status == 1) {
                     setloading(false);
-                    window.alert("Data updated Successfully");
+                    // window.alert("Data updated Successfully");
+                    setmodal(true);
+                    await setmodalmessage({
+                        "text1": "Success",
+                        "text2": "Entry edited succesfully."
+                    });
                     navigate('/');
                 }
                 else {
                     setloading(false);
-                    window.alert("Error Occured	");
+                    // window.alert("Error Occured	");
+                    setmodal(true);
+                    await setmodalmessage({
+                        "text1": "Error Occured",
+                        "text2": "Error while adding entry."
+                    });
                 }
             });
         } catch (error) {
             setloading(false);
-            window.alert("No server response");
+            // window.alert("No server response");
+            setmodal(true);
+            await setmodalmessage({
+                "text1": "Error Occured",
+                "text2": "No server response."
+            });
         }
 
 
@@ -56,6 +75,12 @@ function Entryedit2() {
             {
                 loading
                     ? <Loader />
+                    : <></>
+            }
+
+            {
+                modal
+                    ? <Modal />
                     : <></>
             }
 
@@ -71,7 +96,7 @@ function Entryedit2() {
 
                             <div className='w-full mb-3 sm:w-2/5 sm:mr-5 sm:mb-0'>
                                 <label className='py-2 pr-2 text-lg text-gray-500 sm:min-w-fit' htmlFor="">Date:</label>
-                                <input defaultValue={ inputs.date } onChange={ handlechange } name="date" className='px-2 py-2 text-lg bg-transparent border-b-2 border-gray-300 rounded-sm outline-none' type="date" placeholder="" required/>
+                                <input defaultValue={ inputs.date } onChange={ handlechange } name="date" className='px-2 py-2 text-lg bg-transparent border-b-2 border-gray-300 rounded-sm outline-none' type="date" placeholder="" required />
                             </div>
 
                             <div className='flex w-full sm:w-1/2'>

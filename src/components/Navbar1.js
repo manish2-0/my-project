@@ -7,24 +7,29 @@ import { useContext } from 'react';
 import api from './axiosapi';
 import useAuth from '../hooks/useAuth';
 import Loader from './Loader';
+import modal from '../context/ModalContext';
+import Modal from '../modals/Modal';
+import useModal from '../hooks/useModal';
 
 
 
 function Navbar1(props) {
 
+    const { modal, setmodal, modalmessage, setmodalmessage } = useModal();
+
     const [loading, setloading] = useState(false);
 
-    const {setauth}=useAuth();
+    const { setauth } = useAuth();
 
     const nav = useNavigate();
-    
+
     const a = useContext(SearchContext);
 
     // const current1={
     //         admin_id:a.searchvalue.admin_id
     //     }
-        
-    
+
+
     const [scrolling, setscrolling] = useState(false);
 
     function handlechange(event) {
@@ -73,7 +78,7 @@ function Navbar1(props) {
         // console.log(a.searchvalue.searchitem)
     }
 
-    const handlelogout=async(e)=> {
+    const handlelogout = async (e) => {
         setloading(true);
         e.preventDefault();
 
@@ -87,15 +92,25 @@ function Navbar1(props) {
                 a.setsearchvalue(values => ({ ...values, login_status: false }));
                 setloading(false)
                 setauth({});
+                setmodal(true);
+                setmodalmessage({
+                    "text1": "Success",
+                    "text2": "Logged out successfully"
+                });
                 nav("/login", { replace: true });
-                alert("Logged out successfully");
+                // alert("Logged out successfully");
             })
-            
+
         } catch (error) {
-                setloading(false)
-                alert("No server response");
+            setloading(false)
+            setmodal(true);
+                setmodalmessage({
+                    "text1": "Error",
+                    "text2": "No server response."
+                });
+            // alert("No server response");
         }
-       
+
 
     }
 
@@ -109,7 +124,7 @@ function Navbar1(props) {
         }
     }
 
-    const imageclicked=()=>{
+    const imageclicked = () => {
         nav("/");
     }
 
@@ -122,32 +137,67 @@ function Navbar1(props) {
 
     return (
         <>
-        {
-            loading
-            ?<Loader />
-            :<></>
-        }
+            {
+                loading
+                    ? <Loader />
+                    : <></>
+            }
 
-        <div className='z-50'>
-            <div className={ scrolling ? "sm:translate-y-0 transition  -translate-y-1/2 z-30 bg-fix fixed w-full" : "transition translate-y-0 z-30 bg-fix fixed w-full" } id='main'>
-                <div className='container relative w-full p-2 px-3 mx-auto bg-fix sm:translate-y-0'>
+            {
+                modal
+                    ? <Modal />
+                    : <></>
+            }
 
-                    <div className='flex justify-between h-1/2 sm:h-auto'>
+            <div className='z-50'>
+                <div className={ scrolling ? "sm:translate-y-0 transition  -translate-y-1/2 z-30 bg-fix fixed w-full" : "transition translate-y-0 z-30 bg-fix fixed w-full" } id='main'>
+                    <div className='container relative w-full p-2 px-3 mx-auto bg-fix sm:translate-y-0'>
 
-                        {/* Navicon */ }
-                        <div className='flex items-center order-1 w-1/4 lg:ml-2'>
-                            <img onClick={imageclicked} className='w-16 h-16 cursor-pointer' alt="" srcSet={ logo } />
+                        <div className='flex justify-between h-1/2 sm:h-auto'>
+
+                            {/* Navicon */ }
+                            <div className='flex items-center order-1 w-1/4 lg:ml-2'>
+                                <img onClick={ imageclicked } className='w-16 h-16 cursor-pointer' alt="" srcSet={ logo } />
+                            </div>
+
+
+
+                            <div className='relative justify-center order-2 hidden w-1/2 my-2 sm:flex'>
+                                <div className='relative w-3/4 h-12 overflow-hidden rounded-full'>
+                                    <span className='absolute -translate-y-1/2 top-1/2 left-4 text-fix'><i className="fa-solid fa-magnifying-glass"></i></span>
+                                    <input onChange={ handlechange } name="value" className='w-full h-full px-10 pr-4 border-none outline-none ' type="search" placeholder='Search...' />
+                                    <span className='absolute right-0 -translate-y-1/2 top-1/2'>
+                                        <select onChange={ handlechange1 } className='h-10 px-2 mr-1 text-black border border-gray-300 rounded-full outline-none ' name="searchitem" id="">
+
+                                            <option selected>BLP Id</option>
+                                            <option>ISELL No.</option>
+                                            <option>DC No.</option>
+                                            <option>Mobile</option>
+                                            <option>Name</option>
+                                            <option>City</option>
+
+                                        </select>
+                                    </span>
+                                </div>
+                            </div>
+
+
+                            {/* Person Logo */ }
+
+                            <div className='flex items-center justify-end order-3 w-1/4 lg:mr-2'>
+                                {/* <svg className="w-[30px] h-[30px] text-white  " fill="white" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg> */ }
+                                <span className="text-white cursor-pointer w-fit h-fit" onClick={ handlelogout }>LOGOUT</span>
+                            </div>
+
+
                         </div>
 
-
-
-                        <div className='relative justify-center order-2 hidden w-1/2 my-2 sm:flex'>
-                            <div className='relative w-3/4 h-12 overflow-hidden rounded-full'>
+                        <div className='relative mt-4 h-1/2 sm:hidden'>
+                            <div className='relative h-12 overflow-hidden rounded-full'>
                                 <span className='absolute -translate-y-1/2 top-1/2 left-4 text-fix'><i className="fa-solid fa-magnifying-glass"></i></span>
                                 <input onChange={ handlechange } name="value" className='w-full h-full px-10 pr-4 border-none outline-none ' type="search" placeholder='Search...' />
                                 <span className='absolute right-0 -translate-y-1/2 top-1/2'>
                                     <select onChange={ handlechange1 } className='h-10 px-2 mr-1 text-black border border-gray-300 rounded-full outline-none ' name="searchitem" id="">
-                                        
                                         <option selected>BLP Id</option>
                                         <option>ISELL No.</option>
                                         <option>DC No.</option>
@@ -161,41 +211,12 @@ function Navbar1(props) {
                         </div>
 
 
-                        {/* Person Logo */ }
-
-                        <div className='flex items-center justify-end order-3 w-1/4 lg:mr-2'>
-                            {/* <svg className="w-[30px] h-[30px] text-white  " fill="white" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg> */ }
-                            <span className="text-white cursor-pointer w-fit h-fit" onClick={handlelogout}>LOGOUT</span>
-                        </div>
-
-
                     </div>
 
-                    <div className='relative mt-4 h-1/2 sm:hidden'>
-                        <div className='relative h-12 overflow-hidden rounded-full'>
-                            <span className='absolute -translate-y-1/2 top-1/2 left-4 text-fix'><i className="fa-solid fa-magnifying-glass"></i></span>
-                            <input onChange={ handlechange } name="value" className='w-full h-full px-10 pr-4 border-none outline-none ' type="search" placeholder='Search...' />
-                            <span className='absolute right-0 -translate-y-1/2 top-1/2'>
-                                <select onChange={ handlechange1 } className='h-10 px-2 mr-1 text-black border border-gray-300 rounded-full outline-none ' name="searchitem" id="">
-                                    <option selected>BLP Id</option>
-                                    <option>ISELL No.</option>
-                                    <option>DC No.</option>
-                                    <option>Mobile</option>
-                                    <option>Name</option>
-                                    <option>City</option>
-
-                                </select>
-                            </span>
-                        </div>
-                    </div>
 
 
                 </div>
-
-
-
             </div>
-        </div>
         </>
 
     )

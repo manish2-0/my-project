@@ -4,9 +4,14 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import useAxiosPrivate from '../hooks/useAxiosPrivate';
 import Loader from './Loader';
 import moment from 'moment/moment';
+import Modal from '../modals/Modal';
+import useModal from '../hooks/useModal';
 
 
 function Editclient1() {
+
+	const { modal, setmodal, modalmessage, setmodalmessage } = useModal();
+
 
 	const api = useAxiosPrivate();
 
@@ -33,21 +38,33 @@ function Editclient1() {
 		// console.log(inputs)
 
 		try {
-			await api.put(`client/update-client/${user.blp_id}`, JSON.stringify(inputs)).then(function (response) {
+			await api.put(`client/update-client/${user.blp_id}`, JSON.stringify(inputs)).then(async function (response) {
 				if (response.data.status == 1) {
 					setloading(false);
-					window.alert("Data updated Successfully");
-					navigate('/');
+					setmodal(true);
+					await setmodalmessage({
+						"text1": "Done",
+						"text2": "Data edited succesfully."
+					});
+					navigate('/')
 				}
 				else {
 					setloading(false);
-					window.alert("Error Occured	");
+					setmodal(true);
+					setmodalmessage({
+						"text1": "Error Occured",
+						"text2": "Something went wrong."
+					});
 				}
 			});
 
 		} catch (error) {
 			setloading(false);
-			window.alert("No server response");
+			setmodal(true);
+					await setmodalmessage({
+						"text1": "Error Occured",
+						"text2": "No server response."
+					});
 		}
 
 
@@ -62,6 +79,15 @@ function Editclient1() {
 					? <Loader />
 					: <></>
 			}
+
+			{
+				modal
+				?<Modal/>
+				:<></>
+
+			}
+
+
 			<div className='min-h-screen relative flex flex-col items-center mx-2 border-gray-200 rounded-md z-0 pt-40 sm:pt-20 pb-[24px] bg-gray-50'>
 				<h2 className='my-2 mb-4 text-4xl underline text-fix'>Edit Customer Form</h2>
 				<div className='relative flex items-center justify-center h-auto m-2 rounded-md md:container bg-gray-50'>

@@ -6,6 +6,19 @@
 
 }
 
+
+.custom-shadow{
+  /* box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+  
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px; */
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.01) 0px 1px 3px -1px;
+  
+  /* box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px; */
+  border: 1px solid rgba(227, 227, 227, 0.5);
+}
+
+
+
 .gradbg{
   background: linear-gradient(-218deg, #6db5fcb8 55%, #E0C3FC 55%);
   

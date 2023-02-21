@@ -21,6 +21,8 @@ import Tablenew from './components/Tablenew';
 import PersistLogin from './components/PersistLogin';
 import ExtraView1 from './components/ExtraView1';
 import Loader from './components/Loader';
+import Testing2 from './components/Testing2';
+import LoginErrorModal from './modals/Modal';
 
 
 function App() {
@@ -64,7 +66,8 @@ function App() {
 
       {/* <Navbar1/> */ }
 
-      {/* <Testing1 /> */}
+      {/* <Testing2 /> */}
+      {/* <LoginErrorModal /> */}
 
 
       {/* <Loader/> */}

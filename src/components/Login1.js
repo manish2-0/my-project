@@ -6,18 +6,24 @@ import api from './axiosapi';
 import useAuth from '../hooks/useAuth'
 import Loader from './Loader';
 import Testing1 from './Testing1';
+import Modal from '../modals/Modal';
+import useModal from '../hooks/useModal';
 
 function Login1(props) {
 
   const [loading, setloading] = useState(false);
   // const [modal, setmodal] = useState(false);
+  // const [modalmessage,setmodalmessage]=useState("");
 
   const USERNAME=/^[A-Za-z0-9@_]{8,}$/;
   const PASSWORD=/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[@$&*-]).{12,}$/;
 
   const [inputs, setinputs] = useState({});
   const navigate = useNavigate();
+
   const {setauth}=useAuth();
+  const {modal,setmodal,modalmessage,setmodalmessage}=useModal();
+
 
   function handlechange(event) {
     event.preventDefault();
@@ -55,8 +61,9 @@ function Login1(props) {
         }
         else{
           setloading(false);
-          // setmodal(true); 
-          // console.log(response.data);
+          setmodal(true); 
+          setmodalmessage({"text1":"Error Occured",
+        "text2":response.data.message});
         } 
           
         }
@@ -64,8 +71,11 @@ function Login1(props) {
       
     } catch (error) {
       setloading(false);
+      setmodal(true); 
+      setmodalmessage({"text1":"Error Occured",
+        "text2":"No server response"});
         // console.log(error)
-        alert("No server response")
+        // alert("No server response")
     }
 
     
@@ -81,11 +91,11 @@ function Login1(props) {
       :<></>
     }
 
-    {/* {
+    {
       modal
-      ?<Testing1 />
+      ?<Modal />
       :<></>
-    } */}
+    }
     
 
     <div className='flex items-center justify-around w-full min-h-screen bg--color'>

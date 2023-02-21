@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useLocation } from 'react-router-dom';
 import useAxiosPrivate from '../hooks/useAxiosPrivate';
 import axios from 'axios';
@@ -8,12 +8,39 @@ import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import useAuth from '../hooks/useAuth';
 
+import Modal from '../modals/Modal';
+import useModal from '../hooks/useModal';
+import modal from '../context/ModalContext';
+import 'tw-elements';
+
+
+
 function ExtraView1() {
+
+    const { modal, setmodal, modalmessage, setmodalmessage } = useModal();
+    const [deleting, setdeleting] = useState({
+        "f": ""
+    });
+
+    const ref = useRef(null);
+
+
+    const openmodal = (f) => {
+        ref.current.click();
+        setdeleting({ f });
+    }
+
+    const bclick = () => {
+        ref.current.click();
+        setdeleting({ "f": "" });
+    }
+
+
 
     const api = useAxiosPrivate();
 
-    const {auth}=useAuth();
-    
+    const { auth } = useAuth();
+
 
     const [loading, setloading] = useState(false);
     const [entryloading, setentryloading] = useState(true);
@@ -44,27 +71,38 @@ function ExtraView1() {
 
     const viewfile = async (f) => {
 
-        api.get(`file/image/${f.fname}`).then(function(response){
+        api.get(`file/image/${f.fname}`).then(function (response) {
             window.open(f.flink)
         })
 
     }
 
-    const deletefile = async (f) => {
+    const deletefile = async () => {
+        ref.current.click();
         setloading(true)
 
         try {
-            await api.delete(`file/delete/${f.file_no}`).then(async function (response) {
+            await api.delete(`file/delete/${deleting.f.file_no}`).then(async function (response) {
                 if (response.data.status == 1) {
                     setfiles(files.filter((e) => {
-                        return e !== f;
+                        return e !== deleting.f;
                     }));
                     setloading(false);
-                    window.alert("File deleted succesfully");
+                    setmodal(true);
+                    setmodalmessage({
+                        "text1": "Success",
+                        "text2": "File deleted successfully."
+                    });
+                    // window.alert("File deleted succesfully");
                 }
                 else {
                     setloading(false);
-                    window.alert("Error occured");
+                    setmodal(true);
+                    setmodalmessage({
+                        "text1": "Error",
+                        "text2": "Error while deleting file."
+                    });
+                    // window.alert("Error occured");
                 }
 
 
@@ -72,7 +110,12 @@ function ExtraView1() {
 
         } catch (error) {
             setloading(false);
-            window.alert("No server response");
+            setmodal(true);
+            setmodalmessage({
+                "text1": "Error",
+                "text2": "No server response."
+            });
+            // window.alert("No server response");
         }
 
     }
@@ -90,6 +133,63 @@ function ExtraView1() {
                 ? <Loader />
                 : <></>
             }
+
+            {
+                modal
+                    ? <Modal />
+                    : <></>
+            }
+
+            {/* Delete Modal */ }
+            <>
+                {/* <button onClick={ bclick }>Click</button> */ }
+                {/* <!-- Button trigger modal --> */ }
+                <button ref={ ref } type="button" className="hidden" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></button>
+
+                {/* <!-- Modal --> */ }
+                <div className="fixed top-0 left-0 hidden w-full h-full overflow-x-hidden overflow-y-auto outline-none modal fade"
+                    id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div className="relative w-auto pointer-events-none modal-dialog">
+                        <div
+                            className="relative flex flex-col w-full text-current bg-white border-none rounded-md shadow-lg outline-none pointer-events-auto modal-content bg-clip-padding">
+                            <div
+                                className="flex items-center justify-between flex-shrink-0 px-3 py-2 border-b border-gray-200 modal-header rounded-t-md">
+                                <h5 className="text-xl font-medium leading-normal text-gray-800" id="exampleModalLabel">
+                                    Warning
+                                </h5>
+                                <button onClick={ bclick } type="button"
+                                    className="box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 btn-close focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
+                                    data-bs-dismiss="modal" aria-label="Close">
+                                </button>
+                            </div>
+                            <div className="relative px-3 py-3 modal-body">
+                                Are you sure you want to delete?
+                            </div>
+                            <div
+                                className="flex flex-wrap items-center justify-end flex-shrink-0 gap-3 p-4 border-t-2 border-opacity-100 rounded-b-md border-neutral-100 dark:border-opacity-50">
+                                <button onClick={ bclick }
+                                    type="button"
+                                    class="inline-block rounded bg-gray-100 px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-black-300 transition duration-150 ease-in-out hover:bg-gray-200 focus:outline-none focus:ring-0 "
+                                    data-te-modal-dismiss
+                                    data-te-ripple-init
+                                    data-te-ripple-color="light">
+                                    No, Cancel
+                                </button>
+                                <button onClick={ deletefile }
+                                    type="button"
+                                    class="inline-block rounded bg-red-600 px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-red-700 focus:outline-none focus:ring-0"
+                                    data-te-modal-dismiss
+                                    data-te-ripple-init
+                                    data-te-ripple-color="light">
+                                    Yes, I am sure
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </>
 
 
             <div className='flex flex-wrap justify-start md:flex-nowrap'>
@@ -141,41 +241,41 @@ function ExtraView1() {
 
 
                                 { entryloading
-                                ?<tr className="bg-white border-b hover:bg-gray-50">
-                                        <td colSpan="4" className="px-6 py-2 text-lg font-medium text-gray-900 md:text-center whitespace-nowrap">
-                                        <Skeleton height={25} />
-                                        </td>
-                                    </tr>
-                                :
-
-
-                                 !files
-
                                     ? <tr className="bg-white border-b hover:bg-gray-50">
                                         <td colSpan="4" className="px-6 py-2 text-lg font-medium text-gray-900 md:text-center whitespace-nowrap">
-                                            No Data Found
+                                            <Skeleton height={ 25 } />
                                         </td>
                                     </tr>
+                                    :
 
-                                    : files.map((f, key) =>
 
-                                        <tr className="bg-white border-b hover:bg-gray-50">
+                                    !files
 
-                                            <th scope="row" className="px-6 py-2 font-medium text-gray-900 whitespace-nowrap ">
-                                                { key + 1 }
-                                            </th>
-                                            <td className="px-6 py-2">
-                                                { f.fname }
+                                        ? <tr className="bg-white border-b hover:bg-gray-50">
+                                            <td colSpan="4" className="px-6 py-2 text-lg font-medium text-gray-900 md:text-center whitespace-nowrap">
+                                                No Data Found
                                             </td>
-                                            <td className="px-1 py-2 text-center text-fix">
-                                                <button onClick={ () => { viewfile(f) } } className="font-medium text-fix hover:underline">View</button>
-                                            </td>
-                                            <td className="px-1 py-2 text-center text-fix">
-                                                <button onClick={ () => { deletefile(f) } } className="font-medium text-fix hover:underline">Delete</button>
-                                            </td>
-
                                         </tr>
-                                    ) }
+
+                                        : files.map((f, key) =>
+
+                                            <tr className="bg-white border-b hover:bg-gray-50">
+
+                                                <th scope="row" className="px-6 py-2 font-medium text-gray-900 whitespace-nowrap ">
+                                                    { key + 1 }
+                                                </th>
+                                                <td className="px-6 py-2">
+                                                    { f.fname }
+                                                </td>
+                                                <td className="px-1 py-2 text-center text-fix">
+                                                    <button onClick={ () => { viewfile(f) } } className="font-medium text-fix hover:underline">View</button>
+                                                </td>
+                                                <td className="px-1 py-2 text-center text-fix">
+                                                    <button onClick={ () => { openmodal(f) } } className="font-medium text-fix hover:underline">Delete</button>
+                                                </td>
+
+                                            </tr>
+                                        ) }
 
                             </tbody>
                         </table>
