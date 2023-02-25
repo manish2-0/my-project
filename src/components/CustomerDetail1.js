@@ -7,6 +7,7 @@ function CustomerDetail1() {
 
     const location = useLocation();
     const { values } = location.state;
+    
     const [inputs, setinputs] = useState(values);
     const [infor, setinfor] = useState({});
     

@@ -1,3 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 .itslogo{
   background: url("./logo3.png");
   background-size: 100% 100%;
@@ -314,6 +319,20 @@ to {transform:rotate(360deg);}
 } 
 
 
+.footerlogin{
+  box-shadow: 2px 2px 15px #8F8F8F;
+  /* background: #FFFAE8; */
+}
+
+/* Hide number in input */
 
 
 
+.hideinput[type=number]::-webkit-inner-spin-button, 
+.hideinput[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+}
+
+.hideinput[type=number] {
+  -moz-appearance: textfield;
+}

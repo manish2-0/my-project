@@ -11,7 +11,12 @@ import 'tw-elements';
 import useModal from '../hooks/useModal';
 import Modal from '../modals/Modal';
 
+// import { useLocation } from 'react-router-dom';
+
 function Tablenew() {
+
+    // const location = useLocation();
+    // const { values } = location.state;
 
     const { modal, setmodal, modalmessage, setmodalmessage } = useModal();
     const [deleting, setdeleting] = useState({
@@ -59,6 +64,7 @@ function Tablenew() {
 
     useEffect(() => {
         usertable();
+        console.log(user)
     }, []);
 
 
@@ -178,99 +184,108 @@ function Tablenew() {
 
 
             {/* Table  */ }
-            <div className="relative m-4 mt-2 overflow-x-auto rounded-xl scrollbar-hide">
-                <span className='text-2xl text-fix'>Entries:</span>
-                <table className="container w-full m-1 mx-auto text-sm text-left text-gray-500 border shadow-md">
-                    <thead className="text-white uppercase border-b border-gray-300 bg-fix">
-                        <tr className='text-[16px] '>
-                            <th scope="col" className="px-6 py-3">
-                                No.
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                Date
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                Nature of Work
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                Work Status
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                Done By
-                            </th>
+            {/* <div className='flex justify-between'> */ }
+            <div className='m-4 mt-2'>
 
-                            <th scope="col" className="px-6 py-3">
-                                Remarks
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                <span className="sr-only">More</span>
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                <span className="sr-only">Edit</span>
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                <span className="sr-only">Delete</span>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody className=''>
+                <div className='flex justify-between px-2'>
+                    <span className='text-2xl text-fix'>Entries:</span>
+                    <Link to="/newentry" state={ { user: user } } className='hover:bg-[#1967b6] px-8 py-2 text-white rounded-md homepagebutton bg-fix'>Add</Link>
+                </div>
 
-                        { entryloading
-                            ? <tr className="bg-white border-b hover:bg-gray-50">
-                                <td colSpan="9" className='h-8 p-2 text-xl font-medium'>
-                                    <Skeleton height={ 25 } />
-                                </td>
+                <div className="relative overflow-x-auto scrollbar-hide">
+                    <table className="container w-full m-1 mx-auto text-sm text-left text-gray-500 border shadow-md">
+                        <thead className="text-white uppercase border-b border-gray-300 bg-fix">
+                            <tr className='text-[16px] '>
+                                <th scope="col" className="px-6 py-3">
+                                    No.
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Date
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Nature
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Work Status
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Done By
+                                </th>
+
+                                <th scope="col" className="px-6 py-3">
+                                    Remarks
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    <span className="sr-only">More</span>
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    <span className="sr-only">Edit</span>
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    <span className="sr-only">Delete</span>
+                                </th>
                             </tr>
+                        </thead>
+                        <tbody className=''>
 
-                            : !values
+                            { entryloading
                                 ? <tr className="bg-white border-b hover:bg-gray-50">
-                                    <td colSpan="9" className="px-6 py-2 text-lg font-medium text-gray-900 md:text-center whitespace-nowrap">
-                                        No Entries Found
+                                    <td colSpan="9" className='h-8 p-2 text-xl font-medium'>
+                                        <Skeleton height={ 25 } />
                                     </td>
                                 </tr>
 
-                                : values.map((entry, key) =>
-
-                                    <tr className="bg-white border-b hover:bg-gray-50">
-
-                                        <th scope="row" className="px-6 py-2 font-medium text-gray-900 whitespace-nowrap ">
-                                            { key + 1 }
-                                        </th>
-                                        <td className="px-6 py-2">
-                                            { moment(entry.date).format("DD/MM/YYYY") }
-                                        </td>
-                                        <td className="px-6 py-2">
-                                            { entry.nature }
-                                        </td>
-                                        <td className="px-6 py-2">
-                                            { entry.status }
-                                        </td>
-
-                                        <td className="px-6 py-2">
-                                            { entry.doneby }
-                                        </td>
-
-                                        <td className="px-6 py-2">
-                                            { entry.remarks1 }
-                                        </td>
-                                        <td className="px-6 py-2 text-right">
-                                            <Link to="extraview" state={ { values: entry, user: user } } className="font-medium text-fix hover:underline">More</Link>
-                                        </td>
-                                        <td className="px-6 py-2 text-right">
-                                            <Link to="/entryedit" state={ { values: entry } } className="font-medium text-fix hover:underline">Edit</Link>
-                                        </td>
-
-                                        <td className="px-6 py-2 text-right">
-                                            <button onClick={ () => { openmodal(entry.sr_no, entry) } } className="font-medium text-fix hover:underline">Delete</button>
-                                            {/* entry.sr_no, entry */ }
+                                : !values
+                                    ? <tr className="bg-white border-b hover:bg-gray-50">
+                                        <td colSpan="9" className="px-6 py-2 text-lg font-medium text-gray-900 md:text-center whitespace-nowrap">
+                                            No Entries Found
                                         </td>
                                     </tr>
 
-                                ) }
+                                    : values.map((entry, key) =>
 
-                    </tbody>
-                </table>
+                                        <tr className="bg-white border-b hover:bg-gray-50">
+
+                                            <th scope="row" className="px-6 py-2 font-medium text-gray-900 whitespace-nowrap ">
+                                                { key + 1 }
+                                            </th>
+                                            <td className="px-6 py-2">
+                                                { moment(entry.date).format("DD/MM/YYYY") }
+                                            </td>
+                                            <td className="px-6 py-2">
+                                                { entry.nature }
+                                            </td>
+                                            <td className="px-6 py-2">
+                                                { entry.status }
+                                            </td>
+
+                                            <td className="px-6 py-2">
+                                                { entry.doneby }
+                                            </td>
+
+                                            <td className="px-6 py-2">
+                                                { entry.remarks1 }
+                                            </td>
+                                            <td className="px-6 py-2 text-right">
+                                                <Link to="extraview" state={ { values: entry, user: user } } className="font-medium text-fix hover:underline">More</Link>
+                                            </td>
+                                            <td className="px-6 py-2 text-right">
+                                                <Link to="/entryedit" state={ { values: entry } } className="font-medium text-fix hover:underline">Edit</Link>
+                                            </td>
+
+                                            <td className="px-6 py-2 text-right">
+                                                <button onClick={ () => { openmodal(entry.sr_no, entry) } } className="font-medium text-fix hover:underline">Delete</button>
+                                                {/* entry.sr_no, entry */ }
+                                            </td>
+                                        </tr>
+
+                                    ) }
+
+                        </tbody>
+                    </table>
+                </div>
             </div>
+
         </>
     )
 }

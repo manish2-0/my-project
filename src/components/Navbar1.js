@@ -10,6 +10,9 @@ import Loader from './Loader';
 import modal from '../context/ModalContext';
 import Modal from '../modals/Modal';
 import useModal from '../hooks/useModal';
+import Testing3 from './Testing3';
+import 'tw-elements';
+// import "flowbite";   
 
 
 
@@ -104,10 +107,10 @@ function Navbar1(props) {
         } catch (error) {
             setloading(false)
             setmodal(true);
-                setmodalmessage({
-                    "text1": "Error",
-                    "text2": "No server response."
-                });
+            setmodalmessage({
+                "text1": "Error",
+                "text2": "No server response."
+            });
             // alert("No server response");
         }
 
@@ -184,9 +187,13 @@ function Navbar1(props) {
 
                             {/* Person Logo */ }
 
-                            <div className='flex items-center justify-end order-3 w-1/4 lg:mr-2'>
+                            <div className='flex items-center relative justify-end order-3 w-1/4 lg:mr-2'>
                                 {/* <svg className="w-[30px] h-[30px] text-white  " fill="white" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg> */ }
-                                <span className="text-white cursor-pointer w-fit h-fit" onClick={ handlelogout }>LOGOUT</span>
+                               <span className="text-white cursor-pointer w-fit h-fit" onClick={ handlelogout }>LOGOUT</span>  
+
+                              
+
+
                             </div>
 
 

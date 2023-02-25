@@ -23,6 +23,11 @@ import ExtraView1 from './components/ExtraView1';
 import Loader from './components/Loader';
 import Testing2 from './components/Testing2';
 import LoginErrorModal from './modals/Modal';
+import Testing3 from './components/Testing3';
+import BillTop from './components/BillTop';
+import Table2 from './components/Table2';
+import EntriesBill from './components/EntriesBill';
+import ExtraEntriesTable from './components/ExtraEntriesTable';
 
 
 function App() {
@@ -32,7 +37,7 @@ function App() {
   return (
 
     <>
-      <Router>
+      {/* <Router>
         <Routes>
           <Route path='/' element={ <Layout /> }>
 
@@ -60,13 +65,19 @@ function App() {
 
         </Routes>
 
-      </Router>
+      </Router> */}
 
+      {/* <BillTop /> */}
+
+      {/* <Table2 />
+      <EntriesBill />
+      <ExtraEntriesTable /> */}
 
 
       {/* <Navbar1/> */ }
 
       {/* <Testing2 /> */}
+      <Testing3 />
       {/* <LoginErrorModal /> */}
 
 
