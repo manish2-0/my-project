@@ -21,7 +21,7 @@ function Login1(props) {
   const [inputs, setinputs] = useState({});
   const navigate = useNavigate();
 
-  const { setauth } = useAuth();
+  const { setauth,setadminname } = useAuth();
   const { modal, setmodal, modalmessage, setmodalmessage } = useModal();
 
 
@@ -53,8 +53,9 @@ function Login1(props) {
           'Content-Type': 'application/json'
         }
       }).then(response => {
-        // console.log(response.data)
+        // console.log(inputs.admin_id)
         if (response?.data?.accessToken) {
+          setadminname(inputs.admin_id)
           setauth(response.data);
           setloading(false);
           navigate("/", { replace: true })
@@ -129,13 +130,13 @@ function Login1(props) {
 
         </div>
 
-        {/* <footer className='absolute p-0 md:p-3 w-full bottom-0 '>
+        {/* <footer className='absolute bottom-0 w-full p-0 md:p-3 '>
           <div className='w-full p-2 px-4 lg:px-16 flex sm:flex-row flex-col justify-center md:justify-between items-center bg-[#1C4B7B] footerlogin'>
-            <div className='text-white m-1 sm:m-0 md:block hidden text-xs sm:text-base md:text-center'>
+            <div className='hidden m-1 text-xs text-white sm:m-0 md:block sm:text-base md:text-center'>
               © Copyright BLP ASSOCIATES.All Rights Reserved
             </div>
 
-            <div className='text-white text-sm sm:text-base  '>
+            <div className='text-sm text-white sm:text-base '>
               Developed By: Manish and Dixit 
             </div>
 

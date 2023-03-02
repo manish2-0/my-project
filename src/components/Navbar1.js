@@ -14,6 +14,14 @@ import Testing3 from './Testing3';
 import 'tw-elements';
 // import "flowbite";   
 
+import { Fragment } from 'react'
+import { Menu, Transition } from '@headlessui/react'
+import { ChevronDownIcon } from '@heroicons/react/20/solid'
+
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ')
+}
+
 
 
 function Navbar1(props) {
@@ -22,7 +30,7 @@ function Navbar1(props) {
 
     const [loading, setloading] = useState(false);
 
-    const { setauth } = useAuth();
+    const { setauth,adminname,setadminname } = useAuth();
 
     const nav = useNavigate();
 
@@ -95,6 +103,7 @@ function Navbar1(props) {
                 a.setsearchvalue(values => ({ ...values, login_status: false }));
                 setloading(false)
                 setauth({});
+                setadminname("");
                 setmodal(true);
                 setmodalmessage({
                     "text1": "Success",
@@ -187,11 +196,47 @@ function Navbar1(props) {
 
                             {/* Person Logo */ }
 
-                            <div className='flex items-center relative justify-end order-3 w-1/4 lg:mr-2'>
-                                {/* <svg className="w-[30px] h-[30px] text-white  " fill="white" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg> */ }
-                               <span className="text-white cursor-pointer w-fit h-fit" onClick={ handlelogout }>LOGOUT</span>  
+                            <div className='relative flex items-center justify-end order-3 w-1/4 lg:mr-2'>
+                                {/* <span className="text-white cursor-pointer w-fit h-fit" onClick={ handlelogout }>LOGOUT</span>   */ }
 
-                              
+                                <Menu as="div" className="relative inline-block text-left">
+                                    <div>
+                                        <Menu.Button className="inline-flex items-center justify-center w-full px-2 py-2 text-base font-medium text-white bg-transparent rounded-md hover:text-slate-300 focus:outline-none">
+                                            Welcome,{adminname}
+                                            <ChevronDownIcon className="w-6 h-6 my-auto ml-1" aria-hidden="true" />
+                                        </Menu.Button>
+                                    </div>
+
+                                    <Transition
+                                        as={ Fragment }
+                                        enter="transition ease-out duration-100"
+                                        enterFrom="transform opacity-0 scale-95"
+                                        enterTo="transform opacity-100 scale-100"
+                                        leave="transition ease-in duration-75"
+                                        leaveFrom="transform opacity-100 scale-100"
+                                        leaveTo="transform opacity-0 scale-95"
+                                    >
+                                        <Menu.Items className="absolute right-0 z-10 w-56 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                            <div className="py-1">
+                                                
+                                                <form>
+                                                    <Menu.Item>
+                                                        { ({ active }) => (
+                                                            <button onClick={ handlelogout }
+                                                                className={ classNames(
+                                                                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                                                    'block w-full px-4 py-2 text-left'
+                                                                ) }
+                                                            >
+                                                                Logout
+                                                            </button>
+                                                        ) }
+                                                    </Menu.Item>
+                                                </form>
+                                            </div>
+                                        </Menu.Items>
+                                    </Transition>
+                                </Menu>
 
 
                             </div>

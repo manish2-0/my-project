@@ -28,6 +28,9 @@ import BillTop from './components/BillTop';
 import Table2 from './components/Table2';
 import EntriesBill from './components/EntriesBill';
 import ExtraEntriesTable from './components/ExtraEntriesTable';
+import BillBook from './components/BillBook';
+import GenerateBill from './components/GenerateBill';
+import Testing4 from './components/Testing4';
 
 
 function App() {
@@ -37,7 +40,7 @@ function App() {
   return (
 
     <>
-      {/* <Router>
+      <Router>
         <Routes>
           <Route path='/' element={ <Layout /> }>
 
@@ -53,10 +56,12 @@ function App() {
                 <Route exact path='view' element={ <Information1 /> } >
                   <Route index element={ <Tablenew /> } />
                   <Route path='extraview' element={ <ExtraView1 /> } />
-
                 </Route>
                 <Route exact path="/editclient" element={  <Editclient1 /> } />
+                <Route exact path="/bill" element={  <BillBook /> } />
+                
               </Route>
+                <Route exact path="/generatebill" element={  <GenerateBill /> } />
             </Route>
 
             <Route path='*' element={ <ErrorPage /> } />
@@ -65,19 +70,23 @@ function App() {
 
         </Routes>
 
-      </Router> */}
+      </Router>
 
       {/* <BillTop /> */}
 
       {/* <Table2 />
-      <EntriesBill />
-      <ExtraEntriesTable /> */}
+      <ExtraEntriesTable />
+      <EntriesBill /> */}
+
+      {/* <GenerateBill /> */}
+
+      {/* <BillBook /> */}
 
 
       {/* <Navbar1/> */ }
 
       {/* <Testing2 /> */}
-      <Testing3 />
+      {/* <Testing4 /> */}
       {/* <LoginErrorModal /> */}
 
 

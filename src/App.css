@@ -336,3 +336,34 @@ to {transform:rotate(360deg);}
 .hideinput[type=number] {
   -moz-appearance: textfield;
 }
+
+
+/* Button Underline */
+.hunderline:after {    
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: #fff;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+.hunderline:hover:after { 
+  width: 100%; 
+  left: 0; 
+}
+
+
+/* For Print */
+@media print {
+  #bill {
+      /* zoom: 77%;
+      width: 90% !important; */
+      /* border: 1px solid #ccc !important; */
+      color-adjust: exact;
+      -webkit-print-color-adjust: exact;
+  }
+}

@@ -5,7 +5,6 @@ import {Routes,Route,Outlet} from "react-router-dom"
 const Layout = () => {
     return (
         <>
-
                 <Outlet/>
         </>
     )

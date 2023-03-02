@@ -1,69 +1,62 @@
 import React, { useState, useEffect } from 'react'
+import useBill from '../hooks/useBill';
 
 const ExtraEntriesTable = () => {
 
-    const [row, setrow] = useState([]);
-    const [mul, setmul] = useState([]);
-    const [tot, settot] = useState(0);
+    const {
+        row2, setrow2,
+        mul2, setmul2,
+        grand2, setgrand2
+    } = useBill();
 
     const addrow = () => {
-        setrow(a => [...a, { "item": "", "quantity": null, "rate": null }]);
-        setmul(a => [...a, { "mul": 0 }]);
+        setrow2(a => [...a, { "item": "", "quantity": 0, "rate": 0 }]);
+        setmul2(a => [...a, { "mul": 0 }]);
     }
 
 
     const deleterow = (key) => {
-        // setsize(size.splice(key, 1))
-        // setmul(mul.splice(key, 1))
 
-        setrow(oldValues => {
-            return oldValues.filter((_, i) => i !== key)
+        setrow2(row2 => {
+            return row2.filter((_, i) => i !== key)
         })
-        setmul(oldValues => {
-            return oldValues.filter((_, i) => i !== key)
+        setmul2(mul2 => {
+            return mul2.filter((_, i) => i !== key)
         })
 
     }
 
     function handlechange(key, name, value) {
-        // console.log(size[0])
-        // setsize(...k,k[key]?.[name]:value);
-        setrow(row.map((product, i) => (
+        setrow2(row2.map((product, i) => (
             i === key ? { ...product, [name]: value } : product
         )))
     }
 
 
-    const consoleval = () => {
-        console.log(row)
-        // console.log(mul)
-    }
-
-
     useEffect(() => {
-        setmul(row.map((product, i) => (
+        setmul2(row2.map((product, i) => (
             { "mul": (product.quantity * product.rate).toFixed() }
         )))
-    }, [row]);
+    }, [row2]);
 
 
     useEffect(() => {
         let a = 0;
 
-        for (let i = 0; i < mul.length; i++) {
-            a = a + parseInt(mul[i].mul);
+        for (let i = 0; i < mul2.length; i++) {
+            a = a + parseInt(mul2[i].mul);
         }
 
-        settot(a);
-    }, [mul]);
+        setgrand2(a);
+    }, [mul2]);
 
 
 
     return (
         <>
-            <p className='pl-3 text-2xl'>Bill 3:</p>
+            <p className='pl-3 text-2xl'>Bill 2:</p>
 
-            <div className='container px-3 m-auto max-w-[1300px]'>
+            <div className='container px-3 m-auto max-w-[1300px] mb-6'>
                 <div className="relative overflow-x-auto scrollbar-hide">
                     <table className="w-full mx-auto my-1 text-sm text-left text-gray-500 border shadow-md table-fixed whitespace-wrap">
                         <thead className="text-white border-b border-gray-300 bg-fix">
@@ -89,11 +82,13 @@ const ExtraEntriesTable = () => {
                                 </th>
 
                             </tr>
+
                         </thead>
+
                         <tbody className=''>
 
                             {
-                                row.map((value, key) =>
+                                row2.map((value, key) =>
                                     <tr className="bg-white border-b ">
 
                                         <th className="w-24 px-6 py-2 text-center">
@@ -102,7 +97,6 @@ const ExtraEntriesTable = () => {
 
                                         <td className="p-1 w-72 whitespace-wrap">
                                             <input value={ value.item } onChange={ e => { handlechange(key, e.target.name, e.target.value) } } className='w-full border-none outline-none whitespace-wrap' type="text" name="item" />
-                                            {/* <textarea className='w-full border-none outline-none whitespace-wrap' name="text" wrap="soft"> </textarea> */ }
                                         </td>
 
                                         <td className="p-1 text-center w-28">
@@ -115,7 +109,7 @@ const ExtraEntriesTable = () => {
                                         </td>
 
                                         <td className="p-1 text-center w-28">
-                                            { mul[key].mul }/-
+                                            { mul2[key].mul }/-
                                         </td>
 
 
@@ -131,17 +125,14 @@ const ExtraEntriesTable = () => {
 
 
                             <tr className="bg-white border-b ">
-                                <td colSpan={ 1 } className="text-lg text-center">
-                                    <div className='m-2'>
-                                        <button onClick={ addrow } className='px-6 py-1 text-white bg-fix'>Add</button>
-
-                                    </div>
+                                <td colSpan={ 1 } className="p-2 pl-4 text-base">
+                                    <button onClick={ addrow } className='px-6 py-1 text-white bg-fix'>Add</button>
                                 </td>
-                                <td colSpan={ 4 } className="pr-3 text-lg text-right">
+                                <td colSpan={ 4 } className="pr-3 text-lg text-right text-fix">
                                     Grand Total:
                                 </td>
                                 <td colSpan={ 1 } className="text-lg text-center">
-                                    ₹{ tot }
+                                    ₹{ grand2 }
                                 </td>
                             </tr>
 

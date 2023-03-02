@@ -33,11 +33,19 @@ function NewEntry2() {
         "nanosil": "0",
         "superflex": "0",
         "silicon": "0",
-        "food": "0",
-        "accomodation": "0",
-        "travelling": "0",
-        "expenses": "0",
         "remarks2": "-",
+
+        "food": "0",
+        "food_remarks": "-",
+
+        "accomodation": "0",
+        "accomodation_remarks": "-",
+
+        "travelling": "0",
+        "travelling_remarks": "-",
+
+        "expenses": "0",
+        "expenses_remarks": "-",
 
         "billstatus": "-",
         "remarks3": "-"
@@ -172,8 +180,8 @@ function NewEntry2() {
 
             {
                 modal
-                ?<Modal/>
-                :<></>
+                    ? <Modal />
+                    : <></>
             }
 
 
@@ -244,72 +252,107 @@ function NewEntry2() {
 
                         <h4 className='mb-3 text-xl underline text-fix min-w-fit '>Materials Consumed:(Please enter values in ml)</h4>
 
-                        <div className='flex flex-wrap justify-between pb-3 mb-3 border-b-2 sm:flex-nowrap'>
+                        <div className='border-b-2'>
+
+                        <div className='flex flex-wrap justify-between pb-3 sm:flex-nowrap'>
 
                             <div className='flex w-full mb-3'>
                                 <label className='py-2 pr-2 text-lg text-gray-500 min-w-fit' htmlFor="">Nanosil:</label>
-                                <input onChange={ handlechange } name="nanosil" className='w-full px-2 py-2 text-lg text-black bg-transparent border-b-2 border-gray-300 rounded-sm outline-none sm:w-1/2 lg:w-2/5' type="number" placeholder="" />
+                                <input onChange={ handlechange } name="nanosil" className='w-full px-2 py-2 text-lg text-black bg-transparent border-b-2 border-gray-300 rounded-sm outline-none hideinput sm:w-1/2 lg:w-2/5' type="number" placeholder="" />
                             </div>
 
                             <div className='flex w-full mb-3'>
                                 <label className='py-2 pr-2 text-lg text-gray-500 min-w-fit' htmlFor="">Silicon:</label>
-                                <input onChange={ handlechange } name="silicon" className='w-full px-2 py-2 text-lg text-black bg-transparent border-b-2 border-gray-300 rounded-sm outline-none sm:w-1/2 lg:w-2/5' type="number" placeholder="" />
+                                <input onChange={ handlechange } name="silicon" className='w-full px-2 py-2 text-lg text-black bg-transparent border-b-2 border-gray-300 rounded-sm outline-none hideinput sm:w-1/2 lg:w-2/5' type="number" placeholder="" />
                             </div>
 
                             <div className='flex w-full mb-3'>
                                 <label className='py-2 pr-2 text-lg text-gray-500 min-w-fit' htmlFor="">Superflex:</label>
-                                <input onChange={ handlechange } name="superflex" className='w-full px-2 py-2 text-lg text-black bg-transparent border-b-2 border-gray-300 rounded-sm outline-none sm:w-1/2 lg:w-2/5' type="number" placeholder="" />
-                            </div>
+                                <input onChange={ handlechange } name="superflex" className='w-full px-2 py-2 text-lg text-black bg-transparent border-b-2 border-gray-300 rounded-sm outline-none hideinput sm:w-1/2 lg:w-2/5' type="number" placeholder="" />
+                            </div> 
+
+                        </div>
+
+                        <div className='flex w-full pb-3 mb-3 md:w-3/4'>
+                            <label className='py-2 pr-2 text-lg text-gray-500 min-w-fit' htmlFor="">Remarks:</label>
+                            <input onChange={ handlechange } name="remarks2" className='w-full px-2 py-2 text-lg text-black bg-transparent border-b-2 border-gray-300 rounded-sm outline-none' type="text" placeholder="" />
+                        </div>
 
                         </div>
 
 
 
-                        <h4 className='mb-3 text-xl underline text-fix min-w-fit '>Expenses(In ₹):</h4>
+                        <h4 className='my-3 text-xl underline text-fix min-w-fit '>Expenses(In ₹):</h4>
+                        <div className='border-b-2 '>
+
                         <div className='flex flex-wrap justify-between mb-3 sm:flex-nowrap'>
 
                             <div className='flex w-full mb-3'>
                                 <label className='py-2 pr-2 text-lg text-gray-500 min-w-fit' htmlFor="">Food:</label>
-                                <input onChange={ handlechange } name="food" className='w-full px-2 py-2 text-lg text-black bg-transparent border-b-2 border-gray-300 rounded-sm outline-none sm:w-1/3' type="number" placeholder="" />
+                                <input onChange={ handlechange } name="food" className='w-full px-2 py-2 text-lg text-black bg-transparent border-b-2 border-gray-300 rounded-sm outline-none hideinput sm:w-1/3' type="number" placeholder="" />
                             </div>
 
                             <div className='flex w-full mb-3'>
-                                <label className='py-2 pr-2 text-lg text-gray-500 min-w-fit' htmlFor="">Accomodation:</label>
-                                <input onChange={ handlechange } name="accomodation" className='w-full px-2 py-2 text-lg text-black bg-transparent border-b-2 border-gray-300 rounded-sm outline-none sm:w-1/3' type="number" placeholder="" />
+                                <label className='py-2 pr-2 text-lg text-gray-500 min-w-fit' htmlFor="">Remarks:</label>
+                                <input onChange={ handlechange } name="food_remarks" className='w-full px-2 py-2 text-lg text-black bg-transparent border-b-2 border-gray-300 rounded-sm outline-none sm:w-full' type="text" placeholder="" />
                             </div>
 
                         </div>
+
 
                         <div className='flex flex-wrap justify-between mb-3 sm:flex-nowrap'>
 
                             <div className='flex w-full mb-3'>
                                 <label className='py-2 pr-2 text-lg text-gray-500 min-w-fit' htmlFor="">Travelling:</label>
-                                <input onChange={ handlechange } name="travelling" className='w-full px-2 py-2 text-lg text-black bg-transparent border-b-2 border-gray-300 rounded-sm outline-none sm:w-1/3' type="number" placeholder="" />
+                                <input onChange={ handlechange } name="travelling" className='w-full px-2 py-2 text-lg text-black bg-transparent border-b-2 border-gray-300 rounded-sm outline-none hideinput sm:w-1/3' type="number" placeholder="" />
                             </div>
 
                             <div className='flex w-full mb-3'>
-                                <label className='py-2 pr-2 text-lg text-gray-500 min-w-fit' htmlFor="">Any other expenses:</label>
-                                <input onChange={ handlechange } name="expenses" className='w-full px-2 py-2 text-lg text-black bg-transparent border-b-2 border-gray-300 rounded-sm outline-none sm:w-1/3' type="number" placeholder="" />
-                            </div>
-
-                        </div>
-
-                        <div className='flex flex-wrap justify-between pb-3 mb-3 border-b-2'>
-
-                            <div className='w-full mb-3'>
                                 <label className='py-2 pr-2 text-lg text-gray-500 min-w-fit' htmlFor="">Remarks:</label>
-                                <input onChange={ handlechange } name="remarks2" className='w-full px-2 py-2 text-lg text-black bg-transparent border-b-2 border-gray-300 rounded-sm outline-none lg:w-1/3' type="text" placeholder="" />
+                                <input onChange={ handlechange } name="travelling_remarks" className='w-full px-2 py-2 text-lg text-black bg-transparent border-b-2 border-gray-300 rounded-sm outline-none sm:w-full' type="text" placeholder="" />
                             </div>
-
 
                         </div>
 
 
+                        <div className='flex flex-wrap justify-between mb-3 sm:flex-nowrap'>
+
+                            <div className='flex w-full mb-3'>
+                                <label className='py-2 pr-2 text-lg text-gray-500 min-w-fit' htmlFor="">Accomodation:</label>
+                                <input onChange={ handlechange } name="accomodation" className='w-full px-2 py-2 text-lg text-black bg-transparent border-b-2 border-gray-300 rounded-sm outline-none hideinput sm:w-1/3' type="number" placeholder="" />
+                            </div>
+
+                            <div className='flex w-full mb-3'>
+                                <label className='py-2 pr-2 text-lg text-gray-500 min-w-fit' htmlFor="">Remarks:</label>
+                                <input onChange={ handlechange } name="accomodation_remarks" className='w-full px-2 py-2 text-lg text-black bg-transparent border-b-2 border-gray-300 rounded-sm outline-none sm:w-full' type="text" placeholder="" />
+                            </div>
+
+                        </div>
 
 
-                        <h4 className='mb-3 text-xl underline text-fix min-w-fit'>Billing Status:</h4>
+                        <div className='flex flex-wrap justify-between mb-3 sm:flex-nowrap'>
 
-                        <div className='flex flex-wrap justify-between mb-3 lg:flex-nowrap'>
+                            <div className='flex w-full mb-3'>
+                                <label className='py-2 pr-2 text-lg text-gray-500 min-w-fit' htmlFor="">Any other expenses:</label>
+                                <input onChange={ handlechange } name="expenses" className='w-full px-2 py-2 text-lg text-black bg-transparent border-b-2 border-gray-300 rounded-sm outline-none hideinput sm:w-1/3' type="number" placeholder="" />
+                            </div>
+
+
+                            <div className='flex w-full mb-3'>
+                                <label className='py-2 pr-2 text-lg text-gray-500 min-w-fit' htmlFor="">Remarks:</label>
+                                <input onChange={ handlechange } name="expenses_remarks" className='w-full px-2 py-2 text-lg text-black bg-transparent border-b-2 border-gray-300 rounded-sm outline-none sm:w-full' type="text" placeholder="" />
+                            </div>
+
+
+
+                        </div>
+
+                        </div>
+
+
+                        <h4 className='my-3 text-xl underline text-fix min-w-fit'>Billing Status:</h4>
+
+                        <div className='flex flex-wrap justify-between pb-3 mb-3 border-b-2 lg:flex-nowrap'>
 
                             <div className='w-full mb-3 lg:2/5'>
                                 <label className='py-2 pr-2 text-lg text-gray-500' htmlFor="">Billing Status:</label>

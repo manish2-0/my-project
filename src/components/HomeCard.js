@@ -36,9 +36,17 @@ function HomeCard({user}) {
                 {/* <span className='absolute p-0 m-0 text-xs font-bold text-fix top-full'>Contact</span> */}
 
             </div>
-                <span class="relative bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300 border border-red-400">Pending</span>
-                <span class="relative bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400">Done</span>
+                {
+                    user.work_status=="Pending"
+                    ?<span class=" relative bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-1 rounded dark:bg-red-900 dark:text-red-300 border border-red-400">Work</span>
+                    :<span class=" relative bg-green-100 text-green-700 text-xs font-medium mr-2 px-2.5 py-1 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400">Work</span>
+                }{ 
+                    user.bill_status=="Pending"
+                    ?<span class="  relative bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-1 rounded dark:bg-red-900 dark:text-red-300 border border-red-400">Bill</span>
+                    :<span class="  relative bg-green-100 text-green-700 text-xs font-medium mr-2 px-2.5 py-1 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400">Bill</span>
 
+                }
+                
             <Link  to="/view" state={{ user:user }}  className="homepagebutton absolute bottom-3 right-3 bg-fix hover:bg-[#1967b6] text-white py-2 px-6 rounded">
                 View
             </Link>

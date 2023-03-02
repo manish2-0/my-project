@@ -72,7 +72,6 @@ function Tablenew() {
     const deletefunc = async () => {
         ref.current.click();
         setloading(true);
-
         // console.log(a);
         // console.log(k);
 
@@ -274,7 +273,7 @@ function Tablenew() {
                                             </td>
 
                                             <td className="px-6 py-2 text-right">
-                                                <button onClick={ () => { openmodal(entry.sr_no, entry) } } className="font-medium text-fix hover:underline">Delete</button>
+                                                <button onClick={ () => { openmodal(entry.sr_no, entry) } } className="font-medium text-red-700 hover:underline">Delete</button>
                                                 {/* entry.sr_no, entry */ }
                                             </td>
                                         </tr>

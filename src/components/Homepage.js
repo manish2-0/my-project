@@ -10,9 +10,9 @@ import SearchContext from '../context/SearchContext'
 import { useContext } from 'react';
 import useAuth from '../hooks/useAuth'
 import useAxiosPrivate from '../hooks/useAxiosPrivate';
-
 import Modal from '../modals/Modal';
 import useModal from '../hooks/useModal';
+import InfiniteScroll from 'react-infinite-scroll-component'
 
 function Homepage() {
 
@@ -109,9 +109,11 @@ function Homepage() {
                         <>
                             <AddCard />
 
+                           
+
                             {
                                 values.length
-                                ?values.filter((user) => {
+                                ?values.slice(0).reverse().filter((user) => {
                                     return a.searchvalue.value.toLowerCase() === ""
                                         ? user
                                         :  user[a.searchvalue.searchitem].toLowerCase().includes(a.searchvalue.value.toLowerCase());
@@ -120,6 +122,7 @@ function Homepage() {
                                             ) 
                                 :<></>
                              }
+                            
                         </>
 
                     }

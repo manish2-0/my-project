@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from 'react-router-dom';
 import useAxiosPrivate from '../hooks/useAxiosPrivate';
 import Loader from './Loader';
@@ -22,7 +22,11 @@ function Editclient1() {
 	const { user } = location.state;
 
 	const [inputs, setinputs] = useState(user);
-	
+
+	useEffect(() => {
+		setinputs(values => ({ ...values, date: moment(user.date).format("YYYY-MM-DD") }))
+	}, []);
+
 
 	function handlechange(event) {
 		event.preventDefault();
@@ -61,10 +65,10 @@ function Editclient1() {
 		} catch (error) {
 			setloading(false);
 			setmodal(true);
-					await setmodalmessage({
-						"text1": "Error Occured",
-						"text2": "No server response."
-					});
+			await setmodalmessage({
+				"text1": "Error Occured",
+				"text2": "No server response."
+			});
 		}
 
 
@@ -82,8 +86,8 @@ function Editclient1() {
 
 			{
 				modal
-				?<Modal/>
-				:<></>
+					? <Modal />
+					: <></>
 
 			}
 
@@ -109,7 +113,7 @@ function Editclient1() {
 
 						<div className='flex items-center justify-start mb-4'>
 							<label className='w-8 text-xl text-gray-900' htmlFor=""><i className="fa-regular fa-calendar-days"></i></label>
-							<input onChange={ handlechange } defaultValue={ inputs.date } name="date" className='px-2 py-2 text-[18px] border rounded-md border-slate-300 bg-transparent text-black' type="date" required />
+							<input onChange={ handlechange } defaultValue={ moment(inputs.date).format("YYYY-MM-DD") } name="date" className='px-2 py-2 text-[18px] border rounded-md border-slate-300 bg-transparent text-black' type="date" required />
 						</div>
 
 						<div className='flex items-center mb-4'>
@@ -132,6 +136,24 @@ function Editclient1() {
 							<input onChange={ handlechange } defaultValue={ inputs.contact } name="contact" className='lg:w-1/2 w-3/4 px-2 py-2 text-[18px] border rounded-md border-slate-300 bg-transparent text-black' type="text" placeholder='Contact' required />
 						</div>
 
+						<div className='flex items-center mb-4'>
+							<label className='mr-2 text-lg text-gray-900 w-fit md:block md:min-w-fit ' htmlFor="">Work Status:</label>
+
+						<select defaultValue={ inputs.work_status } onChange={ handlechange } name="work_status" className='lg:w-1/3 md:w-1/2 px-2 py-2 text-[18px] rounded-md border-slate-300 bg-transparent text-black' required>
+								<option>Pending</option>
+								<option>Done</option>
+							</select>
+						</div>
+
+
+						<div className='flex items-center mb-4'>
+							<label className='mr-2 text-lg text-gray-900 w-fit md:block md:min-w-fit ' htmlFor="">Bill Status:</label>
+
+							<select defaultValue={ inputs.bill_status } onChange={ handlechange } name="bill_status" className='md:w-1/2 lg:w-1/3 px-2 py-2 text-[18px] rounded-md border-slate-300 bg-transparent text-black' required>
+								<option>Pending</option>
+								<option>Done</option>
+							</select>
+						</div>
 
 
 						<div className='flex items-center justify-start'>

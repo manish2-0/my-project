@@ -2,137 +2,136 @@ import React, { useState, useEffect } from 'react'
 import useBill from '../hooks/useBill';
 
 
-const Table2 = () => {
+const ExtraBillTable = () => {
 
-    const { 
-        row1, setrow1
-        ,mul1, setmul1
-        ,tot1, settot1
-        ,fixrate1, setfixrate1
-        ,varrate1, setvarrate1
-        ,grand1, setgrand1
-        ,fabri1, setfabri1
-        ,fabrirate1, setfabrirate1 } = useBill();
+  const { 
+    row4, setrow4
+    ,mul4, setmul4
+    ,tot4, settot4
+    ,fixrate4, setfixrate4
+    ,varrate4, setvarrate4
+    ,grand4, setgrand4
+    ,fabri4, setfabri4
+    ,fabrirate4, setfabrirate4 } = useBill();
+
 
     const add = () => {
-        setrow1(v => [...v, { type: "Select option...", quantity: 0, length: 0, breadth: 0 }])
-        setmul1(a => [...a, { mul: 0 }])
-    }
+      setrow4(v => [...v, { type: "Select option...", quantity: 0, length: 0, breadth: 0 }])
+      setmul4(a => [...a, { mul: 0 }])
+  }
 
-    const deleterow = (key) => {
-        setrow1(
-             row1.filter((_, i) => i !== key)
-        )
-        setmul1( mul1.filter((_, i) => i !== key)
-        )
+  const deleterow = (key) => {
+      setrow4(
+           row4.filter((_, i) => i !== key)
+      )
+      setmul4( mul4.filter((_, i) => i !== key)
+      )
 
-    }
+  }
 
-    function consoleval(){
-        console.log(row1)
-        console.log(mul1)
-    }
-
-
-    function handlechange(key, name, value) {
-        setrow1(row1.map((product, i) => (
-            i === key ? { ...product, [name]: value } : product
-        )))
-
-    }
+  function consoleval(){
+      console.log(row4)
+      console.log(mul4)
+  }
 
 
-    useEffect(() => {
+  function handlechange(key, name, value) {
+      setrow4(row4.map((product, i) => (
+          i === key ? { ...product, [name]: value } : product
+      )))
 
-        setmul1(row1.map((product, i) => {
-            if (product.type === "SQFT") {
-                return { mul: (product.length * product.breadth * product.quantity * 0.000010764).toFixed(2) };
-            }
-            else if (product.type === "RFT") {
-                return { mul: (product.length * product.quantity * 0.00328).toFixed(2) };
-            }
-            else {
-                return { mul: 0 };
-            }
-        }))
-
-    }, [row1]);
+  }
 
 
-    useEffect(() => {
-        let a = 0;
+  useEffect(() => {
 
-        for (let i = 0; i < mul1.length; i++) {
-            a = a + parseFloat(mul1[i].mul);
-        }
+      setmul4(row4.map((product, i) => {
+          if (product.type === "SQFT") {
+              return { mul: (product.length * product.breadth * product.quantity * 0.000010764).toFixed(2) };
+          }
+          else if (product.type === "RFT") {
+              return { mul: (product.length * product.quantity * 0.00328).toFixed(2) };
+          }
+          else {
+              return { mul: 0 };
+          }
+      }))
 
-        settot1(a.toFixed(2));
-    }, [mul1]);
-
-
-    useEffect(() => {
-
-        if (fabri1 == "Select option...") {
-            setfixrate1(0);
-            setvarrate1(0);
-            setgrand1(0);
-        }
-
-        else {
-            if (tot1 > 0 && tot1 <= 50) {
-                setfixrate1(8100);
-                setvarrate1(0);
-                setgrand1(8100);
-            }
-
-            if (tot1 > 50) {
-                setfixrate1(8100);
-                setvarrate1(((tot1 - 50) * fabrirate1).toFixed());
-                setgrand1((8100 + (tot1 - 50) * fabrirate1).toFixed());
-
-            }
-
-            if (tot1 <= 0) {
-                setfixrate1(0);
-                setvarrate1(0);
-                setgrand1(0);
-
-            }
-        }
+  }, [row4]);
 
 
+  useEffect(() => {
+      let a = 0;
+
+      for (let i = 0; i < mul4.length; i++) {
+          a = a + parseFloat(mul4[i].mul);
+      }
+
+      settot4(a.toFixed(2));
+  }, [mul4]);
 
 
-    }, [tot1, fabri1]);
+  useEffect(() => {
 
+      if (fabri4 == "Select option...") {
+          setfixrate4(0);
+          setvarrate4(0);
+          setgrand4(0);
+      }
 
-    function handlefabrichange(value) {
-        if (value == "Fabrication at Site") {
-            setfabri1(value);
-            setfabrirate1(100);
-        }
-        else if (value == "Fabrication at Factory") {
-            setfabri1(value);
-            setfabrirate1(50);
-        }
-        else {
-            setfabri1(value);
-            setfabrirate1(0);
-        }
+      else {
+          if (tot4 > 0 && tot4 <= 50) {
+              setfixrate4(8100);
+              setvarrate4(0);
+              setgrand4(8100);
+          }
 
-    }
+          if (tot4 > 50) {
+              setfixrate4(8100);
+              setvarrate4(((tot4 - 50) * fabrirate4).toFixed());
+              setgrand4((8100 + (tot4 - 50) * fabrirate4).toFixed());
+
+          }
+
+          if (tot4 <= 0) {
+              setfixrate4(0);
+              setvarrate4(0);
+              setgrand4(0);
+
+          }
+      }
 
 
 
 
-    return (
-        <>
-            <p className='pl-3 text-2xl'>Bill 1:</p>
+  }, [tot4, fabri4]);
+
+
+  function handlefabrichange(value) {
+      if (value == "Fabrication at Site") {
+          setfabri4(value);
+          setfabrirate4(100);
+      }
+      else if (value == "Fabrication at Factory") {
+          setfabri4(value);
+          setfabrirate4(50);
+      }
+      else {
+          setfabri4(value);
+          setfabrirate4(0);
+      }
+
+  }
+
+
+  return (
+    <>
+            <p className='pl-3 text-2xl'>Extra Bill:</p>
 
             <div className='container px-3 m-auto max-w-[1300px] mb-6'>
                 <div className='flex items-center w-full'>
                     <p className='text-lg text-fix'>Fabrication Type:</p>
-                    <select name="fabri" value={ fabri1 } onChange={ e => { handlefabrichange(e.target.value) } } className='mx-2 border outline-none border-slate-200 text-slate-700 w-fit ' id="">
+                    <select name="fabri" value={ fabri4 } onChange={ e => { handlefabrichange(e.target.value) } } className='mx-2 border outline-none border-slate-200 text-slate-700 w-fit ' id="">
                         <option>Select option...</option>
                         <option>Fabrication at Site</option>
                         <option>Fabrication at Factory</option>
@@ -179,7 +178,7 @@ const Table2 = () => {
 
 
                             {
-                                row1.map((value, key) =>
+                                row4.map((value, key) =>
                                     <tr className="bg-white border-b ">
 
                                         <th className="w-48 px-6 py-2 text-right whitespace-nowrap">
@@ -207,7 +206,7 @@ const Table2 = () => {
                                         </td>
 
                                         <td className="p-1 text-center w-28">
-                                            <p className='w-28'>{ mul1[key].mul }</p>
+                                            <p className='w-28'>{ mul4[key].mul }</p>
                                         </td>
 
                                         <td className="w-auto p-1 text-center text-red-700 cursor-pointer text-bold">
@@ -228,7 +227,7 @@ const Table2 = () => {
                                     </td>
 
                                     <td colSpan={ 2 } className="p-1 text-center text-base">
-                                        { tot1 } sq.ft
+                                        { tot4 } sq.ft
                                     </td>
 
                                 </tr>
@@ -240,7 +239,7 @@ const Table2 = () => {
                                     </td>
 
                                     <td colSpan={ 2 } className="p-1 text-center text-base">
-                                        ₹{ fixrate1 }
+                                        ₹{ fixrate4 }
                                     </td>
 
                                 </tr>
@@ -248,11 +247,11 @@ const Table2 = () => {
                                 <tr className="bg-white border-b ">
 
                                     <td colSpan={ 5 } className="p-1 text-right text-fix text-lg">
-                                        Total (for above 50sqft@₹{ fabrirate1 } ):
+                                        Total (for above 50sqft@₹{ fabrirate4 } ):
                                     </td>
 
                                     <td colSpan={ 2 } className="p-1 text-center text-base">
-                                        ₹{ varrate1 }
+                                        ₹{ varrate4 }
                                     </td>
 
                                 </tr>
@@ -270,7 +269,7 @@ const Table2 = () => {
                                     </td>
 
                                     <td colSpan={ 2 } className="p-1 text-center text-lg">
-                                        ₹{ grand1 }
+                                        ₹{ grand4 }
                                     </td>
 
                                 </tr>
@@ -284,7 +283,7 @@ const Table2 = () => {
 
             </div>
         </>
-    )
+  )
 }
 
-export default Table2
+export default ExtraBillTable

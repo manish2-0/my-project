@@ -196,16 +196,29 @@ function ExtraView1() {
                 <div className='w-full mt-2 md:w-2/5 lg:w-1/3 '>
                     <span className='mx-4 text-2xl text-fix'>Extra Information:</span>
                     <div className="block p-4 m-4 mt-1 border border-gray-300 rounded-lg shadow-md bg-slate-50">
-                        <h5 className='mb-2 text-base font-bold leading-tight underline text-fix'>Chemicals used (in ml):</h5>
+                        <h5 className='mb-2 text-lg font-bold leading-tight underline text-fix'>Chemicals used (in ml):</h5>
                         <h5 className='mb-2 ml-2 text-base font-bold leading-tight text-fix'>Nanosil: <span className='font-medium text-gray-800'> { inputs.nanosil }ml </span></h5>
                         <h5 className='mb-2 ml-2 text-base font-bold leading-tight text-fix'>Super Flex: <span className='font-medium text-gray-800'> { inputs.superflex }ml </span></h5>
                         <h5 className='mb-2 ml-2 text-base font-bold leading-tight text-fix'>Silicon: <span className='font-medium text-gray-800'> { inputs.silicon }ml </span></h5>
-                        <h5 className='mb-2 text-base font-bold leading-tight underline text-fix'>Expenses: <span className='font-medium text-gray-800'></span></h5>
-                        <h5 className='mb-2 ml-2 text-base font-bold leading-tight text-fix'>Food: <span className='font-medium text-gray-800'> ₹{ inputs.food } </span></h5>
-                        <h5 className='mb-2 ml-2 text-base font-bold leading-tight text-fix'>Travelling: <span className='font-medium text-gray-800'> ₹{ inputs.travelling } </span></h5>
-                        <h5 className='mb-2 ml-2 text-base font-bold leading-tight text-fix'>Accomodation: <span className='font-medium text-gray-800'> ₹{ inputs.accomodation } </span></h5>
-                        <h5 className='mb-2 ml-2 text-base font-bold leading-tight text-fix'>Extra Expenses: <span className='font-medium text-gray-800'> ₹{ inputs.expenses } </span></h5>
                         <h5 className='mb-2 text-base font-bold leading-tight text-fix'>Remarks: <span className='font-medium text-gray-800'> { inputs.remarks2 } </span></h5>
+                        
+                        <h5 className='mb-2 text-lg font-bold leading-tight underline text-fix'>Expenses: <span className='font-medium text-gray-800'></span></h5>
+                        <h5 className='mb-2 ml-2 text-base font-bold leading-tight text-fix'>Food: <span className='font-medium text-gray-800'> ₹{ inputs.food } </span></h5>
+                        <h5 className='mb-2 ml-2 text-base font-bold leading-tight text-fix'>Remarks: <span className='font-medium text-gray-800'> { inputs.food_remarks } </span></h5>
+                        
+                        
+                        <h5 className='mb-2 ml-2 text-base font-bold leading-tight text-fix'>Travelling: <span className='font-medium text-gray-800'> ₹{ inputs.travelling } </span></h5>
+                        <h5 className='mb-2 ml-2 text-base font-bold leading-tight text-fix'>Remarks: <span className='font-medium text-gray-800'> { inputs.travelling_remarks } </span></h5>
+                        
+                        
+                        <h5 className='mb-2 ml-2 text-base font-bold leading-tight text-fix'>Accomodation: <span className='font-medium text-gray-800'> ₹{ inputs.accomodation } </span></h5>
+                        <h5 className='mb-2 ml-2 text-base font-bold leading-tight text-fix'>Remarks: <span className='font-medium text-gray-800'> { inputs.accomodation_remarks } </span></h5>
+                        
+                        
+                        <h5 className='mb-2 ml-2 text-base font-bold leading-tight text-fix'>Extra Expenses: <span className='font-medium text-gray-800'> ₹{ inputs.expenses } </span></h5>
+                        <h5 className='mb-2 ml-2 text-base font-bold leading-tight text-fix'>Remarks: <span className='font-medium text-gray-800'> { inputs.expenses_remarks } </span></h5>
+                        
+                        
                         <h5 className='mb-2 text-base font-bold leading-tight text-fix'>Billing status: <span className='font-medium text-gray-800'> { inputs.billstatus } </span></h5>
                         <h5 className='mb-2 text-base font-bold leading-tight text-fix'>Remarks: <span className='font-medium text-gray-800'> { inputs.remarks3 } </span></h5>
 

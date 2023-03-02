@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import AuthState from './context/AuthState'
 import SearchState from './context/SearchState';
 import ModalState from './context/ModalState';
+import BillState from './context/BillState';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -13,7 +14,9 @@ root.render(
     <AuthState>
       <ModalState>
       <SearchState>
+        <BillState>
         <App />
+        </BillState>
       </SearchState>
       </ModalState>
     </AuthState>

@@ -7,8 +7,6 @@ import useModal from '../hooks/useModal';
 
 function Newclient1() {
 
-
-
 	const { modal, setmodal, modalmessage, setmodalmessage } = useModal();
 
 	const api = useAxiosPrivate();
@@ -28,7 +26,7 @@ function Newclient1() {
 
 	const formsubmit = async (event) => {
 		event.preventDefault()
-		// console.log(inputs)
+		console.log(inputs)
 		setloading(true);
 
 		try {
