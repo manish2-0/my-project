@@ -180,7 +180,7 @@ const TablePre = () => {
 
                                         <th className="w-24 px-6 py-2 text-center">
                                             { 
-                                           parseInt(tot1+tot4)>200
+                                           ((parseFloat(tot1)+parseFloat(tot4)).toFixed(0))>200
                                             ?key+2
                                             :key + 1 
                                             }

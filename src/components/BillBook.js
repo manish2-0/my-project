@@ -86,6 +86,8 @@ const BillBook = () => {
         setgrand5(0);
 
     }
+    
+    
 
     const setdatabasevalues = (data) => {
         setrow1(data.row1);
@@ -118,14 +120,25 @@ const BillBook = () => {
 
     }
 
+    // const [trial, settrial] = useState();
+
+    // useEffect(() => {
+    //     console.log(trial);
+    // }, [trial]);
+
     const getbilldata = async () => {
 
         setloading(true);
 
         if (localStorage.getItem(user.blp_id)) {
             setloading(false);
-            setdatabasevalues(localStorage.getItem(user.blp_id));
-            localStorage.removeItem(user.blp_id);
+            // console.log(localStorage.getItem(user.blp_id))
+            setdatabasevalues(JSON.parse(localStorage.getItem(user.blp_id)));
+            console.log("Calling from if")
+            // localStorage.removeItem(user.blp_id);
+            // let a=JSON.parse(localStorage.getItem(user.blp_id))
+            // settrial(a);
+            
             setmodal(true);
                 setmodalmessage({
                     "text1": "Unsaved changes found",
@@ -142,6 +155,7 @@ const BillBook = () => {
                     else {
                         setloading(false);
                         setdatabasevalues(response.data);
+                        console.log("Calling from else")
                     }
                 });
 

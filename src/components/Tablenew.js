@@ -188,7 +188,7 @@ function Tablenew() {
 
                 <div className='flex justify-between px-2'>
                     <span className='text-2xl text-fix'>Entries:</span>
-                    <Link to="/newentry" state={ { user: user } } className='hover:bg-[#1967b6] px-8 py-2 text-white rounded-md homepagebutton bg-fix'>Add</Link>
+                    <Link to="/newentry" state={ { user: user } } className='hover:bg-[#1967b6] px-8 py-2 text-white rounded-md homepagebutton bg-fix'>Add Entry</Link>
                 </div>
 
                 <div className="relative overflow-x-auto scrollbar-hide">

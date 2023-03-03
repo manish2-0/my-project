@@ -56,6 +56,7 @@ function Login1(props) {
         // console.log(inputs.admin_id)
         if (response?.data?.accessToken) {
           setadminname(inputs.admin_id)
+          localStorage.setItem("admin_id",inputs.admin_id)
           setauth(response.data);
           setloading(false);
           navigate("/", { replace: true })

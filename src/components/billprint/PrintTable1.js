@@ -1,6 +1,38 @@
 import React from 'react'
+import useBill from '../../hooks/useBill';
 
 const PrintTable1 = () => {
+
+    const {
+        row1, setrow1,
+        mul1, setmul1,
+        tot1, settot1,
+        fixrate1, setfixrate1,
+        varrate1, setvarrate1,
+        grand1, setgrand1,
+        fabri1, setfabri1,
+        fabrirate1, setfabrirate1,
+        row2, setrow2,
+        mul2, setmul2,
+        grand2, setgrand2,
+        entries, setentries,
+        grand3, setgrand3,
+        row4, setrow4,
+        mul4, setmul4,
+        tot4, settot4,
+        fixrate4, setfixrate4,
+        varrate4, setvarrate4,
+        grand4, setgrand4,
+        fabri4, setfabri4,
+        fabrirate4, setfabrirate4,
+        billtotal, setbilltotal,
+        extratable, setextratable,
+        row5, setrow5,
+        mul5, setmul5,
+        greaterval, setgreaterval,
+        grand5, setgrand5
+    } = useBill();
+
     return (
         <>
 
@@ -8,7 +40,7 @@ const PrintTable1 = () => {
 
             <div className='container px-3 m-auto max-w-[1300px] mb-6'>
                 <div className='flex items-center w-full'>
-                    <p className='text-lg text-fix'>Fabrication Type: Fabrication at Factory</p>
+                    <p className='text-lg text-fix'><span className='underline underline-offset-4'>Fabrication Type:</span><span className='text-slate-600'> { fabri1 }</span></p>
                 </div>
                 <div className="relative overflow-x-auto scrollbar-hide">
                     <table className="mx-auto my-1 text-sm text-left text-gray-500 border shadow-md table-fixed ">
@@ -50,178 +82,45 @@ const PrintTable1 = () => {
 
                                 </tr>
 
-                                <tr className="m-3 bg-white border-b">
+                                {
+                                    row1.map((value, key) =>
+                                        <tr className="m-3 bg-white border-b">
 
-                                    <th className="p-1 text-base text-center border whitespace-wrap">
-                                        Dinining table.
-                                    </th>
+                                            <th className="pr-4 text-right border whitespace-wrap">
+                                                { value.userinput }
+                                            </th>
 
-                                    <td className="p-1 text-center border">
-                                        SQFT
-                                    </td>
+                                            <td className="p-1 text-base text-center border">
+                                                { value.type }
+                                            </td>
 
-                                    <td className="p-1 text-center border">
-                                        999999</td>
+                                            <td className="p-1 text-center border">
+                                                { value.quantity }
+                                            </td>
 
-                                    <td className="p-1 text-center border">
-                                        999999
-                                    </td>
+                                            <td className="p-1 text-center border">
+                                                { value.length }
+                                            </td>
 
-                                    <td className="p-1 text-center border">
-                                        999999
-                                    </td>
+                                            {
+                                                value.breadth > 0
+                                                    ? <td className="p-1 text-center border">
+                                                        { value.breadth }
+                                                    </td>
+                                                    : <td className="p-1 text-center border"></td>
 
-                                    <td className="w-full p-1 text-center border">
-                                        <p className=''>100000.00</p>
-                                    </td>
-
-
-                                </tr>
-
-                                <tr className="m-3 bg-white border-b">
-
-                                    <th className="p-1 text-base text-center border whitespace-wrap">
-                                        Dinining table.
-                                    </th>
-
-                                    <td className="p-1 text-center border">
-                                        SQFT
-                                    </td>
-
-                                    <td className="p-1 text-center border">
-                                        999999</td>
-
-                                    <td className="p-1 text-center border">
-                                        999999
-                                    </td>
-
-                                    <td className="p-1 text-center border">
-                                        999999
-                                    </td>
-
-                                    <td className="w-full p-1 text-center border">
-                                        <p className=''>100000.00</p>
-                                    </td>
+                                            }
 
 
-                                </tr>
+                                            <td className="w-full p-1 text-center border">
+                                                { mul1[key].mul }
+                                            </td>
 
 
-                                <tr className="m-3 bg-white border-b">
+                                        </tr>
 
-                                    <th className="p-1 text-base text-center border whitespace-wrap">
-                                        Dinining table.
-                                    </th>
-
-                                    <td className="p-1 text-center border">
-                                        SQFT
-                                    </td>
-
-                                    <td className="p-1 text-center border">
-                                        999999</td>
-
-                                    <td className="p-1 text-center border">
-                                        999999
-                                    </td>
-
-                                    <td className="p-1 text-center border">
-                                        999999
-                                    </td>
-
-                                    <td className="w-full p-1 text-center border">
-                                        <p className=''>100000.00</p>
-                                    </td>
-
-
-                                </tr>
-
-
-                                <tr className="m-3 bg-white border-b">
-
-                                    <th className="p-1 text-base text-center border whitespace-wrap">
-                                        Dinining table.
-                                    </th>
-
-                                    <td className="p-1 text-center border">
-                                        SQFT
-                                    </td>
-
-                                    <td className="p-1 text-center border">
-                                        999999</td>
-
-                                    <td className="p-1 text-center border">
-                                        999999
-                                    </td>
-
-                                    <td className="p-1 text-center border">
-                                        999999
-                                    </td>
-
-                                    <td className="w-full p-1 text-center border">
-                                        <p className=''>100000.00</p>
-                                    </td>
-
-
-                                </tr>
-
-                                <tr className="m-3 bg-white border-b">
-
-                                    <th className="p-1 text-base text-center border whitespace-wrap">
-                                        Dinining table.
-                                    </th>
-
-                                    <td className="p-1 text-center border">
-                                        SQFT
-                                    </td>
-
-                                    <td className="p-1 text-center border">
-                                        999999</td>
-
-                                    <td className="p-1 text-center border">
-                                        999999
-                                    </td>
-
-                                    <td className="p-1 text-center border">
-                                        999999
-                                    </td>
-
-                                    <td className="w-full p-1 text-center border">
-                                        <p className=''>100000.00</p>
-                                    </td>
-
-
-                                </tr>
-
-
-                                <tr className="m-3 bg-white border-b">
-
-                                    <th className="p-1 text-base text-center border whitespace-wrap">
-                                        Dinining table.
-                                    </th>
-
-                                    <td className="p-1 text-center border">
-                                        SQFT
-                                    </td>
-
-                                    <td className="p-1 text-center border">
-                                        999999</td>
-
-                                    <td className="p-1 text-center border">
-                                        999999
-                                    </td>
-
-                                    <td className="p-1 text-center border">
-                                        999999
-                                    </td>
-
-                                    <td className="w-full p-1 text-center border">
-                                        <p className=''>100000.00</p>
-                                    </td>
-
-
-                                </tr>
-                                
-
+                                    )
+                                }
 
 
                                 <>
@@ -233,7 +132,7 @@ const PrintTable1 = () => {
                                         </td>
 
                                         <td colSpan={ 2 } className="p-1 text-base text-center ">
-                                            10000 sq.ft
+                                            { tot1 } sq.ft
                                         </td>
 
                                     </tr>
@@ -245,7 +144,7 @@ const PrintTable1 = () => {
                                         </td>
 
                                         <td colSpan={ 2 } className="p-1 text-base text-center">
-                                            ₹200
+                                            ₹{ fixrate1 }
                                         </td>
 
                                     </tr>
@@ -253,11 +152,11 @@ const PrintTable1 = () => {
                                     <tr className="bg-white border-b ">
 
                                         <td colSpan={ 4 } className="p-1 text-base text-right text-fix">
-                                            Total (for above 50sqft@₹100 ):
+                                            Total (for above 50sqft@₹{ fabrirate1 } ):
                                         </td>
 
                                         <td colSpan={ 2 } className="p-1 text-base text-center">
-                                            ₹100
+                                            ₹{ varrate1 }
                                         </td>
 
                                     </tr>
@@ -271,7 +170,7 @@ const PrintTable1 = () => {
                                         </td>
 
                                         <td colSpan={ 2 } className="p-1 text-base text-center">
-                                            ₹100
+                                            ₹{ grand1 }
                                         </td>
 
                                     </tr>

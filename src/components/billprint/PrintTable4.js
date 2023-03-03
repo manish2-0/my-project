@@ -1,6 +1,39 @@
 import React from 'react'
+import useBill from '../../hooks/useBill';
 
 const PrintTable4 = () => {
+
+    const {
+        row1, setrow1,
+        mul1, setmul1,
+        tot1, settot1,
+        fixrate1, setfixrate1,
+        varrate1, setvarrate1,
+        grand1, setgrand1,
+        fabri1, setfabri1,
+        fabrirate1, setfabrirate1,
+        row2, setrow2,
+        mul2, setmul2,
+        grand2, setgrand2,
+        entries, setentries,
+        grand3, setgrand3,
+        row4, setrow4,
+        mul4, setmul4,
+        tot4, settot4,
+        fixrate4, setfixrate4,
+        varrate4, setvarrate4,
+        grand4, setgrand4,
+        fabri4, setfabri4,
+        fabrirate4, setfabrirate4,
+        billtotal, setbilltotal,
+        extratable, setextratable,
+        row5, setrow5,
+        mul5, setmul5,
+        greaterval, setgreaterval,
+        grand5, setgrand5
+    } = useBill();
+
+
     return (
         <>
             <p className='pl-3 text-2xl'>Extra Items:</p>
@@ -32,160 +65,34 @@ const PrintTable4 = () => {
 
                         <tbody className=''>
 
-                            <tr className="border-b ">
+                            {
+                                row2.map((value,key)=>
+                                <tr className="border-b ">
 
                                 <th className="p-2 text-center border">
-                                    1
+                                    {key+1}
                                 </th>
 
                                 <td className="p-2 text-base border whitespace-wrap text-slate-700">
-                                    Measurement Charges(per sq.ft)-For above 200 sq.ft
+                                    {value.item}
                                 </td>
 
                                 <td className="p-2 text-center border ">
-                                    10000 sq.ft
+                                    {value.quantity}
                                 </td>
 
                                 <td className="p-2 text-center border ">
-                                    5/-
+                                    {value.rate}/-
                                 </td>
 
                                 <td className="p-2 text-center border">
-                                    50000/-
+                                    {mul2[key].mul}/-
                                 </td>
 
 
                             </tr>
-
-                            <tr className="border-b ">
-
-                                <th className="p-2 text-center border">
-                                    2
-                                </th>
-
-                                <td className="p-2 text-base border whitespace-wrap text-slate-700">
-                                    Measurement Charges-Local Job
-                                </td>
-
-                                <td className="p-2 text-center border ">
-                                    10
-                                </td>
-
-                                <td className="p-2 text-center border ">
-                                    1500/-
-                                </td>
-
-                                <td className="p-2 text-center border">
-                                    15000/-
-                                </td>
-
-
-                            </tr>
-
-                            <tr className="border-b ">
-
-                                <th className="p-2 text-center border">
-                                    3
-                                </th>
-
-                                <td className="p-2 text-base border whitespace-wrap text-slate-700">
-                                    Measurement Charges-Out Station Job
-                                </td>
-
-                                <td className="p-2 text-center border ">
-                                    10
-                                </td>
-
-                                <td className="p-2 text-center border ">
-                                    2000/-
-                                </td>
-
-                                <td className="p-2 text-center border">
-                                    20000/-
-                                </td>
-
-
-                            </tr>
-
-
-                            <tr className="border-b ">
-
-                                <th className="p-2 text-center border">
-                                    4
-                                </th>
-
-                                <td className="p-2 text-base border whitespace-wrap text-slate-700">
-                                    HOB Cutout
-                                </td>
-
-                                <td className="p-2 text-center border ">
-                                    10
-                                </td>
-
-                                <td className="p-2 text-center border ">
-                                    1000/-
-                                </td>
-
-                                <td className="p-2 text-center border">
-                                    10000/-
-                                </td>
-
-
-                            </tr>
-
-
-                            <tr className="border-b ">
-
-                                <th className="p-2 text-center border">
-                                    5
-                                </th>
-
-                                <td className="p-2 text-base border whitespace-wrap text-slate-700">
-                                    Sink Cutout-Top Mount Sink
-                                </td>
-
-                                <td className="p-2 text-center border ">
-                                    10
-                                </td>
-
-                                <td className="p-2 text-center border ">
-                                    1000/-
-                                </td>
-
-                                <td className="p-2 text-center border">
-                                    10000/-
-                                </td>
-
-
-                            </tr>
-
-
-                            <tr className="border-b ">
-
-                                <th className="p-2 text-center border">
-                                    6
-                                </th>
-
-                                <td className="p-2 text-base border whitespace-wrap text-slate-700">
-                                    Sink Cutout-Under Mount Sink/Flush Mount
-                                </td>
-
-                                <td className="p-2 text-center border ">
-                                    10
-                                </td>
-
-                                <td className="p-2 text-center border ">
-                                    1500/-
-                                </td>
-
-                                <td className="p-2 text-center border">
-                                    15000/-
-                                </td>
-
-
-                            </tr>
-
-
+                                )
+                            }
 
 
                             <tr className="border-b ">
@@ -194,7 +101,7 @@ const PrintTable4 = () => {
                                     Grand Total:
                                 </td>
                                 <td colSpan={ 2 } className="p-2 text-lg text-center ">
-                                    ₹120000
+                                    ₹{grand2}
                                 </td>
                             </tr>
 

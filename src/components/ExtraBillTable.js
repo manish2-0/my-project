@@ -16,7 +16,7 @@ const ExtraBillTable = () => {
 
 
     const add = () => {
-      setrow4(v => [...v, { type: "Select option...", quantity: 0, length: 0, breadth: 0 }])
+      setrow4(v => [...v, {userinput:"", type: "Select option...", quantity: 0, length: 0, breadth: 0 }])
       setmul4(a => [...a, { mul: 0 }])
   }
 
@@ -182,7 +182,7 @@ const ExtraBillTable = () => {
                                     <tr className="bg-white border-b ">
 
                                         <th className="w-48 px-6 py-2 text-right whitespace-nowrap">
-                                            <input type="text" className='w-full p-1 text-right border-none outline-none hideinput' />
+                                            <input value={value.userinput} onChange={ e => { handlechange(key, e.target.name, e.target.value) } } name="userinput" type="text" className='w-full p-1 text-right border-none outline-none hideinput' />
                                         </th>
 
                                         <td className="p-1 w-28">

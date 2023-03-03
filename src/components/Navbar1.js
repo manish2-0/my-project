@@ -90,6 +90,7 @@ function Navbar1(props) {
     }
 
     const handlelogout = async (e) => {
+        localStorage.removeItem("admin_id");
         setloading(true);
         e.preventDefault();
 
@@ -139,11 +140,6 @@ function Navbar1(props) {
     const imageclicked = () => {
         nav("/");
     }
-
-    // useEffect(() => {
-    //     console.log(a.searchvalue.admin_id,"Hello")
-    // }, []);
-
 
     window.addEventListener("scroll", scrollh);
 
@@ -202,7 +198,7 @@ function Navbar1(props) {
                                 <Menu as="div" className="relative inline-block text-left">
                                     <div>
                                         <Menu.Button className="inline-flex items-center justify-center w-full px-2 py-2 text-base font-medium text-white bg-transparent rounded-md hover:text-slate-300 focus:outline-none">
-                                            Welcome,{adminname}
+                                            Welcome,{localStorage.getItem("admin_id")}
                                             <ChevronDownIcon className="w-6 h-6 my-auto ml-1" aria-hidden="true" />
                                         </Menu.Button>
                                     </div>
@@ -220,18 +216,35 @@ function Navbar1(props) {
                                             <div className="py-1">
                                                 
                                                 <form>
+                                                <Menu.Item>
+                                                        { ({ active }) => (
+                                                            <button 
+                                                                className={ classNames(
+                                                                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                                                    'block w-full px-4 py-2 text-center'
+                                                                ) }
+                                                            >
+                                                                Generate Report
+                                                            </button>
+                                                        ) }
+                                                    </Menu.Item>
+
                                                     <Menu.Item>
                                                         { ({ active }) => (
                                                             <button onClick={ handlelogout }
                                                                 className={ classNames(
                                                                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                                    'block w-full px-4 py-2 text-left'
+                                                                    'block w-full px-4 py-2 text-center'
                                                                 ) }
                                                             >
                                                                 Logout
                                                             </button>
                                                         ) }
                                                     </Menu.Item>
+
+                                                    
+
+
                                                 </form>
                                             </div>
                                         </Menu.Items>

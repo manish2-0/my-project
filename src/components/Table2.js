@@ -15,7 +15,7 @@ const Table2 = () => {
         ,fabrirate1, setfabrirate1 } = useBill();
 
     const add = () => {
-        setrow1(v => [...v, { type: "Select option...", quantity: 0, length: 0, breadth: 0 }])
+        setrow1(v => [...v, { userinput:"" ,type: "Select option...", quantity: 0, length: 0, breadth: 0 }])
         setmul1(a => [...a, { mul: 0 }])
     }
 
@@ -183,7 +183,7 @@ const Table2 = () => {
                                     <tr className="bg-white border-b ">
 
                                         <th className="w-48 px-6 py-2 text-right whitespace-nowrap">
-                                            <input type="text" className='w-full p-1 text-right border-none outline-none hideinput' />
+                                            <input value={ value.userinput } name="userinput" type="text" onChange={ e => { handlechange(key, e.target.name, e.target.value) } } className='w-full p-1 text-right border-none outline-none hideinput' />
                                         </th>
 
                                         <td className="p-1 w-28">
@@ -207,7 +207,7 @@ const Table2 = () => {
                                         </td>
 
                                         <td className="p-1 text-center w-28">
-                                            <p className='w-28'>{ mul1[key].mul }</p>
+                                            { mul1[key].mul }
                                         </td>
 
                                         <td className="w-auto p-1 text-center text-red-700 cursor-pointer text-bold">

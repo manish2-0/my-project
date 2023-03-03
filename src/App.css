@@ -363,7 +363,7 @@ to {transform:rotate(360deg);}
       /* zoom: 77%;
       width: 90% !important; */
       /* border: 1px solid #ccc !important; */
-      color-adjust: exact;
+      print-color-adjust: exact;
       -webkit-print-color-adjust: exact;
   }
 }
