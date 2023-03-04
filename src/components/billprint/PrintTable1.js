@@ -36,7 +36,7 @@ const PrintTable1 = () => {
     return (
         <>
 
-            <p className='pl-3 text-2xl'>Bill 1:</p>
+            <p className='container px-3 m-auto max-w-[1300px] text-2xl'>Bill 1:</p>
 
             <div className='container px-3 m-auto max-w-[1300px] mb-6'>
                 <div className='flex items-center w-full'>

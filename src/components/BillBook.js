@@ -188,6 +188,7 @@ const BillBook = () => {
         };
 
         localStorage.setItem(user.blp_id, JSON.stringify(a))
+        console.log(a)
 
         try {
             await api.post(`client/upload-bill/${user.blp_id}`, JSON.stringify(a)).then(async function (response) {
@@ -274,10 +275,10 @@ const BillBook = () => {
                     : <></>
             }
 
-            <div className='mx-auto sm:pt-20 pt-36 '>
+            <div className='mx-auto sm:pt-20 pt-36 ' id='billbook'>
                 <div className='p-4 m-2 text-3xl text-center text-white bg-fix'>BLP ID: { user.blp_id }</div>
-                <button className='m-2 ani-button' onClick={ () => { addtable() } } hidden={ extratable }>Add Extra Table</button>
-                <button className='m-2 ani-button' onClick={ () => { deletetable() } } hidden={ !extratable }>Delete Extra Table</button>
+                <button id='but-1' className='m-2 ani-button' onClick={ () => { addtable() } } hidden={ extratable }>Add Extra Table</button>
+                <button id='but-2' className='m-2 ani-button' onClick={ () => { deletetable() } } hidden={ !extratable }>Delete Extra Table</button>
                 <Table2 />
                 { extratable ? <ExtraBillTable /> : <></> }
                 <TablePre />

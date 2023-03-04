@@ -258,17 +258,17 @@ function NewEntry2() {
 
                             <div className='flex w-full mb-3'>
                                 <label className='py-2 pr-2 text-lg text-gray-500 min-w-fit' htmlFor="">Nanosil:</label>
-                                <input onChange={ handlechange } name="nanosil" className='w-full px-2 py-2 text-lg text-black bg-transparent border-b-2 border-gray-300 rounded-sm outline-none hideinput sm:w-1/2 lg:w-2/5' type="number" placeholder="" />
+                                <input onChange={ handlechange } name="nanosil" step="0.01" className='w-full px-2 py-2 text-lg text-black bg-transparent border-b-2 border-gray-300 rounded-sm outline-none hideinput sm:w-1/2 lg:w-2/5' type="number" placeholder="" />
                             </div>
 
                             <div className='flex w-full mb-3'>
                                 <label className='py-2 pr-2 text-lg text-gray-500 min-w-fit' htmlFor="">Silicon:</label>
-                                <input onChange={ handlechange } name="silicon" className='w-full px-2 py-2 text-lg text-black bg-transparent border-b-2 border-gray-300 rounded-sm outline-none hideinput sm:w-1/2 lg:w-2/5' type="number" placeholder="" />
+                                <input onChange={ handlechange } name="silicon" step="0.01" className='w-full px-2 py-2 text-lg text-black bg-transparent border-b-2 border-gray-300 rounded-sm outline-none hideinput sm:w-1/2 lg:w-2/5' type="number" placeholder="" />
                             </div>
 
                             <div className='flex w-full mb-3'>
                                 <label className='py-2 pr-2 text-lg text-gray-500 min-w-fit' htmlFor="">Superflex:</label>
-                                <input onChange={ handlechange } name="superflex" className='w-full px-2 py-2 text-lg text-black bg-transparent border-b-2 border-gray-300 rounded-sm outline-none hideinput sm:w-1/2 lg:w-2/5' type="number" placeholder="" />
+                                <input onChange={ handlechange } name="superflex" step="0.01" className='w-full px-2 py-2 text-lg text-black bg-transparent border-b-2 border-gray-300 rounded-sm outline-none hideinput sm:w-1/2 lg:w-2/5' type="number" placeholder="" />
                             </div> 
 
                         </div>

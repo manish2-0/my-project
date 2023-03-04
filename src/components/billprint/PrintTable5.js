@@ -37,7 +37,7 @@ const PrintTable5 = () => {
 
     return (
         <>
-            <p className='pl-3 text-2xl'>Bill 3:</p>
+            <p className='container px-3 m-auto max-w-[1300px] text-2xl'>Bill 3:</p>
 
             <div className='container max-w-[1300px] flex flex-col items-center justify-center px-3 m-auto'>
 
@@ -61,121 +61,124 @@ const PrintTable5 = () => {
 
                             {
                                 entries.map((value, key) =>
-                                    <>
+                                    (parseInt(value.food) + parseInt(value.travelling) + parseInt(value.accomodation) + parseInt(value.expenses)) > 0
+                                        ? <>
 
-                                        <tr className="bg-white ring-gray-400 ring-2 ring-inset ">
-                                            <th colSpan={ 2 } className="p-2 text-left">
-                                                Date: { moment(value.date).format("DD MMMM YYYY") },{ value.nature }
-                                            </th>
+                                            <tr className="bg-white ring-gray-400 ring-2 ring-inset ">
+                                                <th colSpan={ 2 } className="p-2 text-left">
+                                                    Date: { moment(value.date).format("DD MMMM YYYY") },{ value.nature }
+                                                </th>
 
-                                        </tr>
+                                            </tr>
 
-                                        {
-                                            value.food > 0
-                                                ? <tr className="bg-white border ">
+                                            {
+                                                value.food > 0
+                                                    ? <tr className="bg-white border ">
 
-                                                    {
-                                                        value.food_remarks == "-"
-                                                            ? <th className="px-6 py-2 text-center border whitespace-wrap">
-                                                                Food
-                                                            </th>
-                                                            : <th className="px-6 py-2 text-center border whitespace-wrap">
-                                                                Food-{ value.food_remarks }
-                                                            </th>
+                                                        {
+                                                            value.food_remarks == "-"
+                                                                ? <th className="px-6 py-2 text-center border whitespace-wrap">
+                                                                    Food
+                                                                </th>
+                                                                : <th className="px-6 py-2 text-center border whitespace-wrap">
+                                                                    Food-{ value.food_remarks }
+                                                                </th>
 
-                                                    }
+                                                        }
 
-                                                    <td className="p-2 text-center border ">
-                                                        { value.food }/-
-                                                    </td>
+                                                        <td className="p-2 text-center border ">
+                                                            { value.food }/-
+                                                        </td>
 
-                                                </tr>
-                                                : <></>
-                                        }
+                                                    </tr>
+                                                    : <></>
+                                            }
 
-                                        {
-                                            value.travelling > 0
-                                                ? <tr className="bg-white border-b ">
-                                                    {
-                                                        value.travelling_remarks == "-"
-                                                            ? <th className="px-6 py-2 text-center border whitespace-wrap">
-                                                                Travelling
-                                                            </th>
-                                                            : <th className="px-6 py-2 text-center border whitespace-wrap">
-                                                                Travelling-{ value.travelling_remarks }
-                                                            </th>
+                                            {
+                                                value.travelling > 0
+                                                    ? <tr className="bg-white border-b ">
+                                                        {
+                                                            value.travelling_remarks == "-"
+                                                                ? <th className="px-6 py-2 text-center border whitespace-wrap">
+                                                                    Travelling
+                                                                </th>
+                                                                : <th className="px-6 py-2 text-center border whitespace-wrap">
+                                                                    Travelling-{ value.travelling_remarks }
+                                                                </th>
 
-                                                    }
-
-
-                                                    <td className="p-2 text-center border ">
-                                                        { value.travelling }/-
-                                                    </td>
-
-                                                </tr>
-                                                : <></>
-                                        }
-
-                                        {
-                                            value.accomodation > 0
-                                                ? <tr className="bg-white border-b ">
-
-                                                    {
-                                                        value.accomodation_remarks == "-"
-                                                            ? <th className="px-6 py-2 text-center border whitespace-wrap">
-                                                                Accomodation
-                                                            </th>
-                                                            : <th className="px-6 py-2 text-center border whitespace-wrap">
-                                                                Accomodation-{ value.accomodation_remarks }
-                                                            </th>
-
-                                                    }
-
-                                                    <td className="p-2 text-center border">
-                                                        { value.accomodation }/-
-                                                    </td>
-
-                                                </tr>
-                                                : <></>
-                                        }
-
-                                        {
-                                            value.expenses > 0
-                                                ? <tr className="bg-white border-b ">
-
-                                                    {
-                                                        value.expenses_remarks == "-"
-                                                            ? <th className="px-6 py-2 text-center border whitespace-wrap">
-                                                                Expenses
-                                                            </th>
-                                                            : <th className="px-6 py-2 text-center border whitespace-wrap">
-                                                                Expenses-{ value.expenses_remarks }
-                                                            </th>
-
-                                                    }
-
-                                                    <td className="p-2 text-center border">
-                                                        { value.expenses }/-
-                                                    </td>
-
-                                                </tr>
-                                                : <></>
-
-                                        }
+                                                        }
 
 
+                                                        <td className="p-2 text-center border ">
+                                                            { value.travelling }/-
+                                                        </td>
 
-                                        <tr className="bg-white border-b ">
-                                            <th className="px-6 py-2 text-base text-right border text-fix">
-                                                Total:
-                                            </th>
+                                                    </tr>
+                                                    : <></>
+                                            }
 
-                                            <td className="p-2 text-center border">
-                                                { parseInt(value.food) + parseInt(value.travelling) + parseInt(value.accomodation) + parseInt(value.expenses) }/-
-                                            </td>
-                                        </tr>
+                                            {
+                                                value.accomodation > 0
+                                                    ? <tr className="bg-white border-b ">
 
-                                    </>
+                                                        {
+                                                            value.accomodation_remarks == "-"
+                                                                ? <th className="px-6 py-2 text-center border whitespace-wrap">
+                                                                    Accomodation
+                                                                </th>
+                                                                : <th className="px-6 py-2 text-center border whitespace-wrap">
+                                                                    Accomodation-{ value.accomodation_remarks }
+                                                                </th>
+
+                                                        }
+
+                                                        <td className="p-2 text-center border">
+                                                            { value.accomodation }/-
+                                                        </td>
+
+                                                    </tr>
+                                                    : <></>
+                                            }
+
+                                            {
+                                                value.expenses > 0
+                                                    ? <tr className="bg-white border-b ">
+
+                                                        {
+                                                            value.expenses_remarks == "-"
+                                                                ? <th className="px-6 py-2 text-center border whitespace-wrap">
+                                                                    Expenses
+                                                                </th>
+                                                                : <th className="px-6 py-2 text-center border whitespace-wrap">
+                                                                    Expenses-{ value.expenses_remarks }
+                                                                </th>
+
+                                                        }
+
+                                                        <td className="p-2 text-center border">
+                                                            { value.expenses }/-
+                                                        </td>
+
+                                                    </tr>
+                                                    : <></>
+
+                                            }
+
+
+
+                                            <tr className="bg-white border-b ">
+                                                <th className="px-6 py-2 text-base text-right border text-fix">
+                                                    Total:
+                                                </th>
+
+                                                <td className="p-2 text-center border">
+                                                    { parseInt(value.food) + parseInt(value.travelling) + parseInt(value.accomodation) + parseInt(value.expenses) }/-
+                                                </td>
+                                            </tr>
+
+                                        </>
+                                        : <></>
+
 
                                 )
                             }

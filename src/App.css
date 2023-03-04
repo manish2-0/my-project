@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 
-.itslogo{
+.itslogo {
   background: url("./logo3.png");
   background-size: 100% 100%;
 
@@ -12,25 +12,25 @@
 }
 
 
-.custom-shadow{
+.custom-shadow {
   /* box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
   
   box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px; */
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.01) 0px 1px 3px -1px;
-  
+
   /* box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px; */
   border: 1px solid rgba(227, 227, 227, 0.5);
 }
 
 
 
-.gradbg{
+.gradbg {
   background: linear-gradient(-218deg, #6db5fcb8 55%, #E0C3FC 55%);
-  
+
 }
 
-.homebg{
-  background: linear-gradient(180deg, rgba(25,94,195,1) 25%, rgba(240,240,240,1) 25%);
+.homebg {
+  background: linear-gradient(180deg, rgba(25, 94, 195, 1) 25%, rgba(240, 240, 240, 1) 25%);
 }
 
 .scrollbar-hide::-webkit-scrollbar {
@@ -39,17 +39,19 @@
 
 /* For IE, Edge and Firefox */
 .scrollbar-hide {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 
-.bg-fix{
- @apply bg-[#1e5b98];
+.bg-fix {
+  @apply bg-[#1e5b98];
 }
 
 
-.text-fix{
+.text-fix {
   @apply text-[#1e5b98];
 }
 
@@ -67,7 +69,7 @@
 }
 
 .ani-button:hover {
-  background-color:#fcfcfc;
+  background-color: #fcfcfc;
   color: #2368ad;
 }
 
@@ -101,31 +103,34 @@
 }
 
 
-.ani-button:hover:before,.ani-button:hover:after{
+.ani-button:hover:before,
+.ani-button:hover:after {
   animation: bor 0.5s ease;
   width: calc(100% + 6px);
   height: calc(100% + 6px);
 }
 
 @keyframes bor {
-  from{
-      width: 0%;
-      height: 0%;
+  from {
+    width: 0%;
+    height: 0%;
   }
-  to{
-      width: calc(100% + 6px);
-      height: calc(100% + 6px);
+
+  to {
+    width: calc(100% + 6px);
+    height: calc(100% + 6px);
   }
 }
 
 @keyframes bor1 {
-  to{
-      width: 0%;
-      height: 0%;
+  to {
+    width: 0%;
+    height: 0%;
   }
-  from{
-      width: calc(100% + 6px);
-      height: calc(100% + 6px);
+
+  from {
+    width: calc(100% + 6px);
+    height: calc(100% + 6px);
   }
 }
 
@@ -144,7 +149,7 @@
 }
 
 .ani-buttonlogin:hover {
-  background-color:#ffffff;
+  background-color: #ffffff;
   color: black;
 }
 
@@ -178,41 +183,47 @@
 }
 
 
-.ani-buttonlogin:hover:before,.ani-buttonlogin:hover:after{
+.ani-buttonlogin:hover:before,
+.ani-buttonlogin:hover:after {
   animation: bor 0.5s ease;
   width: calc(100% + 6px);
   height: calc(100% + 6px);
 }
 
 @keyframes bor {
-  from{
-      width: 0%;
-      height: 0%;
+  from {
+    width: 0%;
+    height: 0%;
   }
-  to{
-      width: calc(100% + 6px);
-      height: calc(100% + 6px);
+
+  to {
+    width: calc(100% + 6px);
+    height: calc(100% + 6px);
   }
 }
 
 @keyframes bor1 {
-  to{
-      width: 0%;
-      height: 0%;
+  to {
+    width: 0%;
+    height: 0%;
   }
-  from{
-      width: calc(100% + 6px);
-      height: calc(100% + 6px);
+
+  from {
+    width: calc(100% + 6px);
+    height: calc(100% + 6px);
   }
 }
 
 /* Loader */
 #cover-spin {
-  position:fixed;
-  width:100%;
-  left:0;right:0;top:0;bottom:0;
-  background-color: rgba(255,255,255,0.7);
-  z-index:20;
+  position: fixed;
+  width: 100%;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.7);
+  z-index: 20;
 }
 
 /* .loader {
@@ -264,26 +275,38 @@
 
 
 @-webkit-keyframes spin {
-from {-webkit-transform:rotate(0deg);}
-to {-webkit-transform:rotate(360deg);}
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(360deg);
+  }
 }
 
 @keyframes spin {
-from {transform:rotate(0deg);}
-to {transform:rotate(360deg);}
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 #cover-spin::after {
-  content:'';
-  display:block;
-  position:absolute;
-  left:48%;top:40%;
-  width:40px;height:40px;
-  border-style:solid;
-  border-color:#0e3e6f;
-  border-top-color:transparent;
+  content: '';
+  display: block;
+  position: absolute;
+  left: 48%;
+  top: 40%;
+  width: 40px;
+  height: 40px;
+  border-style: solid;
+  border-color: #0e3e6f;
+  border-top-color: transparent;
   border-width: 4px;
-  border-radius:50%;
+  border-radius: 50%;
   -webkit-animation: spin .8s linear infinite;
   animation: spin .8s linear infinite;
 }
@@ -303,23 +326,27 @@ to {transform:rotate(360deg);}
 }
 
 @keyframes jelly {
+
   0%,
   100% {
     transform: scale(1, 1);
   }
+
   25% {
     transform: scale(0.9, 1.1);
   }
+
   50% {
     transform: scale(1.1, 0.9);
   }
+
   75% {
     transform: scale(0.95, 1.05);
   }
-} 
+}
 
 
-.footerlogin{
+.footerlogin {
   box-shadow: 2px 2px 15px #8F8F8F;
   /* background: #FFFAE8; */
 }
@@ -328,9 +355,9 @@ to {transform:rotate(360deg);}
 
 
 
-.hideinput[type=number]::-webkit-inner-spin-button, 
-.hideinput[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
+.hideinput[type=number]::-webkit-inner-spin-button,
+.hideinput[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
 }
 
 .hideinput[type=number] {
@@ -339,7 +366,7 @@ to {transform:rotate(360deg);}
 
 
 /* Button Underline */
-.hunderline:after {    
+.hunderline:after {
   background: none repeat scroll 0 0 transparent;
   bottom: 0;
   content: "";
@@ -351,19 +378,53 @@ to {transform:rotate(360deg);}
   transition: width 0.3s ease 0s, left 0.3s ease 0s;
   width: 0;
 }
-.hunderline:hover:after { 
-  width: 100%; 
-  left: 0; 
+
+.hunderline:hover:after {
+  width: 100%;
+  left: 0;
 }
 
 
 /* For Print */
+
+#printdate{
+  display: none;
+}
+
 @media print {
-  #bill {
-      /* zoom: 77%;
+  #generatebill {
+    /* zoom: 77%;
       width: 90% !important; */
-      /* border: 1px solid #ccc !important; */
-      print-color-adjust: exact;
-      -webkit-print-color-adjust: exact;
+    /* border: 1px solid #ccc !important; */
+    padding: 0;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
   }
+
+  #navbarprivate {
+    display: none;
+  }
+
+  #but-1 {
+    display: none;
+  }
+
+  #but-2 {
+    display: none;
+  }
+
+  #printbutton {
+    display: none;
+  }
+
+  #billbook {
+    padding: 0;
+  }
+
+  #printdate{
+    display: block;
+  }
+
+
+
 }

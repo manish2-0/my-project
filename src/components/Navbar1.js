@@ -157,7 +157,7 @@ function Navbar1(props) {
                     : <></>
             }
 
-            <div className='z-50'>
+            <div className='z-50' id='navbarprivate'>
                 <div className={ scrolling ? "sm:translate-y-0 transition  -translate-y-1/2 z-30 bg-fix fixed w-full" : "transition translate-y-0 z-30 bg-fix fixed w-full" } id='main'>
                     <div className='container relative w-full p-2 px-3 mx-auto bg-fix sm:translate-y-0'>
 

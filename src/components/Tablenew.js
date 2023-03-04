@@ -24,6 +24,8 @@ function Tablenew() {
         "k": ""
     });
 
+    const [total, settotal] = useState({ "nanosil": 0, "silicon": 0, "superflex": 0, "food": 0, "accomodation": 0, "travelling": 0, "expenses": 0 });
+
     const ref = useRef(null);
 
 
@@ -56,11 +58,40 @@ function Tablenew() {
         setentryloading(true)
         // console.log(user)
         api.get(`entries/getOne-entries/${user.blp_id}`).then(function (response) {
-            setvalues(response.data.data);
+            if (response?.data?.data) {
+                setvalues(response.data.data);
+            }
+
+            // console.log(response.data.data)
+
             setentryloading(false)
             // console.log(response.data)
         })
     }
+
+
+    useEffect(() => {
+        let nanosil = 0;
+        let superflex = 0;
+        let silicon = 0;
+        let food = 0;
+        let accomodation = 0;
+        let travelling = 0;
+        let expenses = 0;
+
+        for (let i = 0; i < values.length; i++) {
+            nanosil = parseFloat(nanosil) + (parseFloat(values[i].nanosil))
+            superflex = parseFloat(superflex) + (parseFloat(values[i].superflex))
+            silicon = parseFloat(silicon) + (parseFloat(values[i].silicon))
+            food += parseInt(values[i].food);
+            accomodation += parseInt(values[i].accomodation);
+            travelling += parseInt(values[i].travelling);
+            expenses += parseInt(values[i].expenses);
+        }
+
+        settotal({ "nanosil": parseFloat(nanosil).toFixed(2), "silicon": parseFloat(silicon).toFixed(2), "superflex": parseFloat(superflex).toFixed(2), "food": food, "accomodation": accomodation, "travelling": travelling, "expenses": expenses });
+
+    }, [values]);
 
     useEffect(() => {
         usertable();
@@ -234,7 +265,7 @@ function Tablenew() {
                                     </td>
                                 </tr>
 
-                                : !values
+                                : values.length == 0
                                     ? <tr className="bg-white border-b hover:bg-gray-50">
                                         <td colSpan="9" className="px-6 py-2 text-lg font-medium text-gray-900 md:text-center whitespace-nowrap">
                                             No Entries Found
@@ -279,6 +310,70 @@ function Tablenew() {
                                         </tr>
 
                                     ) }
+
+                            {
+                                values.length > 0
+                                    ? <>
+                                        <tr className="bg-white hover:bg-gray-50">
+                                            <td colSpan="9" className='underline underline-offset-4 p-1 text-fix text-base font-medium'>
+                                                Amount of Chemicals used:
+                                            </td>
+                                        </tr>
+
+                                        
+                                        <tr className="bg-white hover:bg-gray-50">
+                                            <td colSpan="9" className=' pl-3 text-fix text-base font-medium'>
+                                                Nanosil(in kg): <span className='text-slate-500'>{ total.nanosil }</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr className="bg-white hover:bg-gray-50">
+                                            <td colSpan="9" className=' pl-3 text-fix text-base font-medium'>
+                                                Superflex(in ml): <span className='text-slate-500'>{ total.superflex }</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr className="bg-white hover:bg-gray-50">
+                                            <td colSpan="9" className='pl-3 text-fix text-base font-medium'>
+                                                Silicon(in ml): <span className='text-slate-500'>{ total.silicon }</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr className="bg-white hover:bg-gray-50">
+                                            <td colSpan="9" className='underline underline-offset-4 p-1 text-fix text-base font-medium'>
+                                                Total Expenses: ₹{ total.food + total.accomodation + total.travelling + total.expenses }
+                                            </td>
+                                        </tr>
+
+                                        <tr className="bg-white hover:bg-gray-50">
+                                            <td colSpan="9" className=' pl-3 text-fix text-base font-medium'>
+                                                Food: <span className='text-slate-500'>₹{ total.food }</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr className="bg-white hover:bg-gray-50">
+                                            <td colSpan="9" className=' pl-3 text-fix text-base font-medium'>
+                                                Accomodation: <span className='text-slate-500'>₹{ total.accomodation }</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr className="bg-white hover:bg-gray-50">
+                                            <td colSpan="9" className=' pl-3 text-fix text-base font-medium'>
+                                                Travelling: <span className='text-slate-500'>₹{ total.travelling }</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr className="bg-white hover:bg-gray-50">
+                                            <td colSpan="9" className=' pl-3 text-fix text-base font-medium'>
+                                                Expenses: <span className='text-slate-500'>₹{ total.expenses }</span>
+                                            </td>
+                                        </tr>
+
+
+                                    </>
+
+                                    : <></>
+                            }
 
                         </tbody>
                     </table>

@@ -37,11 +37,11 @@ const PrintTable2 = () => {
     return (
         <>
 
-            <p className='pl-3 text-2xl'>Bill 1:</p>
+            <p className='container px-3 m-auto max-w-[1300px] text-2xl'>Extra Bill:</p>
 
             <div className='container px-3 m-auto max-w-[1300px] mb-6'>
                 <div className='flex items-center w-full'>
-                <p className='text-lg text-fix'><span className='underline underline-offset-4'>Fabrication Type:</span><span className='text-slate-600'> { fabri4 }</span></p>
+                    <p className='text-lg text-fix'><span className='underline underline-offset-4'>Fabrication Type:</span><span className='text-slate-600'> { fabri4 }</span></p>
                 </div>
                 <div className="relative overflow-x-auto scrollbar-hide">
                     <table className="mx-auto my-1 text-sm text-left text-gray-500 border shadow-md table-fixed ">

@@ -10,6 +10,7 @@ import useAxiosPrivate from '../hooks/useAxiosPrivate';
 import { useLocation, useNavigate } from 'react-router';
 import Modal from '../modals/Modal';
 import Loader from './Loader';
+import logo from '../billicon.png';
 
 const GenerateBill = () => {
 
@@ -19,6 +20,7 @@ const GenerateBill = () => {
     const navigate = useNavigate();
 
     const [loading, setloading] = useState(false);
+    const [generated, setgenerated] = useState(null);
 
     const location = useLocation();
     const { user } = location.state;
@@ -163,6 +165,12 @@ const GenerateBill = () => {
         getbilldata();
     }, []);
 
+    const printwindow=async()=>{
+        await setgenerated(new Date().toLocaleString());
+        window.print();
+    }
+
+
 
     return (
         <>
@@ -180,7 +188,33 @@ const GenerateBill = () => {
             }
 
 
-            <div id='bill'>
+            <div className='mx-auto sm:pt-20 pt-36' id='generatebill'>
+                <div className='flex justify-center w-full tracking-wide'>
+                    <div className='flex flex-col container m-3 p-3 max-w-[1274px] border-slate-300'>
+
+                        <div className='flex flex-row w-full justify-between items-center font-bold'>
+                            <img className='w-24 h-24 ' alt="" srcSet={ logo } />
+                            <div className=' text-lg flex justify-center flex-col ml-2 mb-2 p-2'>
+                                <p className='text-fix'><span className='underline underline-offset-4'>BLP ID:</span><span className='pl-1 font-normal text-slate-700'>{ user.blp_id }</span></p>
+                                <p className='text-fix'><span className='underline underline-offset-4'>ISELL No.:</span><span className='pl-1 font-normal text-slate-700'>{user.isell}</span></p>
+                                <p className='text-fix'><span className='underline underline-offset-4'>DC No.:</span><span className='pl-1 font-normal text-slate-700'>{user.dc_no}</span></p>
+                            
+                            </div>
+                        </div>
+
+                        <div className='flex flex-col text-lg font-bold text-fix ml-2'>
+                            <p className=''><span className='underline underline-offset-4'>Client Name:</span><span className='pl-1 font-normal text-slate-700'>{ user.name }</span></p>
+                            <p className=''><span className='underline underline-offset-4'>Client Address:</span><span className='pl-1 font-normal text-slate-700'>{ user.address }</span></p>
+                            <p className=''><span className='underline underline-offset-4'>Client City:</span><span className='pl-1 font-normal text-slate-700'>{ user.city }</span></p>
+                            <p className=''><span className='underline underline-offset-4'>Client Contact:</span><span className='pl-1 font-normal text-slate-700'>{ user.contact }</span></p>
+                            <p id='printdate' className=''><span className='underline underline-offset-4'>Printed at:</span><span className='pl-1 font-normal text-slate-700'>{ generated }</span></p>
+                            <button id='printbutton' onClick={printwindow} className='w-[130px] mt-2 ani-button'>Print</button>
+                        </div>
+
+                    </div>
+                </div>
+
+
                 { grand1 > 0 ? <PrintTable1 /> : <></> }
                 { extratable && grand4 > 0 ? <PrintTable2 /> : <></> }
                 { grand5 > 0 ? <PrintTable3 /> : <></> }
@@ -188,7 +222,7 @@ const GenerateBill = () => {
                 { grand3 > 0 ? <PrintTable5 /> : <></> }
 
                 <div className='flex justify-center w-full'>
-                    <div className='container p-3 max-w-[1280px] bg-fix text-right text-white text-xl px-8 m-2'>
+                    <div className='container p-3 max-w-[1274px] bg-fix text-right text-white text-xl px-8 m-2'>
                         Bill Total: <span className='ml-4'>₹{ billtotal }</span>
                     </div>
 

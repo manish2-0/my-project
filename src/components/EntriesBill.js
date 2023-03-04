@@ -31,11 +31,13 @@ const EntriesBill = () => {
     }
 
     useEffect(() => {
+        setentries([]);
         usertable();
     }, []);
 
 
     useEffect(() => {
+
 
         let sum = 0;
 
@@ -61,7 +63,7 @@ const EntriesBill = () => {
         else {
             setentries(temp.map((v) => (
                 { date: v.date, nature: v.nature, food: v.food, travelling: v.travelling, accomodation: v.accomodation, expenses: v.expenses, food_remarks: v.food_remarks, travelling_remarks: v.travelling_remarks, accomodation_remarks: v.accomodation_remarks, expenses_remarks: v.expenses_remarks }
-            )))
+            )));
         }
 
     }, [temp]);
@@ -69,7 +71,7 @@ const EntriesBill = () => {
 
     return (
         <>
-            <p className='pl-3 text-2xl'>Bill 3:</p>
+            <p className='container px-3 m-auto max-w-[1300px] text-2xl'>Bill 3:</p>
 
             <div className='container max-w-[1300px] flex flex-col items-center justify-center px-3 m-auto'>
 

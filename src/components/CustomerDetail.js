@@ -116,17 +116,7 @@ function CustomerDetail() {
                     <p className="mb-3 text-fix" >
                         <i className="fa-solid fa-phone"></i>
                         <span className=' pl-4 font-[600] text-gray-900 fontinformation'>+91 { user.contact }</span>
-                        {/* <Link to="/editclient" state={{ user:user }} className='pl-2 text-gray-400 text-fix'>Edit</Link> */ }
-
                     </p>
-
-                    {/* <div className='flex flex-col items-center justify-between text-fix'>
-                    <Link to={val.bill_status=="Done"?"":"/bill"} state={ { user: val } } className={val.bill_status=="Done"?"w-3/4 px-4 text-center py-2 text-black rounded-md cursor-not-allowed bg-slate-200 mt-2":"hover:bg-[#1967b6] w-3/4 px-4 text-center py-2 text-white rounded-md homepagebutton bg-fix mt-2"}>Edit Bill</Link>   
-                    <Link to="/generatebill" state={ { user: val } } className='hover:bg-[#1967b6] w-3/4 px-4 text-center py-2 text-white rounded-md homepagebutton bg-fix mt-2'>Generate Bill</Link>
-                    <button disabled={val.work_status=="Done"?true:false} onClick={()=>{workdone()}} className={val.work_status=="Done"?"w-3/4 px-4 text-center py-2 text-black rounded-md cursor-not-allowed bg-slate-200 mt-2":"hover:bg-[#1967b6] w-3/4 px-4 text-center py-2 text-white rounded-md homepagebutton bg-fix mt-2"}>Mark Work as Done</button>
-                    <button disabled={val.bill_status=="Done"?true:false} onClick={()=>{billdone()}} className={val.bill_status=="Done"?"w-3/4 px-4 text-center py-2 text-black rounded-md cursor-not-allowed bg-slate-200 mt-2":"hover:bg-[#1967b6] w-3/4 px-4 text-center py-2 text-white rounded-md homepagebutton bg-fix mt-2"}>Mark Bill as Done</button>
-                    
-                </div> */}
 
                     <div className='flex items-center justify-between w-full text-fix'>
 

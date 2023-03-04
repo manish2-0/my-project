@@ -59,9 +59,8 @@ function App() {
                 </Route>
                 <Route exact path="/editclient" element={  <Editclient1 /> } />
                 <Route exact path="/bill" element={  <BillBook /> } />
-                
-              </Route>
                 <Route exact path="/generatebill" element={  <GenerateBill /> } />
+              </Route>
             </Route>
 
             <Route path='*' element={ <ErrorPage /> } />
