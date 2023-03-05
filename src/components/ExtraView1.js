@@ -70,10 +70,13 @@ function ExtraView1() {
     }
 
     const viewfile = async (f) => {
+        
+        window.open(f.flink)
 
-        api.get(`file/image/${f.fname}`).then(function (response) {
-            window.open(f.flink)
-        })
+    }
+    const downloadfile = async (f) => {
+
+        window.open(`http://localhost:8000/file/download/${f.fname}`,"_self");
 
     }
 
@@ -244,6 +247,9 @@ function ExtraView1() {
                                         View
                                     </th>
                                     <th scope="col" className="px-1 py-3 text-fix">
+                                        Download
+                                    </th>
+                                    <th scope="col" className="px-1 py-3 text-fix">
                                         Delete
                                     </th>
 
@@ -282,6 +288,9 @@ function ExtraView1() {
                                                 </td>
                                                 <td className="px-1 py-2 text-center text-fix">
                                                     <button onClick={ () => { viewfile(f) } } className="font-medium text-fix hover:underline">View</button>
+                                                </td>
+                                                <td className="px-1 py-2 text-center text-fix">
+                                                    <button onClick={ () => { downloadfile(f) } } className="font-medium text-fix hover:underline">Download</button>
                                                 </td>
                                                 <td className="px-1 py-2 text-center text-fix">
                                                     <button onClick={ () => { openmodal(f) } } className="font-medium text-fix hover:underline">Delete</button>

@@ -11,6 +11,7 @@ import { useLocation, useNavigate } from 'react-router';
 import Modal from '../modals/Modal';
 import Loader from './Loader';
 import logo from '../billicon.png';
+import moment from 'moment/moment';
 
 const GenerateBill = () => {
 
@@ -165,8 +166,10 @@ const GenerateBill = () => {
         getbilldata();
     }, []);
 
-    const printwindow=async()=>{
-        await setgenerated(new Date().toLocaleString());
+    const printwindow = async () => {
+        var now = new Date();
+        var dateStringWithTime = moment(now).format('DD MMMM,YYYY HH:mm:ss');
+        await setgenerated(dateStringWithTime);
         window.print();
     }
 
@@ -195,20 +198,19 @@ const GenerateBill = () => {
                         <div className='flex flex-row w-full justify-between items-center font-bold'>
                             <img className='w-24 h-24 ' alt="" srcSet={ logo } />
                             <div className=' text-lg flex justify-center flex-col ml-2 mb-2 p-2'>
-                                <p className='text-fix'><span className='underline underline-offset-4'>BLP ID:</span><span className='pl-1 font-normal text-slate-700'>{ user.blp_id }</span></p>
-                                <p className='text-fix'><span className='underline underline-offset-4'>ISELL No.:</span><span className='pl-1 font-normal text-slate-700'>{user.isell}</span></p>
-                                <p className='text-fix'><span className='underline underline-offset-4'>DC No.:</span><span className='pl-1 font-normal text-slate-700'>{user.dc_no}</span></p>
-                            
+                                <p className='text-fix'><span className=' underline-offset-4'>BLP ID:</span><span className='pl-1 font-normal text-slate-700'>{ user.blp_id }</span></p>
+                                <p className='text-fix'><span className=' underline-offset-4'>ISELL No.:</span><span className='pl-1 font-normal text-slate-700'>{ user.isell }</span></p>
+                                <p className='text-fix'><span className=' underline-offset-4'>DC No.:</span><span className='pl-1 font-normal text-slate-700'>{ user.dc_no }</span></p>
                             </div>
                         </div>
 
                         <div className='flex flex-col text-lg font-bold text-fix ml-2'>
-                            <p className=''><span className='underline underline-offset-4'>Client Name:</span><span className='pl-1 font-normal text-slate-700'>{ user.name }</span></p>
-                            <p className=''><span className='underline underline-offset-4'>Client Address:</span><span className='pl-1 font-normal text-slate-700'>{ user.address }</span></p>
-                            <p className=''><span className='underline underline-offset-4'>Client City:</span><span className='pl-1 font-normal text-slate-700'>{ user.city }</span></p>
-                            <p className=''><span className='underline underline-offset-4'>Client Contact:</span><span className='pl-1 font-normal text-slate-700'>{ user.contact }</span></p>
-                            <p id='printdate' className=''><span className='underline underline-offset-4'>Printed at:</span><span className='pl-1 font-normal text-slate-700'>{ generated }</span></p>
-                            <button id='printbutton' onClick={printwindow} className='w-[130px] mt-2 ani-button'>Print</button>
+                            <p className=''><span className=' underline-offset-4'>Client Name:</span><span className='pl-1 font-normal text-slate-700'>{ user.name }</span></p>
+                            <p className=''><span className=' underline-offset-4'>Client Address:</span><span className='pl-1 font-normal text-slate-700'>{ user.address }</span></p>
+                            <p className=''><span className=' underline-offset-4'>Client City:</span><span className='pl-1 font-normal text-slate-700'>{ user.city }</span></p>
+                            <p className=''><span className=' underline-offset-4'>Client Contact:</span><span className='pl-1 font-normal text-slate-700'>{ user.contact }</span></p>
+                            <p id='printdate' className=''><span className=' underline-offset-4'>Printed at:</span><span className='pl-1 font-normal text-slate-700'>{ generated }</span></p>
+                            <button id='printbutton' onClick={ printwindow } className='w-[130px] mt-2 ani-button'>Print</button>
                         </div>
 
                     </div>

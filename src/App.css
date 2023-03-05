@@ -393,9 +393,6 @@
 
 @media print {
   #generatebill {
-    /* zoom: 77%;
-      width: 90% !important; */
-    /* border: 1px solid #ccc !important; */
     padding: 0;
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;

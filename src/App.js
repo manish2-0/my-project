@@ -31,6 +31,7 @@ import ExtraEntriesTable from './components/ExtraEntriesTable';
 import BillBook from './components/BillBook';
 import GenerateBill from './components/GenerateBill';
 import Testing4 from './components/Testing4';
+import Report from './components/Report';
 
 
 function App() {
@@ -47,19 +48,20 @@ function App() {
 
             <Route path='login' element={ <Login1 /> } />
 
-            <Route element={<PersistLogin/>}>
+            <Route element={ <PersistLogin /> }>
               <Route element={ <RequireAuth /> }>
-                <Route path='/' element={  <Home /> } />
+                <Route path='/' element={ <Home /> } />
                 <Route path='newclient' element={ <Newclient1 /> } />
-                <Route path='newentry' element={  <NewEntry2 /> } />
+                <Route path='newentry' element={ <NewEntry2 /> } />
                 <Route exact path="entryedit" element={ <Entryedit2 /> } />
                 <Route exact path='view' element={ <Information1 /> } >
                   <Route index element={ <Tablenew /> } />
                   <Route path='extraview' element={ <ExtraView1 /> } />
                 </Route>
-                <Route exact path="/editclient" element={  <Editclient1 /> } />
-                <Route exact path="/bill" element={  <BillBook /> } />
-                <Route exact path="/generatebill" element={  <GenerateBill /> } />
+                <Route exact path="/editclient" element={ <Editclient1 /> } />
+                <Route exact path="/bill" element={ <BillBook /> } />
+                <Route exact path="/generatebill" element={ <GenerateBill /> } />
+                <Route exact path="/report" element={ <Report /> } />
               </Route>
             </Route>
 
@@ -71,25 +73,25 @@ function App() {
 
       </Router>
 
-      {/* <BillTop /> */}
+      {/* <BillTop /> */ }
 
       {/* <Table2 />
       <ExtraEntriesTable />
       <EntriesBill /> */}
 
-      {/* <GenerateBill /> */}
+      {/* <GenerateBill /> */ }
 
-      {/* <BillBook /> */}
+      {/* <BillBook /> */ }
 
 
       {/* <Navbar1/> */ }
 
-      {/* <Testing2 /> */}
-      {/* <Testing4 /> */}
-      {/* <LoginErrorModal /> */}
+      {/* <Testing2 /> */ }
+      {/* <Testing4 /> */ }
+      {/* <LoginErrorModal /> */ }
 
 
-      {/* <Loader/> */}
+      {/* <Loader/> */ }
     </>
   );
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import logo from '../logo.png';
 import SearchContext from '../context/SearchContext'
 import { useContext } from 'react';
@@ -19,7 +19,7 @@ import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
+    return classes.filter(Boolean).join(' ')
 }
 
 
@@ -30,7 +30,7 @@ function Navbar1(props) {
 
     const [loading, setloading] = useState(false);
 
-    const { setauth,adminname,setadminname } = useAuth();
+    const { setauth, adminname, setadminname } = useAuth();
 
     const nav = useNavigate();
 
@@ -198,7 +198,7 @@ function Navbar1(props) {
                                 <Menu as="div" className="relative inline-block text-left">
                                     <div>
                                         <Menu.Button className="inline-flex items-center justify-center w-full px-2 py-2 text-base font-medium text-white bg-transparent rounded-md hover:text-slate-300 focus:outline-none">
-                                            Welcome,{localStorage.getItem("admin_id")}
+                                            Welcome,{ localStorage.getItem("admin_id") }
                                             <ChevronDownIcon className="w-6 h-6 my-auto ml-1" aria-hidden="true" />
                                         </Menu.Button>
                                     </div>
@@ -214,18 +214,30 @@ function Navbar1(props) {
                                     >
                                         <Menu.Items className="absolute right-0 z-10 w-56 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                                             <div className="py-1">
-                                                
+
                                                 <form>
-                                                <Menu.Item>
+                                                    <Menu.Item>
                                                         { ({ active }) => (
-                                                            <button 
+                                                            <Link to="/"
+                                                                className={ classNames(
+                                                                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                                                    'block w-full px-4 py-2 text-center'
+                                                                ) }
+                                                            >
+                                                                Home
+                                                            </Link>
+                                                        ) }
+                                                    </Menu.Item>
+                                                    <Menu.Item>
+                                                        { ({ active }) => (
+                                                            <Link to="/report"
                                                                 className={ classNames(
                                                                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                                                                     'block w-full px-4 py-2 text-center'
                                                                 ) }
                                                             >
                                                                 Generate Report
-                                                            </button>
+                                                            </Link>
                                                         ) }
                                                     </Menu.Item>
 
@@ -242,7 +254,7 @@ function Navbar1(props) {
                                                         ) }
                                                     </Menu.Item>
 
-                                                    
+
 
 
                                                 </form>
