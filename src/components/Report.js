@@ -10,6 +10,7 @@ const Report = () => {
   const [dates, setdates] = useState({ "from": "", "to": "" });
   const [naturefilter, setnaturefilter] = useState("");
   const [statusfilter, setstatusfilter] = useState("");
+  const [cityfilter, setcityfilter] = useState("");
 
   const api = useAxiosPrivate();
 
@@ -25,49 +26,53 @@ const Report = () => {
     setdates(values => ({ ...values, [name]: value }))
   }
 
-  const handlenature=(e)=>{
+  const handlenature = (e) => {
     e.preventDefault();
-  
-    if(e.target.value=="Show All")
-    {
+
+    if (e.target.value == "Show All") {
       setnaturefilter("");
     }
-    else if(e.target.value=="Measurement"){
+    else if (e.target.value == "Measurement") {
       setnaturefilter("Measurement");
     }
-    else if(e.target.value=="Delivery"){
+    else if (e.target.value == "Delivery") {
       setnaturefilter("Delivery");
     }
-    else if(e.target.value=="Installation"){
+    else if (e.target.value == "Installation") {
       setnaturefilter("Installation");
     }
-    else if(e.target.value=="Revisit"){
+    else if (e.target.value == "Revisit") {
       setnaturefilter("Revisit");
     }
-    else{
+    else {
       setnaturefilter("");
     }
 
   }
 
-  const handlestatus=(e)=>{
+  const handlecity = (e) => {
     e.preventDefault();
-  
-    if(e.target.value=="Show All")
-    {
+    let a = e.target.value;
+    setcityfilter(a.toLowerCase());
+  }
+
+  const handlestatus = (e) => {
+    e.preventDefault();
+
+    if (e.target.value == "Show All") {
       setstatusfilter("");
     }
-    else if(e.target.value=="Pending"){
+    else if (e.target.value == "Pending") {
       setstatusfilter("Pending");
     }
-    else if(e.target.value=="Done"){
+    else if (e.target.value == "Done") {
       setstatusfilter("Done");
     }
-    else if(e.target.value=="In Progress"){
+    else if (e.target.value == "In Progress") {
       setstatusfilter("In Progress");
     }
-    
-    else{
+
+    else {
       setstatusfilter("");
     }
 
@@ -134,8 +139,9 @@ const Report = () => {
           ? <Modal />
           : <></>
       }
-      <div className='w-full sm:pt-20 pt-36 flex justify-center'>
+      <div id='report' className='w-full sm:pt-20 pt-36 flex justify-center'>
         <div className='flex flex-col w-full max-w-[1300px] justify-center'>
+
           <form className='container flex justify-between sm:justify-start flex-wrap p-3'>
             <div className='flex flex-wrap'>
               <div className='flex my-2 mr-2  items-center'>
@@ -152,7 +158,7 @@ const Report = () => {
             <div className='flex flex-wrap'>
               <div className='flex my-2 mr-2  items-center'>
                 <label className='text-lg pr-2'>Nature:</label>
-                <select onChange={handlenature} name="nature" className="border border-slate-300 rounded">
+                <select onChange={ handlenature } name="nature" className="border border-slate-300 rounded">
                   <option selected className=''>Show All</option>
                   <option>Measurement</option>
                   <option>Delivery</option>
@@ -163,7 +169,7 @@ const Report = () => {
 
               <div className='flex my-2 mr-2  items-center'>
                 <label className='text-lg pr-2'>Status:</label>
-                <select onChange={handlestatus} name="status" className="border border-slate-300 rounded">
+                <select onChange={ handlestatus } name="status" className="border border-slate-300 rounded">
                   <option selected className=''>Show All</option>
                   <option>Pending</option>
                   <option>In Progress</option>
@@ -173,14 +179,23 @@ const Report = () => {
 
             </div>
 
-            <div className='flex my-2 items-center'>
-              <button onClick={ formsubmit } className='ani-button text-base'>Get Data</button>
+            <div className='flex flex-wrap'>
+
+              <div className='flex my-2 mr-2  items-center'>
+                <label className='text-lg pr-2'>City:</label>
+                <input onChange={ handlecity } type="text" name="city" className="border border-slate-300 rounded" placeholder='Type Here' />
+              </div>
+
+              <div className='flex my-2 items-center'>
+                <button onClick={ formsubmit } className='ani-button text-base'>Get Data</button>
+
+              </div>
 
             </div>
 
           </form>
 
-          <div className="relative overflow-x-auto scrollbar-hide">
+          <div className="relative px-1 overflow-x-auto scrollbar-hide">
             <table className="w-full m-1 mx-auto text-sm text-left text-gray-500 border shadow-md">
               <thead className=" border-b border-gray-300 text-white bg-fix">
                 <tr className='text-[16px] '>
@@ -224,6 +239,7 @@ const Report = () => {
                 </tr>
               </thead>
               <tbody className=''>
+
                 {
                   data.length == 0
                     ? <tr className='text-[16px] '>
@@ -231,59 +247,71 @@ const Report = () => {
                         No data found
                       </th>
                     </tr>
-                    : data.filter((val)=>{
-                      return naturefilter=="" 
-                      ?val
-                      :val.nature==naturefilter
-                          
-                    }).filter((val)=>{
-                      return statusfilter=="" 
-                      ?val
-                      :val.status==statusfilter     
-                    })
-                    .map((val, key) =>
-                      <tr className='text-[16px] '>
-                        <th className="w-6 border px-3 py-3">
-                          { key + 1 }
-                        </th>
-                        <th className=" w-14 border px-3 py-3">
-                          { moment(val.date).format("DD/MM/YYYY") }
-                        </th>
-                        <th className=" w-14 border px-3 py-3">
-                          { val.blp_id }
-                        </th>
-                        <th className=" w-14 border px-3 py-3">
-                          { val.isell }
-                        </th>
-                        <th className=" w-14 border px-3 py-3">
-                          { val.dc_no }
-                        </th>
-                        <th className=" w-14 border px-3 py-3">
-                          { val.name }
-                        </th>
-                        <th className=" w-14 border px-3 py-3">
-                          { val.city }
-                        </th>
-                        <th className=" w-14 border px-3 py-3">
-                          { val.nature }
-                        </th>
-                        <th className=" w-14 border px-3 py-3">
-                          { val.status }
-                        </th>
-                        <th className=" w-14 border px-3 py-3">
-                          { val.doneby }
-                        </th>
-                        <th className=" w-14 border px-3 py-3">
-                          { val.remarks1 }
-                        </th>
-                        <th className=" w-14 border px-3 py-3">
-                          { val.time }
-                        </th>
+                    : data.filter((val) => {
+                      return naturefilter == ""
+                        ? val
+                        : val.nature == naturefilter
 
-                      </tr>)
+                    }).filter((val) => {
+                      return statusfilter == ""
+                        ? val
+                        : val.status == statusfilter
+                    }).filter((val) => {
+                      return cityfilter == ""
+                        ? val
+                        : val.city.toLowerCase().includes(cityfilter)
+                    })
+                      .map((val, key) => <>{
+                        console.log(key)
+                      }
+
+                        <tr className='text-[16px] '>
+                          <th className="w-6 border px-3 py-3">
+                            { key + 1 }
+                          </th>
+                          <th className=" w-14 border px-3 py-3">
+                            { moment(val.date).format("DD/MM/YYYY") }
+                          </th>
+                          <th className=" w-14 border px-3 py-3">
+                            { val.blp_id }
+                          </th>
+                          <th className=" w-14 border px-3 py-3">
+                            { val.isell }
+                          </th>
+                          <th className=" w-14 border px-3 py-3">
+                            { val.dc_no }
+                          </th>
+                          <th className=" w-14 border px-3 py-3">
+                            { val.name }
+                          </th>
+                          <th className=" w-14 border px-3 py-3">
+                            { val.city }
+                          </th>
+                          <th className=" w-14 border px-3 py-3">
+                            { val.nature }
+                          </th>
+                          <th className=" w-14 border px-3 py-3">
+                            { val.status }
+                          </th>
+                          <th className=" w-14 border px-3 py-3">
+                            { val.doneby }
+                          </th>
+                          <th className=" w-14 border px-3 py-3">
+                            { val.remarks1 }
+                          </th>
+                          <th className=" w-14 border px-3 py-3">
+                            { val.time }
+                          </th>
+
+                        </tr>
+                        </>
+                      )
 
 
                 }
+
+
+
 
 
               </tbody>

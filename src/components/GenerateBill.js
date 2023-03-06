@@ -10,7 +10,7 @@ import useAxiosPrivate from '../hooks/useAxiosPrivate';
 import { useLocation, useNavigate } from 'react-router';
 import Modal from '../modals/Modal';
 import Loader from './Loader';
-import logo from '../billicon.png';
+import logo from '../billicon5.png';
 import moment from 'moment/moment';
 
 const GenerateBill = () => {
@@ -195,9 +195,9 @@ const GenerateBill = () => {
                 <div className='flex justify-center w-full tracking-wide'>
                     <div className='flex flex-col container m-3 p-3 max-w-[1274px] border-slate-300'>
 
-                        <div className='flex flex-row w-full justify-between items-center font-bold'>
-                            <img className='w-24 h-24 ' alt="" srcSet={ logo } />
-                            <div className=' text-lg flex justify-center flex-col ml-2 mb-2 p-2'>
+                        <div className='flex flex-wrap flex-row w-full justify-between items-center font-bold'>
+                            <img className='min-w-fit h-24 ' alt="" srcSet={ logo } />
+                            <div className=' text-lg flex justify-center flex-col ml-2 mb-2'>
                                 <p className='text-fix'><span className=' underline-offset-4'>BLP ID:</span><span className='pl-1 font-normal text-slate-700'>{ user.blp_id }</span></p>
                                 <p className='text-fix'><span className=' underline-offset-4'>ISELL No.:</span><span className='pl-1 font-normal text-slate-700'>{ user.isell }</span></p>
                                 <p className='text-fix'><span className=' underline-offset-4'>DC No.:</span><span className='pl-1 font-normal text-slate-700'>{ user.dc_no }</span></p>
@@ -218,7 +218,7 @@ const GenerateBill = () => {
 
 
                 { grand1 > 0 ? <PrintTable1 /> : <></> }
-                { extratable && grand4 > 0 ? <PrintTable2 /> : <></> }
+                { grand4 > 0 ? <PrintTable2 /> : <></> }
                 { grand5 > 0 ? <PrintTable3 /> : <></> }
                 { grand2 > 0 ? <PrintTable4 /> : <></> }
                 { grand3 > 0 ? <PrintTable5 /> : <></> }

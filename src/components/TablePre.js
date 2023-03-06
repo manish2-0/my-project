@@ -7,26 +7,26 @@ const TablePre = () => {
         row5, setrow5,
         mul5, setmul5,
         grand5, setgrand5,
-        greaterval, setgreaterval,tot1,tot4
+        greaterval, setgreaterval, tot1, tot4
     } = useBill();
 
 
 
 
     useEffect(() => {
-        let a=parseFloat(tot1);
-        
-        let b=parseFloat(tot4);
+        let a = parseFloat(tot1);
 
-        let c=(a+b).toFixed(0)
+        let b = parseFloat(tot4);
 
-        c>200
-        ?setgreaterval({quantity: c-200, total: (5*(c-200)) })
-        :setgreaterval({quantity: 0, total: 0 })
+        let c = (a + b).toFixed(0)
 
-    }, [tot1,tot4]);
+        c > 200
+            ? setgreaterval({ quantity: c - 200, total: (5 * (c - 200)) })
+            : setgreaterval({ quantity: 0, total: 0 })
 
-   
+    }, [tot1, tot4]);
+
+
 
 
     const addrow = () => {
@@ -56,8 +56,8 @@ const TablePre = () => {
             a = 0;
         }
 
-        if(value==""){
-            value=0
+        if (value == "") {
+            value = 0
         }
 
 
@@ -78,7 +78,7 @@ const TablePre = () => {
 
     useEffect(() => {
         setmul5(row5.map((product, i) => (
-            { mul: parseInt( (product.quantity>0?product.quantity:0) * product.rate) }
+            { mul: parseInt((product.quantity > 0 ? product.quantity : 0) * product.rate) }
         )))
     }, [row5]);
 
@@ -88,8 +88,8 @@ const TablePre = () => {
         for (let i = 0; i < mul5.length; i++) {
             tot = tot + mul5[i].mul;
         }
-        setgrand5(tot+greaterval.total)
-    }, [mul5,greaterval]);
+        setgrand5(tot + greaterval.total)
+    }, [mul5, greaterval]);
 
 
     const deleterow = (key) => {
@@ -141,37 +141,37 @@ const TablePre = () => {
 
 
                             {
-                                ((parseFloat(tot1)+parseFloat(tot4)).toFixed(0))>200
-                                ?
-                                <tr className="bg-white border-b ">
+                                ((parseFloat(tot1) + parseFloat(tot4)).toFixed(0)) > 200
+                                    ?
+                                    <tr className="bg-white border-b ">
 
-                                <th className="w-24 px-6 py-2 text-center">
-                                    1
-                                </th>
+                                        <th className="w-24 px-6 py-2 text-center">
+                                            1
+                                        </th>
 
-                                <td className="p-2 px-4 text-base w-72 whitespace-wrap text-slate-700">
-                                       Measurement Charges(per sq.ft)-For above 200 sq.ft
-                                </td>
+                                        <td className="p-2 px-4 text-base w-72 whitespace-wrap text-slate-700">
+                                            Measurement Charges(per sq.ft)-For above 200 sq.ft
+                                        </td>
 
-                                <td className="p-1 text-center w-28 text-slate-700">
-                                {greaterval.quantity}sq.ft
-                                </td>
+                                        <td className="p-1 text-center w-28 text-slate-700">
+                                            { greaterval.quantity }sq.ft
+                                        </td>
 
-                                <td className="p-1 text-center w-28 ">
-                                    5/-
-                                </td>
+                                        <td className="p-1 text-center w-28 ">
+                                            5/-
+                                        </td>
 
-                                <td className="p-1 text-center w-28">
-                                    { greaterval.total }/-
-                                </td>
+                                        <td className="p-1 text-center w-28">
+                                            { greaterval.total }/-
+                                        </td>
 
-                                <td className="p-1 text-center text-red-700 w-28 text-bold">
-                                    {/* <button onClick={ () => { deleterow(key) } }>Delete</button> */}
-                                </td>
+                                        <td className="p-1 text-center text-red-700 w-28 text-bold">
+                                            {/* <button onClick={ () => { deleterow(key) } }>Delete</button> */ }
+                                        </td>
 
-                                 </tr>
+                                    </tr>
 
-                                 :<></>
+                                    : <></>
                             }
 
                             {
@@ -179,10 +179,10 @@ const TablePre = () => {
                                     <tr className="bg-white border-b ">
 
                                         <th className="w-24 px-6 py-2 text-center">
-                                            { 
-                                           ((parseFloat(tot1)+parseFloat(tot4)).toFixed(0))>200
-                                            ?key+2
-                                            :key + 1 
+                                            {
+                                                ((parseFloat(tot1) + parseFloat(tot4)).toFixed(0)) > 200
+                                                    ? key + 2
+                                                    : key + 1
                                             }
                                         </th>
 

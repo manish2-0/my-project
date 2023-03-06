@@ -387,7 +387,7 @@
 
 /* For Print */
 
-#printdate{
+#printdate {
   display: none;
 }
 
@@ -418,10 +418,16 @@
     padding: 0;
   }
 
-  #printdate{
+  #printdate {
     display: block;
   }
 
+  #report {
+    
+    padding: 0;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
 
 
 }
