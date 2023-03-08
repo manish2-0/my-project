@@ -76,7 +76,7 @@ function ExtraView1() {
     }
     const downloadfile = async (f) => {
 
-        window.open(`http://localhost:8000/file/download/${f.fname}`,"_self");
+        window.open(`https://blp-node-api.vercel.app/file/download/${f.fname}`,"_self");
 
     }
 
