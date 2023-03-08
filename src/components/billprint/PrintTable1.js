@@ -12,26 +12,35 @@ const PrintTable1 = () => {
         grand1, setgrand1,
         fabri1, setfabri1,
         fabrirate1, setfabrirate1,
+        inputval1, setinputval1,
+
         row2, setrow2,
         mul2, setmul2,
         grand2, setgrand2,
+
         entries, setentries,
         grand3, setgrand3,
+
         row4, setrow4,
         mul4, setmul4,
         tot4, settot4,
-        fixrate4, setfixrate4,
-        varrate4, setvarrate4,
+        toparea, settoparea,
+        panelarea, setpanelarea,
         grand4, setgrand4,
         fabri4, setfabri4,
+        panelamount, setpanelamount,
+        topamount, settopamount,
         fabrirate4, setfabrirate4,
+        inputval4, setinputval4,
+
         billtotal, setbilltotal,
-        extratable, setextratable,
+
         row5, setrow5,
         mul5, setmul5,
         greaterval, setgreaterval,
         grand5, setgrand5
     } = useBill();
+
 
     return (
         <>
@@ -69,16 +78,14 @@ const PrintTable1 = () => {
 
                             </tr>
                         </thead>
-                        <tbody className=''>
+                        <tbody className='text-base'>
                             <>
 
-                                <tr className="text-center bg-white border-b">
-                                    <th className="px-6 py-2 whitespace-wrap">
-                                        Fixing of Quantra  Top on Kitchen Cabinet/ Dinining table.
+                                <tr className=" bg-white border-b">
+                                    <th colSpan={ 6 } className="px-6 py-2 whitespace-wrap">
+                                        {inputval1}
                                     </th>
-                                    <th colSpan={ 5 } className="px-6 py-2 whitespace-wrap ">
-
-                                    </th>
+                                    
 
                                 </tr>
 
@@ -90,31 +97,52 @@ const PrintTable1 = () => {
                                                 { value.userinput }
                                             </th>
 
-                                            <td className="p-1 text-base text-center border">
-                                                { value.type }
-                                            </td>
 
-                                            <td className="p-1 text-center border">
-                                                { value.quantity }
-                                            </td>
+                                            {
+                                                value.type != "Select option..."
+                                                    ? <td className="p-1 text-base text-center border">
+                                                        { value.type }
+                                                    </td>
+                                                    : <td className="p-1 text-base text-center border">-
+                                                    </td>
+                                            }
 
-                                            <td className="p-1 text-center border">
-                                                { value.length }
-                                            </td>
+                                            {
+                                                parseInt(value.quantity) > 0
+                                                    ? <td className="p-1 text-base text-center border">
+                                                        { value.quantity }
+                                                    </td>
+                                                    : <td className="p-1 text-base text-center border">-
+                                                    </td>
+                                            }
+
+{
+                                                parseInt(value.length) > 0
+                                                    ? <td className="p-1 text-base text-center border">
+                                                        { value.length }
+                                                    </td>
+                                                    : <td className="p-1 text-base text-center border">-
+                                                    </td>
+                                            }
 
                                             {
                                                 value.breadth > 0
                                                     ? <td className="p-1 text-center border">
                                                         { value.breadth }
                                                     </td>
-                                                    : <td className="p-1 text-center border"></td>
+                                                    : <td className="p-1 text-center border">-</td>
 
                                             }
 
 
-                                            <td className="w-full p-1 text-center border">
-                                                { mul1[key].mul }
-                                            </td>
+{
+                                               mul1[key].mul > 0
+                                                    ? <td className="p-1 text-center border">
+                                                        { mul1[key].mul }
+                                                    </td>
+                                                    : <td className="p-1 text-center border">-</td>
+
+                                            }
 
 
                                         </tr>

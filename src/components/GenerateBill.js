@@ -36,21 +36,29 @@ const GenerateBill = () => {
         grand1, setgrand1,
         fabri1, setfabri1,
         fabrirate1, setfabrirate1,
+        inputval1, setinputval1,
+
         row2, setrow2,
         mul2, setmul2,
         grand2, setgrand2,
+
         entries, setentries,
         grand3, setgrand3,
+
         row4, setrow4,
         mul4, setmul4,
         tot4, settot4,
-        fixrate4, setfixrate4,
-        varrate4, setvarrate4,
+        toparea, settoparea,
+        panelarea, setpanelarea,
         grand4, setgrand4,
         fabri4, setfabri4,
+        panelamount, setpanelamount,
+        topamount, settopamount,
         fabrirate4, setfabrirate4,
+        inputval4, setinputval4,
+
         billtotal, setbilltotal,
-        extratable, setextratable,
+
         row5, setrow5,
         mul5, setmul5,
         greaterval, setgreaterval,
@@ -64,28 +72,35 @@ const GenerateBill = () => {
         setfixrate1(0);
         setvarrate1(0);
         setgrand1(0);
-        setfabri1("Select option...");
-        setfabrirate1(0);
+        setfabri1("Fabrication at Factory");
+        setfabrirate1(153);
+        setinputval1("Fixing of Quantra Top on Kitchen Cabinet/ Dinining table.");
+
         setrow2([]);
         setmul2([]);
         setgrand2(0);
+
         setentries([]);
         setgrand3(0);
-        setrow4([]);
+
         setmul4([]);
+        setrow4([]);
         settot4(0);
-        setfixrate4(0);
-        setvarrate4(0);
+        settoparea(0);
+        setpanelarea(0);
         setgrand4(0);
-        setfabri4("Select option...");
-        setfabrirate4(0);
-        setbilltotal(0);
-        setextratable(false);
+        setpanelamount(0);
+        settopamount(0);
+        setfabri4("Fabrication at Site");
+        setfabrirate4({ top: 405, panel: 297 });
+        setinputval4("Fixing of Quantra Top on Kitchen Cabinet/ Dinining table.");
+
         setrow5([]);
         setmul5([]);
         setgreaterval({ quantity: 0, total: 0 });
         setgrand5(0);
 
+        setbilltotal(0);
     }
 
     const getbilldata = async () => {
@@ -125,8 +140,6 @@ const GenerateBill = () => {
             });
         }
 
-
-
     }
 
     const setdatabasevalues = (data) => {
@@ -138,25 +151,33 @@ const GenerateBill = () => {
         setgrand1(data.grand1);
         setfabri1(data.fabri1);
         setfabrirate1(data.fabrirate1);
+        setinputval1(data.inputval1);
+
         setrow2(data.row2);
         setmul2(data.mul2);
         setgrand2(data.grand2);
+
         setentries(data.entries);   //check
         setgrand3(data.grand3);   //check
-        setrow4(data.row4);
+
         setmul4(data.mul4);
+        setrow4(data.row4);
         settot4(data.tot4);
-        setfixrate4(data.fixrate4);
-        setvarrate4(data.varrate4);
+        settoparea(data.toparea);
+        setpanelarea(data.panelarea);
         setgrand4(data.grand4);
         setfabri4(data.fabri4);
+        setpanelamount(data.panelamount);
+        settopamount(data.topamount);
         setfabrirate4(data.fabrirate4);
-        setbilltotal(data.billtotal);  //check
-        setextratable(data.extratable);
+        setinputval4(data.inputval4);
+
         setrow5(data.row5);
         setmul5(data.mul5);
         setgreaterval(data.greaterval);
         setgrand5(data.grand5);
+
+        setbilltotal(data.billtotal);  //check
 
     }
 

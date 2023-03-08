@@ -12,26 +12,35 @@ const PrintTable4 = () => {
         grand1, setgrand1,
         fabri1, setfabri1,
         fabrirate1, setfabrirate1,
+        inputval1, setinputval1,
+
         row2, setrow2,
         mul2, setmul2,
         grand2, setgrand2,
+
         entries, setentries,
         grand3, setgrand3,
+
         row4, setrow4,
         mul4, setmul4,
         tot4, settot4,
-        fixrate4, setfixrate4,
-        varrate4, setvarrate4,
+        toparea, settoparea,
+        panelarea, setpanelarea,
         grand4, setgrand4,
         fabri4, setfabri4,
+        panelamount, setpanelamount,
+        topamount, settopamount,
         fabrirate4, setfabrirate4,
+        inputval4, setinputval4,
+
         billtotal, setbilltotal,
-        extratable, setextratable,
+
         row5, setrow5,
         mul5, setmul5,
         greaterval, setgreaterval,
         grand5, setgrand5
     } = useBill();
+
 
 
     return (

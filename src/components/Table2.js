@@ -12,6 +12,7 @@ const Table2 = () => {
         ,varrate1, setvarrate1
         ,grand1, setgrand1
         ,fabri1, setfabri1
+        ,inputval1, setinputval1
         ,fabrirate1, setfabrirate1 } = useBill();
 
     const add = () => {
@@ -38,6 +39,13 @@ const Table2 = () => {
         setrow1(row1.map((product, i) => (
             i === key ? { ...product, [name]: value } : product
         )))
+
+    }
+
+    function inputval1change(e) {
+        e.preventDefault();
+        console.log(e.target.value)
+        setinputval1(e.target.value)
 
     }
 
@@ -131,12 +139,8 @@ const Table2 = () => {
 
             <div className='container px-3 m-auto max-w-[1300px] mb-6'>
                 <div className='flex items-center w-full'>
-                    <p className='text-lg text-fix'>Fabrication Type:</p>
-                    <select name="fabri" value={ fabri1 } onChange={ e => { handlefabrichange(e.target.value) } } className='mx-2 border outline-none border-slate-200 text-slate-700 w-fit ' id="">
-                        <option>Select option...</option>
-                        <option>Fabrication at Site</option>
-                        <option>Fabrication at Factory</option>
-                    </select>
+                    <p className='text-lg text-fix'>Fabrication Type: {fabri1}</p>
+                  
                 </div>
                 <div className="relative overflow-x-auto scrollbar-hide">
                     <table className="mx-auto my-1 text-sm text-left text-gray-500 border shadow-md table-fixed ">
@@ -172,8 +176,8 @@ const Table2 = () => {
 
 
                             <tr className="text-center bg-white border-b">
-                                <th className="px-6 py-2 whitespace-nowrap">
-                                    Fixing of Quantra  Top on Kitchen Cabinet/ Dinining table.
+                                <th colSpan={7} className="px-6 py-2 whitespace-nowrap">
+                                    <input type="text" className='w-full border-none outline-none' onChange={inputval1change} value={inputval1} />
                                 </th>
                             </tr>
 

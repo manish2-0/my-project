@@ -4,138 +4,118 @@ import useBill from '../hooks/useBill';
 
 const ExtraBillTable = () => {
 
-  const { 
-    row4, setrow4
-    ,mul4, setmul4
-    ,tot4, settot4
-    ,fixrate4, setfixrate4
-    ,varrate4, setvarrate4
-    ,grand4, setgrand4
-    ,fabri4, setfabri4
-    ,fabrirate4, setfabrirate4 } = useBill();
+    const {
+        row4, setrow4,
+        mul4, setmul4,
+        tot4, settot4,
+        toparea, settoparea,
+        panelarea, setpanelarea,
+        grand4, setgrand4,
+        fabri4, setfabri4,
+        fabrirate4, setfabrirate4,
+        inputval4, setinputval4,
+        panelamount, setpanelamount,
+        topamount, settopamount
+    } = useBill();
+
+
+    function inputval4change(e) {
+        e.preventDefault();
+        console.log(e.target.value)
+        setinputval4(e.target.value)
+
+    }
 
 
     const add = () => {
-      setrow4(v => [...v, {userinput:"", type: "Select option...", quantity: 0, length: 0, breadth: 0 }])
-      setmul4(a => [...a, { mul: 0 }])
-  }
+        setrow4(v => [...v, { userinput: "", opt: "Select option...", type: "Select option...", quantity: 0, length: 0, breadth: 0 }])
+        setmul4(a => [...a, { mul: 0 }])
+    }
 
-  const deleterow = (key) => {
-      setrow4(
-           row4.filter((_, i) => i !== key)
-      )
-      setmul4( mul4.filter((_, i) => i !== key)
-      )
+    const deleterow = (key) => {
+        setrow4(
+            row4.filter((_, i) => i !== key)
+        )
+        setmul4(mul4.filter((_, i) => i !== key)
+        )
 
-  }
-
-  function consoleval(){
-      console.log(row4)
-      console.log(mul4)
-  }
-
-
-  function handlechange(key, name, value) {
-      setrow4(row4.map((product, i) => (
-          i === key ? { ...product, [name]: value } : product
-      )))
-
-  }
-
-
-  useEffect(() => {
-
-      setmul4(row4.map((product, i) => {
-          if (product.type === "SQFT") {
-              return { mul: (product.length * product.breadth * product.quantity * 0.000010764).toFixed(2) };
-          }
-          else if (product.type === "RFT") {
-              return { mul: (product.length * product.quantity * 0.00328).toFixed(2) };
-          }
-          else {
-              return { mul: 0 };
-          }
-      }))
-
-  }, [row4]);
-
-
-  useEffect(() => {
-      let a = 0;
-
-      for (let i = 0; i < mul4.length; i++) {
-          a = a + parseFloat(mul4[i].mul);
-      }
-
-      settot4(a.toFixed(2));
-  }, [mul4]);
-
-
-  useEffect(() => {
-
-      if (fabri4 == "Select option...") {
-          setfixrate4(0);
-          setvarrate4(0);
-          setgrand4(0);
-      }
-
-      else {
-          if (tot4 > 0 && tot4 <= 50) {
-              setfixrate4(8100);
-              setvarrate4(0);
-              setgrand4(8100);
-          }
-
-          if (tot4 > 50) {
-              setfixrate4(8100);
-              setvarrate4(((tot4 - 50) * fabrirate4).toFixed());
-              setgrand4((8100 + (tot4 - 50) * fabrirate4).toFixed());
-
-          }
-
-          if (tot4 <= 0) {
-              setfixrate4(0);
-              setvarrate4(0);
-              setgrand4(0);
-
-          }
-      }
+    }
 
 
 
+    function handlechange(key, name, value) {
+        setrow4(row4.map((product, i) => (
+            i === key ? { ...product, [name]: value } : product
+        )))
 
-  }, [tot4, fabri4]);
-
-
-  function handlefabrichange(value) {
-      if (value == "Fabrication at Site") {
-          setfabri4(value);
-          setfabrirate4(100);
-      }
-      else if (value == "Fabrication at Factory") {
-          setfabri4(value);
-          setfabrirate4(50);
-      }
-      else {
-          setfabri4(value);
-          setfabrirate4(0);
-      }
-
-  }
+    }
 
 
-  return (
-    <>
+    useEffect(() => {
+
+        setmul4(row4.map((product, i) => {
+            if (product.opt != "Select option..." && product.type === "SQFT") {
+                return { mul: (product.length * product.breadth * product.quantity * 0.000010764).toFixed(2) };
+            }
+            else if (product.opt != "Select option..." && product.type === "RFT") {
+                return { mul: (product.length * product.quantity * 0.00328).toFixed(2) };
+            }
+            else {
+                return { mul: 0 };
+            }
+        }))
+
+    }, [row4]);
+
+
+    useEffect(() => {
+        let tot = 0;
+        let areaoftop = 0;
+        let areaofpanel = 0;
+
+        for (let i = 0; i < mul4.length; i++) {
+            tot = tot + parseFloat(mul4[i].mul);
+
+            if (row4[i].opt == "Top") {
+                areaoftop = areaoftop + parseFloat(mul4[i].mul);
+            }
+
+            if (row4[i].opt == "Panel") {
+                areaofpanel = areaofpanel + parseFloat(mul4[i].mul);
+            }
+
+        }
+
+        settot4(tot.toFixed(2));
+        settoparea(areaoftop.toFixed(2));
+        setpanelarea(areaofpanel.toFixed(2));
+
+    }, [mul4]);
+
+
+    useEffect(() => {
+        settopamount((parseFloat(toparea) * fabrirate4.top).toFixed(0));
+    }, [toparea]);
+
+    useEffect(() => {
+        setpanelamount((parseFloat(panelarea) * fabrirate4.panel).toFixed(0));
+    }, [panelarea]);
+
+
+    useEffect(() => {
+        setgrand4(parseInt(topamount) + parseInt(panelamount));
+    }, [topamount, panelamount]);
+
+
+
+    return (
+        <>
             <p className='container px-3 m-auto max-w-[1300px] text-2xl'>Extra Bill:</p>
 
             <div className='container px-3 m-auto max-w-[1300px] mb-6'>
                 <div className='flex items-center w-full'>
-                    <p className='text-lg text-fix'>Fabrication Type:</p>
-                    <select name="fabri" value={ fabri4 } onChange={ e => { handlefabrichange(e.target.value) } } className='mx-2 border outline-none border-slate-200 text-slate-700 w-fit ' id="">
-                        <option>Select option...</option>
-                        <option>Fabrication at Site</option>
-                        <option>Fabrication at Factory</option>
-                    </select>
+                    <p className='text-lg text-fix'>Fabrication Type: { fabri4 }</p>
+
                 </div>
                 <div className="relative overflow-x-auto scrollbar-hide">
                     <table className="mx-auto my-1 text-sm text-left text-gray-500 border shadow-md table-fixed ">
@@ -144,10 +124,13 @@ const ExtraBillTable = () => {
                                 <th scope="col" className="w-1/2 px-6 py-3 text-center border">
                                     ITEM
                                 </th>
-                                <th scope="col" className="p-2 px-8 text-center border w-28">
+                                <th scope="col" className="p-2 px-8 text-center border w-20">
+                                    TYPE
+                                </th>
+                                <th scope="col" className="p-2 px-8 text-center border w-20">
                                     RFT/SQFT
                                 </th>
-                                <th scope="col" className="p-2 px-8 text-center border w-28">
+                                <th scope="col" className="p-2 px-8 text-center border w-20">
                                     QUANTITY
                                 </th>
                                 <th scope="col" className="p-2 px-8 text-center border w-28">
@@ -171,8 +154,8 @@ const ExtraBillTable = () => {
 
 
                             <tr className="text-center bg-white border-b">
-                                <th className="px-6 py-2 whitespace-nowrap">
-                                    Fixing of Quantra  Top on Kitchen Cabinet/ Dinining table.
+                                <th colSpan={ 8 } className="px-6 py-2 whitespace-nowrap">
+                                    <input type="text" className='w-full border-none outline-none' onChange={ inputval4change } value={ inputval4 } />
                                 </th>
                             </tr>
 
@@ -182,11 +165,19 @@ const ExtraBillTable = () => {
                                     <tr className="bg-white border-b ">
 
                                         <th className="w-48 px-6 py-2 text-right whitespace-nowrap">
-                                            <input value={value.userinput} onChange={ e => { handlechange(key, e.target.name, e.target.value) } } name="userinput" type="text" className='w-full p-1 text-right border-none outline-none hideinput' />
+                                            <input value={ value.userinput } onChange={ e => { handlechange(key, e.target.name, e.target.value) } } name="userinput" type="text" className='w-full p-1 text-right border-none outline-none hideinput' />
                                         </th>
 
-                                        <td className="p-1 w-28">
-                                            <select value={ value.type } onChange={ e => { handlechange(key, e.target.name, e.target.value) } } className='text-black border-none outline-none w-fit ' name="type" id="">
+                                        <td className="p-1 w-16">
+                                            <select value={ value.opt } onChange={ e => { handlechange(key, e.target.name, e.target.value) } } className='text-black border-none outline-none max-w-fit ' name="opt" id="">
+                                                <option>Select option...</option>
+                                                <option>Top</option>
+                                                <option>Panel</option>
+                                            </select>
+                                        </td>
+
+                                        <td className="p-1 w-16">
+                                            <select value={ value.type } onChange={ e => { handlechange(key, e.target.name, e.target.value) } } className='text-black border-none outline-none max-w-fit ' name="type" id="">
                                                 <option>Select option...</option>
                                                 <option>SQFT</option>
                                                 <option>RFT</option>
@@ -198,11 +189,11 @@ const ExtraBillTable = () => {
                                         </td>
 
                                         <td className="p-1 text-center w-28">
-                                            <input value={ value.length } onChange={ e => { handlechange(key, e.target.name, e.target.value) } } hidden={ value.type == "SQFT" || value.type == "RFT" ? false : true } className='p-1 text-center border outline-none border-slate-200 w-28 hideinput ' name="length" type="number" />
+                                            <input value={ value.length } onChange={ e => { handlechange(key, e.target.name, e.target.value) } } hidden={ value.opt != "Select option..." && (value.type == "SQFT" || value.type == "RFT") ? false : true } className='p-1 text-center border outline-none border-slate-200 w-28 hideinput ' name="length" type="number" />
                                         </td>
 
                                         <td className="p-1 text-center w-28">
-                                            <input value={ value.breadth } onChange={ e => { handlechange(key, e.target.name, e.target.value) } } hidden={ value.type == "SQFT" ? false : true } className='p-1 text-center border outline-none border-slate-200 w-28 hideinput ' name="breadth" type="number" />
+                                            <input value={ value.breadth } onChange={ e => { handlechange(key, e.target.name, e.target.value) } } hidden={ value.opt != "Select option..." && value.type == "SQFT" ? false : true } className='p-1 text-center border outline-none border-slate-200 w-28 hideinput ' name="breadth" type="number" />
                                         </td>
 
                                         <td className="p-1 text-center w-28">
@@ -222,7 +213,7 @@ const ExtraBillTable = () => {
 
                                 <tr className="bg-white border-b ">
 
-                                    <td colSpan={ 5 } className="p-1 text-right text-fix text-lg">
+                                    <td colSpan={ 6 } className="p-1 text-right text-fix text-lg">
                                         Total Area:
                                     </td>
 
@@ -234,24 +225,48 @@ const ExtraBillTable = () => {
 
                                 <tr className="bg-white border-b ">
 
-                                    <td colSpan={ 5 } className="p-1 text-right text-fix text-lg">
-                                        Total Fixed(for 50sqft or below):
+                                    <td colSpan={ 6 } className="p-1 text-right text-fix text-lg">
+                                        Total Area of Top:
                                     </td>
 
                                     <td colSpan={ 2 } className="p-1 text-center text-base">
-                                        ₹{ fixrate4 }
+                                        { toparea } sq.ft
                                     </td>
 
                                 </tr>
 
                                 <tr className="bg-white border-b ">
 
-                                    <td colSpan={ 5 } className="p-1 text-right text-fix text-lg">
-                                        Total (for above 50sqft@₹{ fabrirate4 } ):
+                                    <td colSpan={ 6 } className="p-1 text-right text-fix text-lg">
+                                        Total Area of Panel:
                                     </td>
 
                                     <td colSpan={ 2 } className="p-1 text-center text-base">
-                                        ₹{ varrate4 }
+                                        { panelarea } sq.ft
+                                    </td>
+
+                                </tr>
+
+                                <tr className="bg-white border-b ">
+
+                                    <td colSpan={ 6 } className="p-1 text-right text-fix text-lg">
+                                        Total Amount of Top @₹{ fabrirate4.top }:
+                                    </td>
+
+                                    <td colSpan={ 2 } className="p-1 text-center text-base">
+                                        ₹{ topamount }
+                                    </td>
+
+                                </tr>
+
+                                <tr className="bg-white border-b ">
+
+                                    <td colSpan={ 6 } className="p-1 text-right text-fix text-lg">
+                                        Total Amount of Panel @₹{ fabrirate4.panel }:
+                                    </td>
+
+                                    <td colSpan={ 2 } className="p-1 text-center text-base">
+                                        ₹{ panelamount }
                                     </td>
 
                                 </tr>
@@ -260,11 +275,11 @@ const ExtraBillTable = () => {
 
                                     <td colSpan={ 1 } className="p-2 pl-4 text-base">
                                         <button onClick={ () => { add() } } className='px-6 py-1 text-white bg-fix'>Add</button>
-                                        {/* <button onClick={ () => { consoleval() } } className='px-6 py-1 text-white bg-fix'>Console</button> */}
+
 
                                     </td>
 
-                                    <td colSpan={ 4 } className="p-1 text-right text-fix text-lg">
+                                    <td colSpan={ 5 } className="p-1 text-right text-fix text-lg">
                                         Grand Total:
                                     </td>
 
@@ -283,7 +298,7 @@ const ExtraBillTable = () => {
 
             </div>
         </>
-  )
+    )
 }
 
 export default ExtraBillTable
