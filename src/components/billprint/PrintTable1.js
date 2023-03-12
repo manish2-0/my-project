@@ -45,33 +45,33 @@ const PrintTable1 = () => {
     return (
         <>
 
-            <p className='container px-3 m-auto max-w-[1300px] text-2xl'>Bill 1:</p>
+            <p className='container px-3 m-auto max-w-[1300px] text-xl'>Bill 1:</p>
 
             <div className='container px-3 m-auto max-w-[1300px] mb-6'>
                 <div className='flex items-center w-full'>
-                    <p className='text-lg text-fix'><span className='underline underline-offset-4'>Fabrication Type:</span><span className='text-slate-600'> { fabri1 }</span></p>
+                    <p className='text-lg font-medium text-fix'><span className='underline underline-offset-4'>Fabrication Type:</span><span className='text-slate-600'> { fabri1 }</span></p>
                 </div>
                 <div className="relative overflow-x-auto scrollbar-hide">
-                    <table className="mx-auto my-1 text-sm text-left text-gray-500 border shadow-md table-fixed ">
-                        <thead className="text-white border-b border-gray-300 bg-fix">
+                    <table className="mx-auto my-1 text-sm text-left border shadow table-fixed text-slate-600 ">
+                        <thead className="text-white bg-fix">
                             <tr className=''>
-                                <th scope="col" className="w-full min-w-[250px] px-6 py-3 text-center border ">
+                                <th scope="col" className="w-full min-w-[250px]  px-6 py-3 text-center border border-slate-200 ">
                                     Item
                                 </th>
-                                <th scope="col" className="p-2 px-3 text-center border w-14">
+                                <th scope="col" className="p-2 px-3 text-center border border-slate-200 w-14">
                                     RFT/SQFT
                                 </th>
-                                <th scope="col" className="p-2 px-4 text-center border w-14">
+                                <th scope="col" className="p-2 px-4 text-center border border-slate-200 w-14">
                                     Quantity
                                 </th>
-                                <th scope="col" className="w-16 p-2 px-4 text-center border">
+                                <th scope="col" className="w-16 p-2 px-4 text-center border border-slate-200">
                                     Length <span className='block text-xs text-center'>(in mm)</span>
                                 </th>
-                                <th scope="col" className="w-16 p-2 px-4 text-center border">
+                                <th scope="col" className="w-16 p-2 px-4 text-center border border-slate-200">
                                     Breadth <span className='block text-xs text-center'>(in mm)</span>
                                 </th>
 
-                                <th scope="col" className="w-24 text-sm text-center border px-7">
+                                <th scope="col" className="w-24 text-sm text-center border border-slate-300 px-7">
                                     Area <span className='block text-xs text-center'>(in sqft)</span>
                                 </th>
 
@@ -81,7 +81,7 @@ const PrintTable1 = () => {
                         <tbody className='text-base'>
                             <>
 
-                                <tr className=" bg-white border-b">
+                                <tr className="bg-white border border-slate-200">
                                     <th colSpan={ 6 } className="px-6 py-2 whitespace-wrap">
                                         {inputval1}
                                     </th>
@@ -91,56 +91,56 @@ const PrintTable1 = () => {
 
                                 {
                                     row1.map((value, key) =>
-                                        <tr className="m-3 bg-white border-b">
+                                        <tr className="m-3 bg-white border border-slate-200">
 
-                                            <th className="pr-4 text-right border whitespace-wrap">
+                                            <td className="pr-4 font-medium text-right border border-slate-200 whitespace-wrap">
                                                 { value.userinput }
-                                            </th>
+                                            </td>
 
 
                                             {
                                                 value.type != "Select option..."
-                                                    ? <td className="p-1 text-base text-center border">
+                                                    ? <td className="p-1 text-base text-center border border-slate-200">
                                                         { value.type }
                                                     </td>
-                                                    : <td className="p-1 text-base text-center border">-
+                                                    : <td className="p-1 text-base text-center border border-slate-200">-
                                                     </td>
                                             }
 
                                             {
                                                 parseInt(value.quantity) > 0
-                                                    ? <td className="p-1 text-base text-center border">
+                                                    ? <td className="p-1 text-base text-center border border-slate-200">
                                                         { value.quantity }
                                                     </td>
-                                                    : <td className="p-1 text-base text-center border">-
+                                                    : <td className="p-1 text-base text-center border border-slate-200">-
                                                     </td>
                                             }
 
 {
                                                 parseInt(value.length) > 0
-                                                    ? <td className="p-1 text-base text-center border">
+                                                    ? <td className="p-1 text-base text-center border border-slate-200">
                                                         { value.length }
                                                     </td>
-                                                    : <td className="p-1 text-base text-center border">-
+                                                    : <td className="p-1 text-base text-center border border-slate-200">-
                                                     </td>
                                             }
 
                                             {
                                                 value.breadth > 0
-                                                    ? <td className="p-1 text-center border">
+                                                    ? <td className="p-1 text-center border border-slate-200">
                                                         { value.breadth }
                                                     </td>
-                                                    : <td className="p-1 text-center border">-</td>
+                                                    : <td className="p-1 text-center border border-slate-200">-</td>
 
                                             }
 
 
 {
                                                mul1[key].mul > 0
-                                                    ? <td className="p-1 text-center border">
+                                                    ? <td className="p-1 text-center border border-slate-200">
                                                         { mul1[key].mul }
                                                     </td>
-                                                    : <td className="p-1 text-center border">-</td>
+                                                    : <td className="p-1 text-center border border-slate-200">-</td>
 
                                             }
 
@@ -153,7 +153,7 @@ const PrintTable1 = () => {
 
                                 <>
 
-                                    <tr className="bg-white border-b ">
+                                    <tr className="bg-white border border-slate-200 ">
 
                                         <td colSpan={ 4 } className="p-1 text-base text-right text-fix">
                                             Total Area:
@@ -165,7 +165,7 @@ const PrintTable1 = () => {
 
                                     </tr>
 
-                                    <tr className="bg-white border-b ">
+                                    <tr className="bg-white border border-slate-200 ">
 
                                         <td colSpan={ 4 } className="p-1 text-base text-right text-fix">
                                             Total Fixed(for 50sqft or below):
@@ -177,7 +177,7 @@ const PrintTable1 = () => {
 
                                     </tr>
 
-                                    <tr className="bg-white border-b ">
+                                    <tr className="bg-white border border-slate-200 ">
 
                                         <td colSpan={ 4 } className="p-1 text-base text-right text-fix">
                                             Total (for above 50sqft@₹{ fabrirate1 } ):
@@ -189,11 +189,11 @@ const PrintTable1 = () => {
 
                                     </tr>
 
-                                    <tr className="bg-white border-b ">
+                                    <tr className="bg-white border border-slate-200 ">
 
 
 
-                                        <td colSpan={ 4 } className="p-1 text-base text-right text-fix">
+                                        <td colSpan={ 4 } className="p-1 text-base text-right underline underline-offset-2 text-fix">
                                             Grand Total:
                                         </td>
 

@@ -393,10 +393,32 @@
 
 @media print {
   #generatebill {
+    page-break-inside: avoid;
+    size: A4 portrait;
+    zoom:70%;
+    /* font-size: 50pt; */
     padding: 0;
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
   }
+
+  #report {
+    page-break-inside: avoid;
+    size: A4 landscape;
+    zoom:70%;
+    /* font-size: 50pt; */
+    padding: 0;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  #reportform {
+    display: none;
+  }
+
+
+
+
 
   #navbarprivate {
     display: none;

@@ -45,26 +45,25 @@ const PrintTable4 = () => {
 
     return (
         <>
-            <p className='container px-3 m-auto max-w-[1300px] text-2xl'>Bill 2:</p>
-
+            <p className='container px-3 m-auto max-w-[1300px] text-xl'>Bill 2:</p>
             <div className='container px-3 m-auto max-w-[1300px] mb-6'>
                 <div className="relative overflow-x-auto scrollbar-hide">
-                    <table className="w-full mx-auto my-1 text-sm text-left text-gray-500 border shadow-md table-fixed whitespace-wrap">
-                        <thead className="text-white border-b border-gray-300 bg-fix">
+                    <table className="w-full mx-auto my-1 text-sm text-left border shadow-md table-fixed border-slate-200 text-slate-600 whitespace-wrap">
+                        <thead className="text-white bg-fix">
                             <tr className='text-base '>
-                                <th scope="col" className="w-16 px-2 py-3 text-center border ">
+                                <th scope="col" className="w-16 px-2 py-3 text-center border border-slate-200 ">
                                     No.
                                 </th>
-                                <th scope="col" className="px-6 py-3 text-center border w-72">
+                                <th scope="col" className="px-6 py-3 text-center border border-slate-200 w-72">
                                     ITEM
                                 </th>
-                                <th scope="col" className="w-24 p-2 px-4 text-center border">
+                                <th scope="col" className="w-24 p-2 px-4 text-center border border-slate-200">
                                     Quantity
                                 </th>
-                                <th scope="col" className="w-24 p-2 px-4 text-center border">
+                                <th scope="col" className="w-24 p-2 px-4 text-center border border-slate-200">
                                     Rate(in ₹)
                                 </th>
-                                <th scope="col" className="w-24 p-2 px-4 text-center border">
+                                <th scope="col" className="w-24 p-2 px-4 text-center border border-slate-200">
                                     Total
                                 </th>
 
@@ -76,25 +75,25 @@ const PrintTable4 = () => {
 
                             {
                                 row2.map((value,key)=>
-                                <tr className="border-b ">
+                                <tr className="">
 
-                                <th className="p-2 text-center border">
+                                <th className="p-1 px-2 font-medium text-center border border-slate-200">
                                     {key+1}
                                 </th>
 
-                                <td className="p-2 text-base border whitespace-wrap text-slate-700">
+                                <td className="p-1 px-2 text-base border border-slate-200 whitespace-wrap">
                                     {value.item}
                                 </td>
 
-                                <td className="p-2 text-center border ">
+                                <td className="p-1 px-2 text-center border border-slate-200 ">
                                     {value.quantity}
                                 </td>
 
-                                <td className="p-2 text-center border ">
+                                <td className="p-1 px-2 text-center border border-slate-200 ">
                                     {value.rate}/-
                                 </td>
 
-                                <td className="p-2 text-center border">
+                                <td className="p-1 px-2 text-center border border-slate-200">
                                     {mul2[key].mul}/-
                                 </td>
 
@@ -106,10 +105,10 @@ const PrintTable4 = () => {
 
                             <tr className="border-b ">
 
-                                <td colSpan={ 3 } className="p-2 pr-3 text-lg text-right text-fix">
+                                <td colSpan={ 3 } className="p-1 px-2 pr-3 text-base text-right underline underline-offset-2 text-fix">
                                     Grand Total:
                                 </td>
-                                <td colSpan={ 2 } className="p-2 text-lg text-center ">
+                                <td colSpan={ 2 } className="p-1 px-2 text-base text-center ">
                                     ₹{grand2}
                                 </td>
                             </tr>

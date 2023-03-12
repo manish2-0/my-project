@@ -46,20 +46,20 @@ const PrintTable5 = () => {
 
     return (
         <>
-            <p className='container px-3 m-auto max-w-[1300px] text-2xl'>Bill 3:</p>
+            <p className='container px-3 m-auto max-w-[1300px] text-xl'>Bill 3:</p>
 
             <div className='container max-w-[1300px] flex flex-col items-center justify-center px-3 m-auto'>
 
                 <div className="container relative mb-3 overflow-x-auto scrollbar-hide">
 
 
-                    <table className="w-full my-1 text-sm text-left text-gray-500 border shadow-md table-fixed">
-                        <thead className="w-full text-white border-b border-gray-300 bg-fix ">
+                    <table className="w-full my-1 text-base text-left border shadow-md table-fixed text-slate-600">
+                        <thead className="w-full text-white border border-slate-200 bg-fix ">
                             <tr className='text-base '>
-                                <th scope="col" className="w-56 p-2 px-8 text-center border ">
+                                <th scope="col" className="w-56 p-2 px-8 text-center border border-slate-200 ">
                                     Item
                                 </th>
-                                <th scope="col" className="p-2 px-8 text-center border w-28 ">
+                                <th scope="col" className="p-2 px-8 text-center border border-slate-200 w-28 ">
                                     Amount
                                 </th>
 
@@ -73,8 +73,8 @@ const PrintTable5 = () => {
                                     (parseInt(value.food) + parseInt(value.travelling) + parseInt(value.accomodation) + parseInt(value.expenses)) > 0
                                         ? <>
 
-                                            <tr className="bg-white ring-gray-400 ring-2 ring-inset ">
-                                                <th colSpan={ 2 } className="p-2 text-left">
+                                            <tr className="bg-white ring-slate-400 ring-2 ring-inset">
+                                                <th colSpan={ 2 } className="p-1 text-left">
                                                     Date: { moment(value.date).format("DD MMMM YYYY") },{ value.nature }
                                                 </th>
 
@@ -82,20 +82,20 @@ const PrintTable5 = () => {
 
                                             {
                                                 value.food > 0
-                                                    ? <tr className="bg-white border ">
+                                                    ? <tr className="bg-white border border-slate-200">
 
                                                         {
                                                             value.food_remarks == "-"
-                                                                ? <th className="px-6 py-2 text-center border whitespace-wrap">
+                                                                ? <td className="px-6 py-1 text-center border border-slate-200 whitespace-wrap">
                                                                     Food
-                                                                </th>
-                                                                : <th className="px-6 py-2 text-center border whitespace-wrap">
+                                                                </td>
+                                                                : <td className="px-6 py-1 text-center border border-slate-200 whitespace-wrap">
                                                                     Food-{ value.food_remarks }
-                                                                </th>
+                                                                </td>
 
                                                         }
 
-                                                        <td className="p-2 text-center border ">
+                                                        <td className="p-1 text-center border border-slate-200 ">
                                                             { value.food }/-
                                                         </td>
 
@@ -105,20 +105,20 @@ const PrintTable5 = () => {
 
                                             {
                                                 value.travelling > 0
-                                                    ? <tr className="bg-white border-b ">
+                                                    ? <tr className="bg-white border border-slate-200 ">
                                                         {
                                                             value.travelling_remarks == "-"
-                                                                ? <th className="px-6 py-2 text-center border whitespace-wrap">
+                                                                ? <td className="px-6 py-1 text-center border border-slate-200 whitespace-wrap">
                                                                     Travelling
-                                                                </th>
-                                                                : <th className="px-6 py-2 text-center border whitespace-wrap">
+                                                                </td>
+                                                                : <td className="px-6 py-1 text-center border border-slate-200 whitespace-wrap">
                                                                     Travelling-{ value.travelling_remarks }
-                                                                </th>
+                                                                </td>
 
                                                         }
 
 
-                                                        <td className="p-2 text-center border ">
+                                                        <td className="p-1 text-center border border-slate-200 ">
                                                             { value.travelling }/-
                                                         </td>
 
@@ -128,20 +128,20 @@ const PrintTable5 = () => {
 
                                             {
                                                 value.accomodation > 0
-                                                    ? <tr className="bg-white border-b ">
+                                                    ? <tr className="bg-whiteborder border-slate-200 ">
 
                                                         {
                                                             value.accomodation_remarks == "-"
-                                                                ? <th className="px-6 py-2 text-center border whitespace-wrap">
+                                                                ? <td className="px-6 py-1 text-center border border-slate-200 whitespace-wrap">
                                                                     Accomodation
-                                                                </th>
-                                                                : <th className="px-6 py-2 text-center border whitespace-wrap">
+                                                                </td>
+                                                                : <td className="px-6 py-1 text-center border border-slate-200 whitespace-wrap">
                                                                     Accomodation-{ value.accomodation_remarks }
-                                                                </th>
+                                                                </td>
 
                                                         }
 
-                                                        <td className="p-2 text-center border">
+                                                        <td className="p-1 text-center border border-slate-200">
                                                             { value.accomodation }/-
                                                         </td>
 
@@ -151,20 +151,20 @@ const PrintTable5 = () => {
 
                                             {
                                                 value.expenses > 0
-                                                    ? <tr className="bg-white border-b ">
+                                                    ? <tr className="bg-white border border-slate-200 ">
 
                                                         {
                                                             value.expenses_remarks == "-"
-                                                                ? <th className="px-6 py-2 text-center border whitespace-wrap">
+                                                                ? <td className="px-6 py-1 text-center border border-slate-200 whitespace-wrap">
                                                                     Expenses
-                                                                </th>
-                                                                : <th className="px-6 py-2 text-center border whitespace-wrap">
+                                                                </td>
+                                                                : <td className="px-6 py-1 text-center border border-slate-200 whitespace-wrap">
                                                                     Expenses-{ value.expenses_remarks }
-                                                                </th>
+                                                                </td>
 
                                                         }
 
-                                                        <td className="p-2 text-center border">
+                                                        <td className="p-1 text-center border border-slate-200">
                                                             { value.expenses }/-
                                                         </td>
 
@@ -175,12 +175,12 @@ const PrintTable5 = () => {
 
 
 
-                                            <tr className="bg-white border-b ">
-                                                <th className="px-6 py-2 text-base text-right border text-fix">
+                                            <tr className="bg-white border border-slate-200 ">
+                                                <td className="px-6 py-1 text-base text-right border border-slate-200 text-fix">
                                                     Total:
-                                                </th>
+                                                </td>
 
-                                                <td className="p-2 text-center border">
+                                                <td className="p-1 text-center border border-slate-200">
                                                     { parseInt(value.food) + parseInt(value.travelling) + parseInt(value.accomodation) + parseInt(value.expenses) }/-
                                                 </td>
                                             </tr>
@@ -192,12 +192,14 @@ const PrintTable5 = () => {
                                 )
                             }
 
-                            <tr className="bg-white border-2 border-gray-400 ">
-                                <td className="px-6 py-2 text-lg text-right text-fix">
+                
+
+                            <tr className="bg-white border border-slate-200 ">
+                                <td className="px-6 py-1 text-base text-right underline underline-offset-2 text-fix">
                                     Grand Total:
                                 </td>
 
-                                <td className="p-2 text-lg text-center">
+                                <td className="p-1 text-base text-center">
                                     ₹{ grand3 }
                                 </td>
                             </tr>

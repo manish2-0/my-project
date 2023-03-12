@@ -55,12 +55,21 @@ function Homepage() {
                 }
                 else{
                     setloading(false);
+                    setmodal(true)
+                    setmodalmessage({
+                        "text1": "Error",
+                        "text2": "No client found."
+                    });
                 }
             })
             
         } catch (error) {
             setloading(false);
-            alert("No server response1");
+            setmodal(true)
+            setmodalmessage({
+                "text1": "Error",
+                "text2": "Could not fetch data please refresh page."
+            });
             
         }
     }

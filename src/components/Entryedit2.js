@@ -30,7 +30,23 @@ function Entryedit2() {
         event.preventDefault();
         const name = event.target.name;
         const value = event.target.value;
-        setinputs(values => ({ ...values, [name]: value }))
+
+        if (value == "") {
+            if(name=="nanosil" || name=="superflex" ||name=="silicon" || name=="food" || name=="accomodation" || name=="travelling" || name=="expenses"){
+                setinputs(values => ({ ...values, [name]: "0" }));
+            }
+            else{
+                setinputs(values => ({ ...values, [name]: "-" }));
+            }
+
+        }
+        else {
+            setinputs(values => ({ ...values, [name]: value }))
+
+        }
+
+
+        // setinputs(values => ({ ...values, [name]: value }))
         // console.log(inputs)
     }
 
