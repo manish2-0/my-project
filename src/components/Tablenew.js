@@ -315,56 +315,56 @@ function Tablenew() {
                                 values.length > 0
                                     ? <>
                                         <tr className="bg-white hover:bg-gray-50">
-                                            <td colSpan="9" className='underline underline-offset-4 p-1 text-fix text-base font-medium'>
+                                            <td colSpan="9" className='p-1 text-base font-medium underline underline-offset-4 text-fix'>
                                                 Amount of Chemicals used:
                                             </td>
                                         </tr>
 
                                         
                                         <tr className="bg-white hover:bg-gray-50">
-                                            <td colSpan="9" className=' pl-3 text-fix text-base font-medium'>
+                                            <td colSpan="9" className='pl-3 text-base font-medium  text-fix'>
                                                 Nanosil(in kg): <span className='text-slate-500'>{ total.nanosil }</span>
                                             </td>
                                         </tr>
 
                                         <tr className="bg-white hover:bg-gray-50">
-                                            <td colSpan="9" className=' pl-3 text-fix text-base font-medium'>
-                                                Superflex(in ml): <span className='text-slate-500'>{ total.superflex }</span>
+                                            <td colSpan="9" className='pl-3 text-base font-medium  text-fix'>
+                                                Superflex(in kg): <span className='text-slate-500'>{ total.superflex }</span>
                                             </td>
                                         </tr>
 
                                         <tr className="bg-white hover:bg-gray-50">
-                                            <td colSpan="9" className='pl-3 text-fix text-base font-medium'>
+                                            <td colSpan="9" className='pl-3 text-base font-medium text-fix'>
                                                 Silicon(in ml): <span className='text-slate-500'>{ total.silicon }</span>
                                             </td>
                                         </tr>
 
                                         <tr className="bg-white hover:bg-gray-50">
-                                            <td colSpan="9" className='underline underline-offset-4 p-1 text-fix text-base font-medium'>
+                                            <td colSpan="9" className='p-1 text-base font-medium underline underline-offset-4 text-fix'>
                                                 Total Expenses: ₹{ total.food + total.accomodation + total.travelling + total.expenses }
                                             </td>
                                         </tr>
 
                                         <tr className="bg-white hover:bg-gray-50">
-                                            <td colSpan="9" className=' pl-3 text-fix text-base font-medium'>
+                                            <td colSpan="9" className='pl-3 text-base font-medium  text-fix'>
                                                 Food: <span className='text-slate-500'>₹{ total.food }</span>
                                             </td>
                                         </tr>
 
                                         <tr className="bg-white hover:bg-gray-50">
-                                            <td colSpan="9" className=' pl-3 text-fix text-base font-medium'>
+                                            <td colSpan="9" className='pl-3 text-base font-medium  text-fix'>
                                                 Accomodation: <span className='text-slate-500'>₹{ total.accomodation }</span>
                                             </td>
                                         </tr>
 
                                         <tr className="bg-white hover:bg-gray-50">
-                                            <td colSpan="9" className=' pl-3 text-fix text-base font-medium'>
+                                            <td colSpan="9" className='pl-3 text-base font-medium  text-fix'>
                                                 Travelling: <span className='text-slate-500'>₹{ total.travelling }</span>
                                             </td>
                                         </tr>
 
                                         <tr className="bg-white hover:bg-gray-50">
-                                            <td colSpan="9" className=' pl-3 text-fix text-base font-medium'>
+                                            <td colSpan="9" className='pl-3 text-base font-medium  text-fix'>
                                                 Expenses: <span className='text-slate-500'>₹{ total.expenses }</span>
                                             </td>
                                         </tr>

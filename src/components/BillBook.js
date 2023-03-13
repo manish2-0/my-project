@@ -152,11 +152,11 @@ const BillBook = () => {
             setloading(false);
             // console.log(localStorage.getItem(user.blp_id))
             setdatabasevalues(JSON.parse(localStorage.getItem(user.blp_id)));
-            console.log("Calling from if")
+            // console.log("Calling from if")
             // localStorage.removeItem(user.blp_id);
             // let a=JSON.parse(localStorage.getItem(user.blp_id))
             // settrial(a);
-
+            localStorage.removeItem(user.blp_id);
             setmodal(true);
             setmodalmessage({
                 "text1": "Unsaved changes found",
@@ -214,7 +214,7 @@ const BillBook = () => {
         };
 
         localStorage.setItem(user.blp_id, JSON.stringify(a))
-        console.log(a)
+        // console.log(a)
 
         try {
             await api.post(`client/upload-bill/${user.blp_id}`, JSON.stringify(a)).then(async function (response) {
@@ -226,7 +226,7 @@ const BillBook = () => {
                         "text2": "Bill uploaded succesfully."
                     });
                     localStorage.removeItem(user.blp_id);
-                    setzero()
+                    setzero();
 
                     navigate('/')
 
